@@ -13,16 +13,16 @@ public class Catalog {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "CATALOG_ID", nullable = false, unique = true)
-    private String catalogId;
+    private int catalogId;
 
     @Column(name = "CATALOG_NAME", nullable = false)
     private String catalogName;
 
-    public String getCatalogId() {
+    public int getCatalogId() {
         return catalogId;
     }
 
-    public void setCatalogId(String catalogId) {
+    public void setCatalogId(int catalogId) {
         this.catalogId = catalogId;
     }
 
