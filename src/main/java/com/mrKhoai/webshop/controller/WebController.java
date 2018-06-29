@@ -14,6 +14,6 @@ public class WebController {
 
     @RequestMapping("/login")
     public String loginPage(Model model) {
-        return "product";
+        return "login";
     }
 }

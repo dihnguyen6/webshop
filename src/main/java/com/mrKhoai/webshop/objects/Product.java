@@ -6,22 +6,24 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name="PRODUCT")
 public class Product {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "PRODUCT_ID", nullable = false, unique = true)
-    private String productId;
+    private int productId;
 
     @Column(name = "PRODUCT_NAME", nullable = false)
     private String productName;
 
-    public String getProductId() {
+    public int getProductId() {
         return productId;
     }
 
-    public void setProductId(String productId) {
+    public void setProductId(int productId) {
         this.productId = productId;
     }
 
