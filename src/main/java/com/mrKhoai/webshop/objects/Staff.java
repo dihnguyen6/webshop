@@ -8,19 +8,19 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "CUSTOMER")
+@Table(name = "STAFF")
 public class Staff {
 
     private enum Role {
         ADMINISTRATOR, SALE_ASSISTANT, PRODUCT_MANAGER, WEB_DEV, CUSTOMER
     }
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "CUSTOMER_ID", length = 20, nullable = false, unique = true)
+    @Column(name = "STAFF_ID", length = 20, nullable = false, unique = true)
     private String staffId;
 
-    @Column(name = "CUSTOMER_NAME", nullable = false)
+    @Column(name = "STAFF_NAME", nullable = false)
     private String staffName;
 
     @Column(name = "PASSWORD", nullable = false)
@@ -29,6 +29,17 @@ public class Staff {
     @Column(name = "COMPANY_NAME", nullable = false)
     private String companyName;
 
+    @Column(name = "EMAIL", unique = true, nullable = false)
+    private String email;
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public String getStaffId() {
         return staffId;
     }
@@ -36,8 +47,6 @@ public class Staff {
     public void setStaffId(String staffId) {
         this.staffId = staffId;
     }
-
-
 
     public String getStaffName() {
         return staffName;
