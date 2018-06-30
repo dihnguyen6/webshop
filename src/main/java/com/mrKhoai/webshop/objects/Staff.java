@@ -8,15 +8,20 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "CUSTOMER")
-public class Customer {
+@Table(name = "STAFF")
+public class Staff {
+
+    private enum Role {
+        ADMINISTRATOR, SALE_ASSISTANT, PRODUCT_MANAGER, WEB_DEV, CUSTOMER
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "CUSTOMER_ID", length = 20, nullable = false, unique = true)
-    private String customerId;
+    @Column(name = "STAFF_ID", length = 20, nullable = false, unique = true)
+    private String staffId;
 
-    @Column(name = "CUSTOMER_NAME", nullable = false)
-    private String customerName;
+    @Column(name = "STAFF_NAME", nullable = false)
+    private String staffName;
 
     @Column(name = "PASSWORD", nullable = false)
     private String password;
@@ -24,24 +29,31 @@ public class Customer {
     @Column(name = "COMPANY_NAME", nullable = false)
     private String companyName;
 
-    public String getCustomerId() {
-        return customerId;
+    @Column(name = "EMAIL", unique = true, nullable = false)
+    private String email;
+
+    public String getEmail() {
+        return email;
     }
 
-    public void setCustomerId(String customerId) {
-        this.customerId = customerId;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    private enum Role {
-        ADMINISTRATOR, SALE_ASSISTANT, PRODUCT_MANAGER, WEB_DEV
+    public String getStaffId() {
+        return staffId;
     }
 
-    public String getCustomerName() {
-        return customerName;
+    public void setStaffId(String staffId) {
+        this.staffId = staffId;
     }
 
-    public void setCustomerName(String customerName) {
-        this.customerName = customerName;
+    public String getStaffName() {
+        return staffName;
+    }
+
+    public void setStaffName(String staffName) {
+        this.staffName = staffName;
     }
 
     public String getPassword() {
