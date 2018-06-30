@@ -9,14 +9,19 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "CUSTOMER")
-public class Customer {
+public class Staff {
+
+    private enum Role {
+        ADMINISTRATOR, SALE_ASSISTANT, PRODUCT_MANAGER, WEB_DEV, CUSTOMER
+    }
+    
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "CUSTOMER_ID", length = 20, nullable = false, unique = true)
-    private String customerId;
+    private String staffId;
 
     @Column(name = "CUSTOMER_NAME", nullable = false)
-    private String customerName;
+    private String staffName;
 
     @Column(name = "PASSWORD", nullable = false)
     private String password;
@@ -24,24 +29,22 @@ public class Customer {
     @Column(name = "COMPANY_NAME", nullable = false)
     private String companyName;
 
-    public String getCustomerId() {
-        return customerId;
+    public String getStaffId() {
+        return staffId;
     }
 
-    public void setCustomerId(String customerId) {
-        this.customerId = customerId;
+    public void setStaffId(String staffId) {
+        this.staffId = staffId;
     }
 
-    private enum Role {
-        ADMINISTRATOR, SALE_ASSISTANT, PRODUCT_MANAGER, WEB_DEV
+
+
+    public String getStaffName() {
+        return staffName;
     }
 
-    public String getCustomerName() {
-        return customerName;
-    }
-
-    public void setCustomerName(String customerName) {
-        this.customerName = customerName;
+    public void setStaffName(String staffName) {
+        this.staffName = staffName;
     }
 
     public String getPassword() {
