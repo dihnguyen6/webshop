@@ -1,7 +1,6 @@
 package com.mrKhoai.webshop.controller;
 
 import com.mrKhoai.webshop.objects.Product;
-import com.mrKhoai.webshop.repositories.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,8 +12,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(path = "/product")
 public class ProductController {
 
+    private ProductDefaultService productDefaultService;
+
     @Autowired
-    ProductRepository productRepository;
+    public void setProductDefaultService(ProductDefaultService productDefaultService) {
+        this.productDefaultService = productDefaultService;
+    }
 
     //private static final Logger LOGGER = LogManager.getLogger(ProductController.class);
 
@@ -22,7 +25,7 @@ public class ProductController {
     public void addProduct(@RequestParam(name = "name") String name) {
         Product prod = new Product();
         prod.setProductName(name);
-        productRepository.save(prod);
+        productDefaultService.addProduct(prod);
         //LOGGER.info("request add {}", prod);
     }
 }

@@ -10,8 +10,6 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
 @ComponentScan("com.mrKhoai.webshop")
-@EntityScan("com.mrKhoai.webshop.objects")
-@ServletComponentScan("com.mrKhoai.webshop.controller")
 @EnableJpaRepositories("com.mrKhoai.webshop.repositories")
 public class BetaApplication {
 
