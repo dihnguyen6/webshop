@@ -1,7 +1,7 @@
 package com.mrKhoai.webshop.controller.user;
 
 import com.mrKhoai.webshop.controller.WebshopConst;
-import com.mrKhoai.webshop.objects.Customer;
+import com.mrKhoai.webshop.objects.Staff;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.User.UserBuilder;
@@ -26,12 +26,12 @@ public class UserService implements UserDetailsService {
     @Transactional(readOnly = true)
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Customer customer = customerService.findCustomerByName(username);
-        if(customer == null) {
+        Staff staff = customerService.findCustomerByName(username);
+        if(staff == null) {
             throw new UsernameNotFoundException(WebshopConst.USER_NOT_FOUND);
         }
-        UserBuilder builder = User.withUsername(customer.getCustomerName());
-        builder.password(customer.getPassword());
+        UserBuilder builder = User.withUsername(staff.getStaffName());
+        builder.password(staff.getPassword());
         if(username.equalsIgnoreCase(WebshopConst.ADMIN)) {
             builder.authorities(WebshopConst.ADMIN, WebshopConst.USER);
         } else {

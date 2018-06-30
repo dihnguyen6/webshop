@@ -1,6 +1,6 @@
 package com.mrKhoai.webshop.controller.user;
 
-import com.mrKhoai.webshop.objects.Customer;
+import com.mrKhoai.webshop.objects.Staff;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -24,7 +24,7 @@ public class CustomerController {
         return null;
     }
 
-    public Customer getCurrentUser()
+    public Staff getCurrentUser()
     {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         //Check if it isn't an authenticated user
