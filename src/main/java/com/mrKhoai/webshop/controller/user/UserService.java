@@ -2,7 +2,6 @@ package com.mrKhoai.webshop.controller.user;
 
 import com.mrKhoai.webshop.controller.WebshopConst;
 import com.mrKhoai.webshop.objects.Customer;
-import com.mrKhoai.webshop.repositories.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.User.UserBuilder;
@@ -11,8 +10,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.Iterator;
 
 @Service("userDetailsService")
 public class UserService implements UserDetailsService {
