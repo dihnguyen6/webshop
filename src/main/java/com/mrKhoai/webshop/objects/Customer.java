@@ -32,6 +32,10 @@ public class Customer {
         this.customerId = customerId;
     }
 
+    private enum Role {
+        ADMINISTRATOR, SALE_ASSISTANT, PRODUCT_MANAGER, WEB_DEV
+    }
+
     public String getCustomerName() {
         return customerName;
     }
