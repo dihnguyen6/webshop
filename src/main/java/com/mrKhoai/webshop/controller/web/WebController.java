@@ -15,4 +15,9 @@ public class WebController {
     public String home() {
         return "home-02";
     }
+
+    @GetMapping("/product")
+    public String product(){
+        return "product";
+    }
 }

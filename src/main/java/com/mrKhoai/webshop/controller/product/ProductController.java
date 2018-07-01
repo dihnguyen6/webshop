@@ -18,11 +18,6 @@ public class ProductController {
 
     //private static final Logger LOGGER = LogManager.getLogger(ProductController.class);
 
-    @GetMapping("/")
-    public String product(){
-        return "product";
-    }
-
     @PostMapping("/add")
     public void addProduct(@RequestParam(name = "name") String name) {
         Product prod = new Product();
