@@ -24,6 +24,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         "/fonts/**", "/includes/**", "/sass/**", "/vendor/**")
                 .permitAll()
                 .antMatchers(HttpMethod.POST, "/usr/register").permitAll()
+                .antMatchers(HttpMethod.GET, "/home").permitAll()
+                .antMatchers(HttpMethod.GET, "/product/**").permitAll()
                 .antMatchers("/admin/**").access("hasRole('ADMIN')")
                 .anyRequest().authenticated()
                 .and()

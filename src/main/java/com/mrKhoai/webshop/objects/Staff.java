@@ -1,11 +1,15 @@
 package com.mrKhoai.webshop.objects;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import java.util.List;
 
 @Entity
 @Table(name = "STAFF")
@@ -31,6 +35,9 @@ public class Staff {
 
     @Column(name = "EMAIL", unique = true, nullable = false)
     private String email;
+
+    @OneToMany(mappedBy = "staff", fetch = FetchType.EAGER)
+    private List<Order> oders;
 
     public String getEmail() {
         return email;
@@ -70,5 +77,24 @@ public class Staff {
 
     public void setCompanyName(String companyName) {
         this.companyName = companyName;
+    }
+
+    public List<Order> getOders() {
+        return oders;
+    }
+
+    public void setOders(List<Order> oders) {
+        this.oders = oders;
+    }
+
+    @Override
+    public String toString() {
+        return "Staff{" +
+                "staffId : " + staffId + ", " +
+                "staffName : " + staffName +
+                "password : " + password +
+                "email : " + email +
+                "companyName : " + companyName +
+                "}";
     }
 }

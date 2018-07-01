@@ -15,7 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class UserService implements UserDetailsService {
 
     @Autowired
-    private CustomerService customerService;
+    private StaffService customerService;
 
     /**
      * load User by ussername

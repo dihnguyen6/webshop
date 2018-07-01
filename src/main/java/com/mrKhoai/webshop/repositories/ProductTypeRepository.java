@@ -1,10 +1,10 @@
 package com.mrKhoai.webshop.repositories;
 
-import com.mrKhoai.webshop.objects.Staff;
+import com.mrKhoai.webshop.objects.ProductType;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface CustomerRepository extends CrudRepository<Staff, String> {
+public interface ProductTypeRepository extends CrudRepository<ProductType, Integer> {
 
 }
