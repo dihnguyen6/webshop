@@ -7,6 +7,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.util.List;
@@ -14,11 +16,6 @@ import java.util.List;
 @Entity
 @Table(name = "STAFF")
 public class Staff {
-
-    private enum Role {
-        ADMINISTRATOR, SALE_ASSISTANT, PRODUCT_MANAGER, WEB_DEV, CUSTOMER
-    }
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "STAFF_ID", length = 20, nullable = false, unique = true)
@@ -38,6 +35,10 @@ public class Staff {
 
     @OneToMany(mappedBy = "staff", fetch = FetchType.EAGER)
     private List<Order> oders;
+
+    @ManyToOne
+    @JoinColumn(name = "ROLE_ID")
+    private Role role;
 
     public String getEmail() {
         return email;
@@ -85,6 +86,14 @@ public class Staff {
 
     public void setOders(List<Order> oders) {
         this.oders = oders;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
     }
 
     @Override
