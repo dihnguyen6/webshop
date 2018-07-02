@@ -1,5 +1,6 @@
 package com.mrKhoai.webshop.beta;
 
+import com.mrKhoai.webshop.controller.WebshopConst;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -16,6 +17,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
 import org.springframework.transaction.annotation.Transactional;
 
 @Configuration
@@ -24,6 +27,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     UserService userService;
+
+    @Autowired
+    private WebshopAuthenticationSuccessHandler successHandler;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -46,7 +52,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.GET, "/login").permitAll()
                 .antMatchers(HttpMethod.GET, "/home").permitAll()
                 .antMatchers(HttpMethod.GET, "/product/**").permitAll()
-                .antMatchers("/admin/**").access("hasRole('ADMIN')")
+                .antMatchers("/admin").hasRole(WebshopConst.ADMINISTRATOR)
+                .antMatchers("/web-dev").hasRole(WebshopConst.WEB_DEV)
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
@@ -55,6 +62,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .usernameParameter("username")
                 .passwordParameter("password")
                 .successForwardUrl("/home")
+                .successHandler(successHandler)
                 .permitAll()
                 .and()
                 .logout()
@@ -76,5 +84,4 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
-
 }

@@ -2,6 +2,7 @@ package com.mrKhoai.webshop.controller.web;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class WebController {
@@ -19,5 +20,10 @@ public class WebController {
     @GetMapping("/product")
     public String product(){
         return "product";
+    }
+
+    @GetMapping("/web-dev")
+    public String devPage(){
+        return "web-dev";
     }
 }
