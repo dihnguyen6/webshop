@@ -1,6 +1,8 @@
 package com.mrKhoai.webshop.beta;
 
 import com.mrKhoai.webshop.controller.WebshopConst;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.web.DefaultRedirectStrategy;
@@ -17,6 +19,7 @@ import java.util.Collection;
 @Component
 public class WebshopAuthenticationSuccessHandler implements AuthenticationSuccessHandler {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(WebshopAuthenticationSuccessHandler.class);
     private RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
 
     @Override
@@ -29,15 +32,13 @@ public class WebshopAuthenticationSuccessHandler implements AuthenticationSucces
                 try {
                     redirectStrategy.sendRedirect(httpServletRequest, httpServletResponse, "/home");
                 } catch (Exception e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
+                    LOGGER.debug(e.getMessage());
                 }
             } else if (authority.getAuthority().equals(WebshopConst.ROLE_WEB_DEV)) {
                 try {
                     redirectStrategy.sendRedirect(httpServletRequest, httpServletResponse, "/web-dev");
                 } catch (Exception e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
+                    LOGGER.debug(e.getMessage());
                 }
             } else {
                 throw new IllegalStateException();

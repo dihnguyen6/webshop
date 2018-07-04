@@ -14,9 +14,13 @@ public final class WebshopConst {
     public static final String ROLE_WEB_DEV = "ROLE_WEB_DEV";
 
     public static final String USER_NAME = "username";
+    public static final String USER_PASSWORD = "password";
     public static final String USER_MAIL = "email";
+    public static final String USER_COMPANY = "company";
     public static final String STATUS = "status";
     public static final String MAIL_REGEX = "[a-zA-Z0-9-_.]+@[a-zA-Z0-9-_.]+";
     public static final String INVALID = " is invalid";
     public static final String REGITERED = " is registered";
+
+    public static final int INACTIVE_TIMEOUT = 9000;
 }

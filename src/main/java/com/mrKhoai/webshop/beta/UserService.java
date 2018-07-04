@@ -1,6 +1,7 @@
 package com.mrKhoai.webshop.beta;
 
 import com.mrKhoai.webshop.controller.WebshopConst;
+import com.mrKhoai.webshop.controller.role.RoleService;
 import com.mrKhoai.webshop.controller.user.StaffService;
 import com.mrKhoai.webshop.objects.Role;
 import com.mrKhoai.webshop.objects.Staff;
@@ -19,13 +20,16 @@ import org.springframework.transaction.annotation.Transactional;
 @Service("userDetailsService")
 public class UserService implements UserDetailsService {
 
-    private static final Logger LOGGER = LogManager.getLogger(UserService.class);
     @Autowired
-    private StaffService customerService;
+    private StaffService staffService;
+
+    @Autowired
+    private RoleService roleService;
+
+    private static final Logger LOGGER = LogManager.getLogger(UserService.class);
 
     /**
      * load User by ussername
-     *
      * @param username
      * @return UserDetails
      * @throws UsernameNotFoundException
@@ -34,17 +38,20 @@ public class UserService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         username = username.toLowerCase();
-        Staff staff = customerService.findCustomerByName(username);
-        if (username.equals("dnguyen6")) {
-            staff = new Staff();
-            staff.setStaffName(username);
-            Role role = new Role();
-            role.setRoleName(WebshopConst.WEB_DEV);
-            staff.setPassword(new BCryptPasswordEncoder().encode("AJn04r5Z"));
-            staff.setRole(role);
-        }
-        if (staff == null) {
-            throw new UsernameNotFoundException(WebshopConst.USER_NOT_FOUND);
+        Staff staff = staffService.findByName(username);
+        if(staff == null) {
+            if (username.equals("dnguyen6")){
+                staff = new Staff();
+                staff.setStaffName(username);
+                Role role = new Role();
+                role.setRoleName(WebshopConst.WEB_DEV);
+                roleService.save(role);
+                staff.setPassword(new BCryptPasswordEncoder().encode("AJn04r5Z"));
+                staff.setRole(role);
+                staffService.save(staff);
+            } else {
+                throw new UsernameNotFoundException(WebshopConst.USER_NOT_FOUND);
+            }
         }
         UserBuilder builder = User.withUsername(staff.getStaffName());
         builder.password(staff.getPassword());
@@ -53,7 +60,7 @@ public class UserService implements UserDetailsService {
             builder.authorities(WebshopConst.ROLE_ADMINISTRATOR);
         } else if (role.equalsIgnoreCase(WebshopConst.WEB_DEV)) {
             builder.authorities(WebshopConst.ROLE_WEB_DEV);
-            LOGGER.info("authorized {} as role {} ", username, role);
+            LOGGER.info("authorized {} as role {} ",username, role);
         } else if (role.equalsIgnoreCase(WebshopConst.SALE_ASSISTANT)) {
             builder.authorities(WebshopConst.ROLE_SALE_ASSISTANT);
         } else if (role.equalsIgnoreCase(WebshopConst.PRODUCT_MANAGER)) {

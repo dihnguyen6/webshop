@@ -1,8 +1,10 @@
 package com.mrKhoai.webshop.controller.user;
 
+import com.mrKhoai.webshop.controller.ObjectService;
 import com.mrKhoai.webshop.controller.WebshopConst;
 import com.mrKhoai.webshop.objects.Staff;
 import com.mrKhoai.webshop.repositories.StaffRepository;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,24 +16,42 @@ import org.springframework.stereotype.Service;
 import java.util.Iterator;
 
 @Service
-public class StaffService {
+public class StaffService implements ObjectService<Staff> {
 
     @Autowired
     private StaffRepository staffRepository;
 
-    public void addCustomer(Staff staff) {
+    @Override
+    public void save(Staff staff){
         staffRepository.save(staff);
     }
 
-    public void deleteCustomer(Staff staff) {
+    @Override
+    public void delete(Staff staff){
         staffRepository.delete(staff);
     }
 
-    public Staff findCustomerById(String id) {
+    @Override
+    public Staff findById(String id){
         return staffRepository.findById(id).get();
     }
 
-    public Staff findCustomerByName(String username) {
+    @Override
+    public Staff findById(int id) {
+        return null;
+    }
+
+    @Override
+    public boolean contains(String id) {
+        return false;
+    }
+
+    @Override
+    public boolean contains(int id) {
+        return false;
+    }
+
+    public Staff findByName(String username) {
         Iterator<Staff> userList = staffRepository.findAll().iterator();
         while (userList.hasNext()) {
             Staff tempStaff = userList.next();
@@ -42,7 +62,7 @@ public class StaffService {
         return null;
     }
 
-    public boolean containsCustomer(String username) {
+    public boolean containsName(String username){
         Iterator<Staff> userList = staffRepository.findAll().iterator();
         while (userList.hasNext()) {
             Staff tempStaff = userList.next();
@@ -53,7 +73,7 @@ public class StaffService {
         return false;
     }
 
-    public boolean containsMail(String email) {
+    public boolean containsMail(String email){
         Iterator<Staff> userList = staffRepository.findAll().iterator();
         while (userList.hasNext()) {
             Staff tempStaff = userList.next();
@@ -67,7 +87,7 @@ public class StaffService {
     public JSONObject checkCustomer(Staff staff) throws JSONException {
         JSONObject jsonObject = new JSONObject();
         boolean status = true;
-        if (containsCustomer(staff.getStaffName())) {
+        if (containsName(staff.getStaffName())) {
             status = false;
             jsonObject.put(WebshopConst.USER_NAME, WebshopConst.USER_NAME + WebshopConst.REGITERED);
         }
@@ -83,13 +103,30 @@ public class StaffService {
         return jsonObject;
     }
 
-    public Staff getCurrentUser() {
+    @Override
+    public JSONArray getAll() throws JSONException {
+        JSONArray jsonArray = new JSONArray();
+        Iterator<Staff> userList = staffRepository.findAll().iterator();
+        while (userList.hasNext()) {
+            Staff tempStaff = userList.next();
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put(WebshopConst.USER_NAME, tempStaff.getStaffName());
+            jsonObject.put(WebshopConst.USER_PASSWORD, tempStaff.getPassword());
+            jsonObject.put(WebshopConst.USER_MAIL, tempStaff.getEmail());
+            jsonObject.put(WebshopConst.USER_COMPANY, tempStaff.getCompanyName());
+            jsonArray.put(jsonObject);
+        }
+        return jsonArray;
+    }
+
+    public Staff getCurrentUser()
+    {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         //Check if it isn't an authenticated user
         if (authentication instanceof AnonymousAuthenticationToken) {
             return null;
         }
         String currentUserName = authentication.getName();
-        return findCustomerByName(currentUserName);
+        return findByName(currentUserName);
     }
 }
