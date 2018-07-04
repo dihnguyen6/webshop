@@ -26,8 +26,8 @@ public class Order {
     private double oderPrice;
 
     @ManyToOne
-    @JoinColumn(name = "STAFF_ID")
-    private Staff staff;
+    @JoinColumn(name = "CUSTOMER_ID")
+    private Customer customer;
 
     @OneToOne
     @JoinColumn(name = "PAYMENT_ID")
@@ -57,12 +57,12 @@ public class Order {
         this.oderPrice = oderPrice;
     }
 
-    public Staff getStaff() {
-        return staff;
+    public Customer getCustomer() {
+        return customer;
     }
 
-    public void setStaff(Staff staff) {
-        this.staff = staff;
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 
     public Payment getPayment() {

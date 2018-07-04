@@ -22,5 +22,7 @@ public final class WebshopConst {
     public static final String INVALID = " is invalid";
     public static final String REGITERED = " is registered";
 
+    public static final String PREFIX = "MrKhoai";
+
     public static final int INACTIVE_TIMEOUT = 9000;
 }

@@ -1,5 +1,7 @@
 package com.mrKhoai.webshop.objects;
 
+import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -16,24 +18,22 @@ import java.util.List;
 @Table(name = "STAFF")
 public class Staff {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GenericGenerator(name = "staff_generator", strategy = "com.mrKhoai.webshop.objects.StaffIdGenerator")
+    @GeneratedValue(generator = "staff_generator")
     @Column(name = "STAFF_ID", length = 20, nullable = false, unique = true)
     private String staffId;
 
     @Column(name = "STAFF_NAME", nullable = false)
     private String staffName;
 
+    @Column(name = "STAFF_FULL_NAME", nullable = false)
+    private String staffFullName;
+
     @Column(name = "PASSWORD", nullable = false)
     private String password;
 
-    @Column(name = "COMPANY_NAME", nullable = false)
-    private String companyName;
-
     @Column(name = "EMAIL", unique = true, nullable = false)
     private String email;
-
-    @OneToMany(mappedBy = "staff", fetch = FetchType.EAGER)
-    private List<Order> oders;
 
     @ManyToOne
     @JoinColumn(name = "ROLE_ID")
@@ -71,28 +71,20 @@ public class Staff {
         this.password = password;
     }
 
-    public String getCompanyName() {
-        return companyName;
-    }
-
-    public void setCompanyName(String companyName) {
-        this.companyName = companyName;
-    }
-
-    public List<Order> getOders() {
-        return oders;
-    }
-
-    public void setOders(List<Order> oders) {
-        this.oders = oders;
-    }
-
     public Role getRole() {
         return role;
     }
 
     public void setRole(Role role) {
         this.role = role;
+    }
+
+    public String getStaffFullName() {
+        return staffFullName;
+    }
+
+    public void setStaffFullName(String staffFullName) {
+        this.staffFullName = staffFullName;
     }
 
     @Override
@@ -102,7 +94,6 @@ public class Staff {
                 "staffName : " + staffName +
                 "password : " + password +
                 "email : " + email +
-                "companyName : " + companyName +
                 "}";
     }
 }

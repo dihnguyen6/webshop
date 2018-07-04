@@ -1,9 +1,9 @@
-package com.mrKhoai.webshop.controller.user;
+package com.mrKhoai.webshop.controller.customer;
 
 import com.mrKhoai.webshop.controller.ObjectService;
 import com.mrKhoai.webshop.controller.WebshopConst;
-import com.mrKhoai.webshop.objects.Staff;
-import com.mrKhoai.webshop.repositories.StaffRepository;
+import com.mrKhoai.webshop.objects.Customer;
+import com.mrKhoai.webshop.repositories.CustomerRepository;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -16,28 +16,28 @@ import org.springframework.stereotype.Service;
 import java.util.Iterator;
 
 @Service
-public class StaffService implements ObjectService<Staff> {
+public class CustomerService implements ObjectService<Customer> {
 
     @Autowired
-    private StaffRepository staffRepository;
+    private CustomerRepository customerRepository;
 
     @Override
-    public void save(Staff staff){
-        staffRepository.save(staff);
+    public void save(Customer customer){
+        customerRepository.save(customer);
     }
 
     @Override
-    public void delete(Staff staff){
-        staffRepository.delete(staff);
+    public void delete(Customer customer){
+        customerRepository.delete(customer);
     }
 
     @Override
-    public Staff findById(String id){
-        return staffRepository.findById(id).get();
+    public Customer findById(String id){
+        return customerRepository.findById(id).get();
     }
 
     @Override
-    public Staff findById(int id) {
+    public Customer findById(int id) {
         return null;
     }
 
@@ -51,22 +51,22 @@ public class StaffService implements ObjectService<Staff> {
         return false;
     }
 
-    public Staff findByName(String username) {
-        Iterator<Staff> userList = staffRepository.findAll().iterator();
+    public Customer findByName(String username) {
+        Iterator<Customer> userList = customerRepository.findAll().iterator();
         while (userList.hasNext()) {
-            Staff tempStaff = userList.next();
-            if (tempStaff.getStaffName().equals(username)) {
-                return tempStaff;
+            Customer customer = userList.next();
+            if (customer.getCustomerName().equals(username)) {
+                return customer;
             }
         }
         return null;
     }
 
     public boolean containsName(String username){
-        Iterator<Staff> userList = staffRepository.findAll().iterator();
+        Iterator<Customer> userList = customerRepository.findAll().iterator();
         while (userList.hasNext()) {
-            Staff tempStaff = userList.next();
-            if (tempStaff.getStaffName().equals(username)) {
+            Customer customer = userList.next();
+            if (customer.getCustomerName().equals(username)) {
                 return true;
             }
         }
@@ -74,28 +74,28 @@ public class StaffService implements ObjectService<Staff> {
     }
 
     public boolean containsMail(String email){
-        Iterator<Staff> userList = staffRepository.findAll().iterator();
+        Iterator<Customer> userList = customerRepository.findAll().iterator();
         while (userList.hasNext()) {
-            Staff tempStaff = userList.next();
-            if (tempStaff.getEmail().equals(email)) {
+            Customer customer = userList.next();
+            if (customer.getEmail().equals(email)) {
                 return true;
             }
         }
         return false;
     }
 
-    public JSONObject checkCustomer(Staff staff) throws JSONException {
+    public JSONObject checkCustomer(Customer customer) throws JSONException {
         JSONObject jsonObject = new JSONObject();
         boolean status = true;
-        if (containsName(staff.getStaffName())) {
+        if (containsName(customer.getCustomerName())) {
             status = false;
             jsonObject.put(WebshopConst.USER_NAME, WebshopConst.USER_NAME + WebshopConst.REGITERED);
         }
-        if (staff.getEmail().matches(WebshopConst.MAIL_REGEX)) {
+        if (customer.getEmail().matches(WebshopConst.MAIL_REGEX)) {
             status = false;
             jsonObject.put(WebshopConst.USER_MAIL, WebshopConst.USER_MAIL + WebshopConst.INVALID);
         }
-        if (containsMail(staff.getEmail())) {
+        if (containsMail(customer.getEmail())) {
             status = false;
             jsonObject.put(WebshopConst.USER_MAIL, WebshopConst.USER_MAIL + WebshopConst.REGITERED);
         }
@@ -106,20 +106,19 @@ public class StaffService implements ObjectService<Staff> {
     @Override
     public JSONArray getAll() throws JSONException {
         JSONArray jsonArray = new JSONArray();
-        Iterator<Staff> userList = staffRepository.findAll().iterator();
+        Iterator<Customer> userList = customerRepository.findAll().iterator();
         while (userList.hasNext()) {
-            Staff tempStaff = userList.next();
+            Customer customer = userList.next();
             JSONObject jsonObject = new JSONObject();
-            jsonObject.put(WebshopConst.USER_NAME, tempStaff.getStaffName());
-            jsonObject.put(WebshopConst.USER_PASSWORD, tempStaff.getPassword());
-            jsonObject.put(WebshopConst.USER_MAIL, tempStaff.getEmail());
-            jsonObject.put(WebshopConst.USER_COMPANY, tempStaff.getCompanyName());
+            jsonObject.put(WebshopConst.USER_NAME, customer.getCustomerId());
+            jsonObject.put(WebshopConst.USER_PASSWORD, customer.getPassword());
+            jsonObject.put(WebshopConst.USER_MAIL, customer.getEmail());
             jsonArray.put(jsonObject);
         }
         return jsonArray;
     }
 
-    public Staff getCurrentUser()
+    public Customer getCurrentUser()
     {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         //Check if it isn't an authenticated user

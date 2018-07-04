@@ -1,7 +1,7 @@
 package com.mrKhoai.webshop.beta;
 
 import com.mrKhoai.webshop.controller.WebshopConst;
-import com.mrKhoai.webshop.controller.user.StaffService;
+import com.mrKhoai.webshop.controller.customer.CustomerService;
 import com.mrKhoai.webshop.objects.Staff;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,8 +18,8 @@ import javax.servlet.http.HttpSessionListener;
 
 @Configuration
 public class HttpSessionConfig {
-    @Autowired
-    private StaffService staffService;
+    /*@Autowired
+    private CustomerService staffService;*/
 
     private static final Logger LOGGER = LoggerFactory.getLogger(HttpSessionConfig.class);
 
@@ -29,10 +29,11 @@ public class HttpSessionConfig {
             @Override
             public void sessionCreated(HttpSessionEvent se) {               // This method will be called when session created
                 Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-                Staff staff = staffService.findByName(auth.getName());
+                /*Staff staff = staffService.findByName(auth.getName());
+                //TODO anonymous
                 if (!staff.getRole().getRoleName().equals(WebshopConst.CUSTOMER)) {
                     se.getSession().setMaxInactiveInterval(WebshopConst.INACTIVE_TIMEOUT);
-                }
+                }*/
                 LOGGER.info("Session Created with session id: {}", se.getSession().getId());
             }
 
