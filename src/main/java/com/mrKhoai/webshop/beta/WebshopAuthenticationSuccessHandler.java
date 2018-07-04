@@ -25,14 +25,14 @@ public class WebshopAuthenticationSuccessHandler implements AuthenticationSucces
                                         Authentication authentication) throws IOException, ServletException {
         Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
         authorities.forEach(authority -> {
-            if(authority.getAuthority().equals(WebshopConst.ROLE_CUSTOMER)) {
+            if (authority.getAuthority().equals(WebshopConst.ROLE_CUSTOMER)) {
                 try {
                     redirectStrategy.sendRedirect(httpServletRequest, httpServletResponse, "/home");
                 } catch (Exception e) {
                     // TODO Auto-generated catch block
                     e.printStackTrace();
                 }
-            } else if(authority.getAuthority().equals(WebshopConst.ROLE_WEB_DEV)) {
+            } else if (authority.getAuthority().equals(WebshopConst.ROLE_WEB_DEV)) {
                 try {
                     redirectStrategy.sendRedirect(httpServletRequest, httpServletResponse, "/web-dev");
                 } catch (Exception e) {

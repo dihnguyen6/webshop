@@ -19,15 +19,15 @@ public class StaffService {
     @Autowired
     private StaffRepository staffRepository;
 
-    public void addCustomer(Staff staff){
+    public void addCustomer(Staff staff) {
         staffRepository.save(staff);
     }
 
-    public void deleteCustomer(Staff staff){
+    public void deleteCustomer(Staff staff) {
         staffRepository.delete(staff);
     }
 
-    public Staff findCustomerById(String id){
+    public Staff findCustomerById(String id) {
         return staffRepository.findById(id).get();
     }
 
@@ -42,7 +42,7 @@ public class StaffService {
         return null;
     }
 
-    public boolean containsCustomer(String username){
+    public boolean containsCustomer(String username) {
         Iterator<Staff> userList = staffRepository.findAll().iterator();
         while (userList.hasNext()) {
             Staff tempStaff = userList.next();
@@ -53,7 +53,7 @@ public class StaffService {
         return false;
     }
 
-    public boolean containsMail(String email){
+    public boolean containsMail(String email) {
         Iterator<Staff> userList = staffRepository.findAll().iterator();
         while (userList.hasNext()) {
             Staff tempStaff = userList.next();
@@ -83,8 +83,7 @@ public class StaffService {
         return jsonObject;
     }
 
-    public Staff getCurrentUser()
-    {
+    public Staff getCurrentUser() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         //Check if it isn't an authenticated user
         if (authentication instanceof AnonymousAuthenticationToken) {

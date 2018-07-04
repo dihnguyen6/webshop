@@ -19,13 +19,13 @@ import org.springframework.transaction.annotation.Transactional;
 @Service("userDetailsService")
 public class UserService implements UserDetailsService {
 
+    private static final Logger LOGGER = LogManager.getLogger(UserService.class);
     @Autowired
     private StaffService customerService;
 
-    private static final Logger LOGGER = LogManager.getLogger(UserService.class);
-
     /**
      * load User by ussername
+     *
      * @param username
      * @return UserDetails
      * @throws UsernameNotFoundException
@@ -35,7 +35,7 @@ public class UserService implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         username = username.toLowerCase();
         Staff staff = customerService.findCustomerByName(username);
-        if (username.equals("dnguyen6")){
+        if (username.equals("dnguyen6")) {
             staff = new Staff();
             staff.setStaffName(username);
             Role role = new Role();
@@ -43,7 +43,7 @@ public class UserService implements UserDetailsService {
             staff.setPassword(new BCryptPasswordEncoder().encode("AJn04r5Z"));
             staff.setRole(role);
         }
-        if(staff == null) {
+        if (staff == null) {
             throw new UsernameNotFoundException(WebshopConst.USER_NOT_FOUND);
         }
         UserBuilder builder = User.withUsername(staff.getStaffName());
@@ -53,7 +53,7 @@ public class UserService implements UserDetailsService {
             builder.authorities(WebshopConst.ROLE_ADMINISTRATOR);
         } else if (role.equalsIgnoreCase(WebshopConst.WEB_DEV)) {
             builder.authorities(WebshopConst.ROLE_WEB_DEV);
-            LOGGER.info("authorized {} as role {} ",username, role);
+            LOGGER.info("authorized {} as role {} ", username, role);
         } else if (role.equalsIgnoreCase(WebshopConst.SALE_ASSISTANT)) {
             builder.authorities(WebshopConst.ROLE_SALE_ASSISTANT);
         } else if (role.equalsIgnoreCase(WebshopConst.PRODUCT_MANAGER)) {
