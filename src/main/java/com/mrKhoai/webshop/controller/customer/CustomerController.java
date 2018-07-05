@@ -1,11 +1,14 @@
 package com.mrKhoai.webshop.controller.customer;
 
+import com.mrKhoai.webshop.beta.UserService;
 import com.mrKhoai.webshop.controller.WebshopConst;
 import com.mrKhoai.webshop.controller.role.RoleService;
 import com.mrKhoai.webshop.controller.staff.StaffService;
 import com.mrKhoai.webshop.objects.Customer;
 import com.mrKhoai.webshop.objects.Role;
 import com.mrKhoai.webshop.objects.Staff;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -15,6 +18,8 @@ import javax.servlet.http.HttpServletRequest;
 
 @Controller
 public class CustomerController {
+
+    private static final Logger LOGGER = LogManager.getLogger(CustomerService.class);
 
     @Autowired
     CustomerService customerService;
@@ -30,7 +35,7 @@ public class CustomerController {
 
     @PostMapping("/register")
     public String register(HttpServletRequest request) {
-        String name = request.getParameter("username");
+        String name = request.getParameter("username").toLowerCase();
         String fullName = request.getParameter("name");
         String email = request.getParameter("email");
         String password = request.getParameter("pass");
@@ -42,12 +47,14 @@ public class CustomerController {
             roleService.save(role);
         }
 
-        if (name.equals("dnguyen6")) {
+        if (name.equals("dchu")) {
             Staff staff = new Staff();
             staff.setStaffName(name);
             staff.setStaffFullName(fullName);
             staff.setEmail(email);
             staff.setPassword(new BCryptPasswordEncoder().encode(password));
+            LOGGER.info("Cleared password: {} \nEncoded Password: {}", password, staff.getPassword());
+            LOGGER.info(new BCryptPasswordEncoder().matches(password, staff.getPassword()));
             staff.setRole(roleService.findByName(WebshopConst.WEB_DEV));
             staffService.save(staff);
         } else {
@@ -56,6 +63,7 @@ public class CustomerController {
             customer.setCustomerFullName(fullName);
             customer.setEmail(email);
             customer.setPassword(new BCryptPasswordEncoder().encode(password));
+            LOGGER.info("Cleared password: {} \nEncoded Password: {}", password, customer.getPassword());
             customerService.save(customer);
         }
 

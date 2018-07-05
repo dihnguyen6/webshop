@@ -23,6 +23,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private WebshopAuthenticationSuccessHandler successHandler;
 
+    @Autowired
+    public BCryptPasswordEncoder bCryptPasswordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.sessionManagement()
@@ -42,10 +47,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.POST, "/register").permitAll()
                 .antMatchers(HttpMethod.POST, "/login").permitAll()
                 .antMatchers(HttpMethod.GET, "/login").permitAll()
-                .antMatchers(HttpMethod.GET, "/home").permitAll()
-                .antMatchers(HttpMethod.GET, "/product/**").permitAll()
-                .antMatchers("/admin").hasRole(WebshopConst.ADMINISTRATOR)
-                .antMatchers("/web-dev").hasRole(WebshopConst.WEB_DEV)
+                .antMatchers(HttpMethod.GET, "/anonymous/**").permitAll()
+                .antMatchers("/admin/**").hasRole(WebshopConst.ADMINISTRATOR)
+                .antMatchers("/web-dev/**").hasRole(WebshopConst.WEB_DEV)
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
@@ -69,11 +73,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userService).passwordEncoder(passwordEncoder());
-    }
-
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
+        auth.userDetailsService(userService).passwordEncoder(bCryptPasswordEncoder());
     }
 }

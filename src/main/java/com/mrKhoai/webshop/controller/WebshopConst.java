@@ -3,15 +3,12 @@ package com.mrKhoai.webshop.controller;
 public final class WebshopConst {
     public static final String USER_NOT_FOUND = "Username not found";
     public static final String CUSTOMER = "CUSTOMER";
+    public static final String ROLE_CUSTOMER = "ROLE_CUSTOMER";
     public static final String ADMINISTRATOR = "ADMINISTRATOR";
     public static final String SALE_ASSISTANT = "SALE_ASSISTANT";
     public static final String PRODUCT_MANAGER = "PRODUCT_MANAGER";
     public static final String WEB_DEV = "WEB_DEV";
-    public static final String ROLE_CUSTOMER = "ROLE_CUSTOMER";
-    public static final String ROLE_ADMINISTRATOR = "ROLE_ADMINISTRATOR";
-    public static final String ROLE_SALE_ASSISTANT = "ROLE_SALE_ASSISTANT";
-    public static final String ROLE_PRODUCT_MANAGER = "ROLE_PRODUCT_MANAGER";
-    public static final String ROLE_WEB_DEV = "ROLE_WEB_DEV";
+    public static final String ROLE = "ROLE_";
 
     public static final String USER_NAME = "username";
     public static final String USER_PASSWORD = "password";

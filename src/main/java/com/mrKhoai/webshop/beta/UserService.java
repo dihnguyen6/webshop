@@ -14,6 +14,7 @@ import org.springframework.security.core.userdetails.User.UserBuilder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -55,17 +56,11 @@ public class UserService implements UserDetailsService {
         } else {
             UserBuilder builder = User.withUsername(staff.getStaffName());
             builder.password(staff.getPassword());
-            String role = staff.getRole().getRoleName();
-            if (role.equalsIgnoreCase(WebshopConst.ADMINISTRATOR)) {
-                builder.authorities(WebshopConst.ROLE_ADMINISTRATOR);
-            } else if (role.equalsIgnoreCase(WebshopConst.WEB_DEV)) {
-                builder.authorities(WebshopConst.ROLE_WEB_DEV);
-            } else if (role.equalsIgnoreCase(WebshopConst.SALE_ASSISTANT)) {
-                builder.authorities(WebshopConst.ROLE_SALE_ASSISTANT);
-            } else {
-                builder.authorities(WebshopConst.ROLE_PRODUCT_MANAGER);
-            }
+            String role = staff.getRole().getRoleName().toUpperCase();
+            builder.authorities(WebshopConst.ROLE + role);
             LOGGER.info("authorized {} as role {} ",username, role);
+            LOGGER.info("username: {} password: {}", builder.build().getUsername(), builder.build().getPassword());
+            LOGGER.info(new BCryptPasswordEncoder().matches("Duy***1994", builder.build().getPassword()));
             return builder.build();
         }
     }

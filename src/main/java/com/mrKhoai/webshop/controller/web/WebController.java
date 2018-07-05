@@ -13,16 +13,16 @@ public class WebController {
 
     @GetMapping("/home")
     public String home() {
-        return "home-02";
+        return "anonymous/home-02";
     }
 
     @GetMapping("/product")
     public String product() {
-        return "product";
+        return "anonymous/product";
     }
 
     @GetMapping("/web-dev")
     public String devPage() {
-        return "web-dev";
+        return "web-dev/web-dev";
     }
 }
