@@ -58,9 +58,6 @@ public class UserService implements UserDetailsService {
             builder.password(staff.getPassword());
             String role = staff.getRole().getRoleName().toUpperCase();
             builder.authorities(WebshopConst.ROLE + role);
-            LOGGER.info("authorized {} as role {} ",username, role);
-            LOGGER.info("username: {} password: {}", builder.build().getUsername(), builder.build().getPassword());
-            LOGGER.info(new BCryptPasswordEncoder().matches("Duy***1994", builder.build().getPassword()));
             return builder.build();
         }
     }

@@ -1,10 +1,12 @@
 package com.mrKhoai.webshop.controller.staff;
 
 import com.mrKhoai.webshop.controller.ObjectService;
+import com.mrKhoai.webshop.controller.WebshopConst;
 import com.mrKhoai.webshop.objects.Staff;
 import com.mrKhoai.webshop.repositories.StaffRepository;
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -48,7 +50,19 @@ public class StaffService implements ObjectService<Staff> {
 
     @Override
     public JSONArray getAll() throws JSONException {
-        return null;
+        JSONArray jsonArray = new JSONArray();
+        Iterator<Staff> staffList = staffRepository.findAll().iterator();
+        while (staffList.hasNext()) {
+            Staff staff = staffList.next();
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put(WebshopConst.USER_NAME, staff.getStaffName());
+            jsonObject.put(WebshopConst.USER_MAIL, staff.getEmail());
+            jsonObject.put(WebshopConst.USER_FULLNAME, staff.getStaffFullName());
+            jsonObject.put(WebshopConst.ROLE, staff.getRole().getRoleName());
+            jsonObject.put("id", staff.getStaffId());
+            jsonArray.put(jsonObject);
+        }
+        return jsonArray;
     }
 
     public Staff findByName(String username) {

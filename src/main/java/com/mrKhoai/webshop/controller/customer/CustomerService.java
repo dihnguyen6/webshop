@@ -111,8 +111,8 @@ public class CustomerService implements ObjectService<Customer> {
             Customer customer = userList.next();
             JSONObject jsonObject = new JSONObject();
             jsonObject.put(WebshopConst.USER_NAME, customer.getCustomerId());
-            jsonObject.put(WebshopConst.USER_PASSWORD, customer.getPassword());
             jsonObject.put(WebshopConst.USER_MAIL, customer.getEmail());
+            jsonObject.put(WebshopConst.USER_FULLNAME, customer.getCustomerFullName());
             jsonArray.put(jsonObject);
         }
         return jsonArray;

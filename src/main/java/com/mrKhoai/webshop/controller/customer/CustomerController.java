@@ -41,31 +41,12 @@ public class CustomerController {
         String password = request.getParameter("pass");
         String repeatPassword = request.getParameter("repeat-pass");
 
-        if (!roleService.contains(WebshopConst.WEB_DEV)) {
-            Role role = new Role();
-            role.setRoleName(WebshopConst.WEB_DEV);
-            roleService.save(role);
-        }
-
-        if (name.equals("dchu")) {
-            Staff staff = new Staff();
-            staff.setStaffName(name);
-            staff.setStaffFullName(fullName);
-            staff.setEmail(email);
-            staff.setPassword(new BCryptPasswordEncoder().encode(password));
-            LOGGER.info("Cleared password: {} \nEncoded Password: {}", password, staff.getPassword());
-            LOGGER.info(new BCryptPasswordEncoder().matches(password, staff.getPassword()));
-            staff.setRole(roleService.findByName(WebshopConst.WEB_DEV));
-            staffService.save(staff);
-        } else {
-            Customer customer = new Customer();
-            customer.setCustomerName(name);
-            customer.setCustomerFullName(fullName);
-            customer.setEmail(email);
-            customer.setPassword(new BCryptPasswordEncoder().encode(password));
-            LOGGER.info("Cleared password: {} \nEncoded Password: {}", password, customer.getPassword());
-            customerService.save(customer);
-        }
+        Customer customer = new Customer();
+        customer.setCustomerName(name);
+        customer.setCustomerFullName(fullName);
+        customer.setEmail(email);
+        customer.setPassword(new BCryptPasswordEncoder().encode(password));
+        customerService.save(customer);
 
         return "redirect:/login/";
     }
