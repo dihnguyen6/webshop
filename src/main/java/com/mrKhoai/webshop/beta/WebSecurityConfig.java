@@ -47,7 +47,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.POST, "/register").permitAll()
                 .antMatchers(HttpMethod.POST, "/login").permitAll()
                 .antMatchers(HttpMethod.GET, "/login").permitAll()
-                .antMatchers(HttpMethod.GET, "/anonymous/**").permitAll()
+                .antMatchers("/anonymous/**").permitAll()
                 .antMatchers("/admin/**").hasRole(WebshopConst.ADMINISTRATOR)
                 .antMatchers("/web-dev/**").hasRole(WebshopConst.WEB_DEV)
                 .anyRequest().authenticated()

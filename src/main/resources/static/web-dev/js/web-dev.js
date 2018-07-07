@@ -19,7 +19,7 @@ function load() {
         content += '    <td id="staff-name-{0}">' + staff["username"] + '</td>';
         content += '    <td id="staff-full-name-{0}">' + staff["userFullName"] + '</td>';
         content += '    <td id="staff-mail-{0}">' + staff["email"] + '</td>';
-        content += '    <td><select id="staff-role-{0}" class="selectpicker">';
+        content += '    <td><select id="staff-role-{0}" class="form-control">';
         var roles = JSON.parse(roleList);
         for (var j = 0, len1 = roles.length; j < len1; ++j) {
             var role = roles[j];

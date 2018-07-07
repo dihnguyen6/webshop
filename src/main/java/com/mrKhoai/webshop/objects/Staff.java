@@ -20,7 +20,7 @@ public class Staff {
     @Id
     @GenericGenerator(name = "staff_generator", strategy = "com.mrKhoai.webshop.objects.StaffIdGenerator")
     @GeneratedValue(generator = "staff_generator")
-    @Column(name = "STAFF_ID", length = 20, nullable = false, unique = true)
+    @Column(name = "STAFF_ID", length = 50, nullable = false, unique = true)
     private String staffId;
 
     @Column(name = "STAFF_NAME", nullable = false)
