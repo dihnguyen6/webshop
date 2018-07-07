@@ -35,8 +35,14 @@ public class WebshopAuthenticationSuccessHandler implements AuthenticationSucces
                     LOGGER.debug(e.getMessage());
                 }
             } else if (authority.getAuthority().equals(WebshopConst.ROLE + WebshopConst.WEB_DEV)) {
+                    try {
+                        redirectStrategy.sendRedirect(httpServletRequest, httpServletResponse, "/web-dev");
+                    } catch (Exception e) {
+                        LOGGER.debug(e.getMessage());
+                    }
+            } else if (authority.getAuthority().equals(WebshopConst.ROLE + WebshopConst.ADMINISTRATOR)) {
                 try {
-                    redirectStrategy.sendRedirect(httpServletRequest, httpServletResponse, "/web-dev");
+                    redirectStrategy.sendRedirect(httpServletRequest, httpServletResponse, "/admin");
                 } catch (Exception e) {
                     LOGGER.debug(e.getMessage());
                 }

@@ -43,4 +43,9 @@ public class WebController {
         model.addAttribute("roleList", roleService.getAll().toString());
         return "web-dev/web-dev";
     }
+    @GetMapping("/admin")
+    public String adminPage(Model model) {
+
+        return "admin/index";
+    }
 }
