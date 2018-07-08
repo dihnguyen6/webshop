@@ -31,6 +31,21 @@ public class WebController {
         return "anonymous/home-02";
     }
 
+    @GetMapping("/about")
+    public String about() {
+        return "anonymous/about";
+    }
+
+    @GetMapping("/cart")
+    public String cart() {
+        return "anonymous/cart";
+    }
+
+    @GetMapping("/product-detail")
+    public String product_detail() {
+        return "anonymous/product-detail";
+    }
+
     @GetMapping("/")
     public String landing() {
         return "redirect:/home";

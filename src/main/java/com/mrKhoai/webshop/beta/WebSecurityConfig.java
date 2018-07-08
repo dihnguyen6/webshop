@@ -51,7 +51,7 @@ public class WebSecurityConfig {
 
             http.authorizeRequests()
                     .antMatchers("/", "/css/**", "/js/**", "/images/**",
-                            "/fonts/**", "/includes/**", "/sass/**", "/vendor/**")
+                            "/fonts/**", "/includes/**", "/sass/**", "/vendor/**","/admin/**")
                     .permitAll()
                     .antMatchers(HttpMethod.POST, "/register").permitAll()
                     .antMatchers(HttpMethod.POST, "/login").permitAll()
