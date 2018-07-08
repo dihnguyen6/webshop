@@ -42,7 +42,7 @@ public class WebshopAuthenticationSuccessHandler implements AuthenticationSucces
                     }
             } else if (authority.getAuthority().equals(WebshopConst.ROLE + WebshopConst.ADMINISTRATOR)) {
                 try {
-                    redirectStrategy.sendRedirect(httpServletRequest, httpServletResponse, "/admin");
+                    redirectStrategy.sendRedirect(httpServletRequest, httpServletResponse, "/admin/management");
                 } catch (Exception e) {
                     LOGGER.debug(e.getMessage());
                 }

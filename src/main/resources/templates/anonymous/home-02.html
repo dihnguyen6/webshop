@@ -41,8 +41,8 @@
 <div class="wrap_header fixed-header2 trans-0-4">
     <div id="fixed-header"></div>
     <script>
-        $ (function () {
-            $("#fixed-header").load("header");
+        $(window).on('load', function () {
+            $("#fixed-header").load("/header");
         });
     </script>
     <!-- Slide1 -->
