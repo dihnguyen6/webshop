@@ -7,6 +7,8 @@ import com.mrKhoai.webshop.repositories.StaffRepository;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +16,8 @@ import java.util.Iterator;
 
 @Service
 public class StaffService implements ObjectService<Staff> {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(StaffService.class);
 
     @Autowired
     private StaffRepository staffRepository;
@@ -66,13 +70,16 @@ public class StaffService implements ObjectService<Staff> {
     }
 
     public Staff findByName(String username) {
-        Iterator<Staff> userList = staffRepository.findAll().iterator();
-        while (userList.hasNext()) {
-            Staff staff = userList.next();
+        username = username.toLowerCase();
+        Iterator<Staff> staffList = staffRepository.findAll().iterator();
+        while (staffList.hasNext()) {
+            Staff staff = staffList.next();
+            LOGGER.info("{} compare with {}", staff.getStaffName(), username);
             if (staff.getStaffName().equals(username)) {
                 return staff;
             }
         }
+        LOGGER.info("Cant find Staff " + username);
         return null;
     }
 

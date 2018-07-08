@@ -19,12 +19,17 @@ public class WebshopErrorController implements ErrorController {
             Integer statusCode = Integer.valueOf(status.toString());
 
             if (statusCode == HttpStatus.NOT_FOUND.value()) {
-                return "error";
+                return "error-404";
             } else if (statusCode == HttpStatus.INTERNAL_SERVER_ERROR.value()) {
                 return "error-500";
             }
         }
         return "error";
+    }
+
+    @RequestMapping("/error-403")
+    public String accessDenied() {
+        return "error-403";
     }
 
     @Override
