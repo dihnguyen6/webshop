@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class WebController {
@@ -54,6 +55,16 @@ public class WebController {
     @GetMapping("/product")
     public String product() {
         return "anonymous/product";
+    }
+
+    @GetMapping("/header")
+    public String header() {
+        return "anonymous/header";
+    }
+
+    @GetMapping("/footer")
+    public String footer() {
+        return "anonymous/footer";
     }
 
     @GetMapping("/web-dev")
