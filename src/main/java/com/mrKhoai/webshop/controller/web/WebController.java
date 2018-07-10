@@ -28,7 +28,7 @@ public class WebController {
 
     @GetMapping("/home")
     public String home() {
-        return "anonymous/home-02";
+        return "home";
     }
 
     @GetMapping("/about")

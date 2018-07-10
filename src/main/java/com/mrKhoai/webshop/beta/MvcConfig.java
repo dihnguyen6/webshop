@@ -19,13 +19,13 @@ public class MvcConfig implements WebMvcConfigurer {
         registry.addViewController("/error").setViewName("error");
     }
 
-    @Override
+   /* @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler(
                 "/basis")
                 .addResourceLocations(
                         "classpath:/static/basis");
     }
-
+*/
 
 }
