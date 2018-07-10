@@ -8,16 +8,16 @@ public class FragmentsController {
 
     @GetMapping("/footer")
     public String getFooter() {
-        return "fragments/footer.html";
+        return "fragments/footer";
     }
 
     @GetMapping("/headerfiles")
     public String getHeaderFiles() {
-        return "fragments/headerfiles.html";
+        return "fragments/headerfiles";
     }
 
     @GetMapping("/navbar")
     public String getNavbar() {
-        return "fragments/navbar.html";
+        return "fragments/navbar";
     }
 }

@@ -57,16 +57,6 @@ public class WebController {
         return "anonymous/product";
     }
 
-    /*@GetMapping("/header")
-    public String header() {
-        return "anonymous/header";
-    }
-
-    @GetMapping("/footer")
-    public String footer() {
-        return "anonymous/footer";
-    }*/
-
     @GetMapping("/web-dev")
     public String devPage(Model model) throws JsonProcessingException {
         model.addAttribute("userList", customerService.getAll().toString());
