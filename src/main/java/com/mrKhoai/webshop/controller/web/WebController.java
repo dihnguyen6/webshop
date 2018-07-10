@@ -29,7 +29,7 @@ public class WebController {
 
     @GetMapping("/home")
     public String home() {
-        return "home";
+        return "anonymous/home";
     }
 
     @GetMapping("/about")
@@ -57,7 +57,7 @@ public class WebController {
         return "anonymous/product";
     }
 
-    @GetMapping("/header")
+    /*@GetMapping("/header")
     public String header() {
         return "anonymous/header";
     }
@@ -65,7 +65,7 @@ public class WebController {
     @GetMapping("/footer")
     public String footer() {
         return "anonymous/footer";
-    }
+    }*/
 
     @GetMapping("/web-dev")
     public String devPage(Model model) throws JsonProcessingException {
