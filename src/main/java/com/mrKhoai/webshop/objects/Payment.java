@@ -13,7 +13,7 @@ import javax.persistence.Table;
 public class Payment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "PAYMENTID")
+    @Column(name = "PAYMENT_ID", nullable = false, unique = true)
     private int paymentId;
 
     @Column(name = "PAYMENT_ART")
@@ -61,7 +61,7 @@ public class Payment {
     public String toString() {
         return "Payment{" +
                 "paymentID : " + paymentId + ", " +
-                "paymentArt : " + paymentArt +
+                "paymentArt : " + paymentArt + ", " +
                 "paymentPrice : " + paymentPrice +
                 "}";
     }

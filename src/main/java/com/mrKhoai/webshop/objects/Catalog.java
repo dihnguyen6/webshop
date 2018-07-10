@@ -10,54 +10,41 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
-import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "CATALOG")
 public class Catalog {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "CATALOG_ID", nullable = false, unique = true)
-    private int catalogId;
-
-    @Column(name = "CATALOG_NAME", nullable = false)
+    @Column(name = "CATALOG_NAME", nullable = false, unique = true, length = 20)
     private String catalogName;
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "CATALOG_PRODUCT_TYPE",
-            joinColumns = @JoinColumn(name = "PRODUCT_TYPE_ID", referencedColumnName = "CATALOG_ID"),
-            inverseJoinColumns = @JoinColumn(name = "CATALOG_ID", referencedColumnName = "PRODUCT_TYPE_ID"))
-    private List<ProductType> productTypes;
+            joinColumns = @JoinColumn(name = "PRODUCT_TYPE_NAME", referencedColumnName = "CATALOG_NAME"),
+            inverseJoinColumns = @JoinColumn(name = "CATALOG_NAME", referencedColumnName = "PRODUCT_TYPE_NAME"))
+    private Set<ProductType> productTypes;
 
-    public int getCatalogId() {
-        return catalogId;
-    }
-
-    public void setCatalogId(int catalogId) {
-        this.catalogId = catalogId;
-    }
-
-    public String getCatalogName() {
+    public String getName() {
         return catalogName;
     }
 
-    public void setCatalogName(String catalogName) {
+    public void setName(String catalogName) {
         this.catalogName = catalogName;
     }
 
-    public List<ProductType> getProductTypes() {
+    public Set<ProductType> getProductTypes() {
         return productTypes;
     }
 
-    public void setProductTypes(List<ProductType> productTypes) {
+    public void setProductTypes(Set<ProductType> productTypes) {
         this.productTypes = productTypes;
     }
 
     @Override
     public String toString() {
         return "Catalog{" +
-                "catalogId : " + catalogId + ", " +
-                "catalogName : " + catalogName +
+                "name : " + catalogName +
                 "}";
     }
 }

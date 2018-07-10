@@ -1,12 +1,11 @@
 package com.mrKhoai.webshop.controller.customer;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mrKhoai.webshop.controller.ObjectService;
-import com.mrKhoai.webshop.controller.WebshopConst;
 import com.mrKhoai.webshop.objects.Customer;
 import com.mrKhoai.webshop.repositories.CustomerRepository;
 import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -33,12 +32,12 @@ public class CustomerService implements ObjectService<Customer> {
 
     @Override
     public Customer findById(String id){
-        return customerRepository.findById(id).get();
+        return null;
     }
 
     @Override
     public Customer findById(int id) {
-        return null;
+        return customerRepository.findById(id).get();
     }
 
     @Override
@@ -73,47 +72,14 @@ public class CustomerService implements ObjectService<Customer> {
         return false;
     }
 
-    public boolean containsMail(String email){
-        Iterator<Customer> userList = customerRepository.findAll().iterator();
-        while (userList.hasNext()) {
-            Customer customer = userList.next();
-            if (customer.getEmail().equals(email)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public JSONObject checkCustomer(Customer customer) throws JSONException {
-        JSONObject jsonObject = new JSONObject();
-        boolean status = true;
-        if (containsName(customer.getCustomerName())) {
-            status = false;
-            jsonObject.put(WebshopConst.USER_NAME, WebshopConst.USER_NAME + WebshopConst.REGITERED);
-        }
-        if (customer.getEmail().matches(WebshopConst.MAIL_REGEX)) {
-            status = false;
-            jsonObject.put(WebshopConst.USER_MAIL, WebshopConst.USER_MAIL + WebshopConst.INVALID);
-        }
-        if (containsMail(customer.getEmail())) {
-            status = false;
-            jsonObject.put(WebshopConst.USER_MAIL, WebshopConst.USER_MAIL + WebshopConst.REGITERED);
-        }
-        jsonObject.put(WebshopConst.STATUS, status);
-        return jsonObject;
-    }
-
     @Override
-    public JSONArray getAll() throws JSONException {
+    public JSONArray getAll() throws JsonProcessingException {
         JSONArray jsonArray = new JSONArray();
         Iterator<Customer> userList = customerRepository.findAll().iterator();
         while (userList.hasNext()) {
             Customer customer = userList.next();
-            JSONObject jsonObject = new JSONObject();
-            jsonObject.put(WebshopConst.USER_NAME, customer.getCustomerId());
-            jsonObject.put(WebshopConst.USER_MAIL, customer.getEmail());
-            jsonObject.put(WebshopConst.USER_FULLNAME, customer.getCustomerFullName());
-            jsonArray.put(jsonObject);
+            ObjectMapper mapper = new ObjectMapper();
+            jsonArray.put(mapper.writeValueAsString(customer));
         }
         return jsonArray;
     }

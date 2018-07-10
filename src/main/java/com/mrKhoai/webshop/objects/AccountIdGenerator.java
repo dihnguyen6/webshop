@@ -11,7 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class CustomerIdGenerator implements IdentifierGenerator {
+public class AccountIdGenerator implements IdentifierGenerator {
 
     @Override
     public Serializable generate(SharedSessionContractImplementor sharedSessionContractImplementor, Object o) throws HibernateException {

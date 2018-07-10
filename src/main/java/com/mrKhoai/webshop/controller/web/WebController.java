@@ -1,5 +1,6 @@
 package com.mrKhoai.webshop.controller.web;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.mrKhoai.webshop.controller.customer.CustomerService;
 import com.mrKhoai.webshop.controller.role.RoleService;
 import com.mrKhoai.webshop.controller.staff.StaffService;
@@ -67,7 +68,7 @@ public class WebController {
     }
 
     @GetMapping("/web-dev")
-    public String devPage(Model model) throws JSONException {
+    public String devPage(Model model) throws JsonProcessingException {
         model.addAttribute("userList", customerService.getAll().toString());
         model.addAttribute("staffList", staffService.getAll().toString());
         model.addAttribute("roleList", roleService.getAll().toString());

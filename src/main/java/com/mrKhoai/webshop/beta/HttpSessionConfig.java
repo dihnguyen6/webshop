@@ -14,8 +14,6 @@ import javax.servlet.http.HttpSessionListener;
 
 @Configuration
 public class HttpSessionConfig {
-    @Autowired
-    private StaffService staffService;
 
     private static final Logger LOGGER = LoggerFactory.getLogger(HttpSessionConfig.class);
 

@@ -1,10 +1,10 @@
 package com.mrKhoai.webshop.repositories;
 
-import com.mrKhoai.webshop.objects.Catalog;
+import com.mrKhoai.webshop.objects.Payment;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface CatalogRepository extends CrudRepository<Catalog, String> {
+public interface PaymentRepository extends CrudRepository<Payment, Integer> {
 
 }

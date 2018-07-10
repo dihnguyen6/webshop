@@ -1,6 +1,7 @@
 package com.mrKhoai.webshop.objects;
 
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -8,10 +9,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "PRODUCT")
@@ -24,12 +27,17 @@ public class Product {
     @Column(name = "PRODUCT_NAME", nullable = false)
     private String productName;
 
-    @ManyToOne
-    @JoinColumn(name = "PRODUCT_TYPE_ID")
-    private ProductType productType;
+    @Column(name = "PRODUCT_DESCRIPTION", nullable = false)
+    private String productDescription;
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "TYPE_PRODUCT_TYPE",
+            joinColumns = @JoinColumn(name = "PRODUCT_TYPE_NAME", referencedColumnName = "PRODUCT_ID"),
+            inverseJoinColumns = @JoinColumn(name = "PRODUCT_ID", referencedColumnName = "PRODUCT_TYPE_NAME"))
+    private Set<ProductType> productTypes;
 
     @OneToMany(mappedBy = "product", fetch = FetchType.EAGER)
-    private List<Description> descriptions;
+    private Set<Color> colors;
 
     public int getProductId() {
         return productId;
@@ -47,27 +55,36 @@ public class Product {
         this.productName = productName;
     }
 
-    public ProductType getProductType() {
-        return productType;
+    public String getProductDescription() {
+        return productDescription;
     }
 
-    public void setProductType(ProductType productType) {
-        this.productType = productType;
+    public void setProductDescription(String productDescription) {
+        this.productDescription = productDescription;
     }
 
-    public List<Description> getDescriptions() {
-        return descriptions;
+    public Set<ProductType> getProductTypes() {
+        return productTypes;
     }
 
-    public void setDescriptions(List<Description> descriptions) {
-        this.descriptions = descriptions;
+    public void setProductTypes(Set<ProductType> productTypes) {
+        this.productTypes = productTypes;
+    }
+
+    public Set<Color> getColors() {
+        return colors;
+    }
+
+    public void setColors(Set<Color> colors) {
+        this.colors = colors;
     }
 
     @Override
     public String toString() {
         return "Product{" +
-                "productId : " + productId + ", " +
-                "productName : " + productName +
+                "id : " + productId + ", " +
+                "name : " + productName + ", " +
+                "description : " + productDescription +
                 "}";
     }
 }

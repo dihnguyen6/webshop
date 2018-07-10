@@ -33,6 +33,14 @@ public class Order {
     @JoinColumn(name = "PAYMENT_ID")
     private Payment payment;
 
+    @OneToOne
+    @JoinColumn(name = "BILL_ID")
+    private Bill bill;
+
+    @OneToOne
+    @JoinColumn(name = "COUPON_ID")
+    private Coupon coupon;
+
     public int getOrderId() {
         return orderId;
     }
@@ -73,11 +81,27 @@ public class Order {
         this.payment = payment;
     }
 
+    public Bill getBill() {
+        return bill;
+    }
+
+    public void setBill(Bill bill) {
+        this.bill = bill;
+    }
+
+    public Coupon getCoupon() {
+        return coupon;
+    }
+
+    public void setCoupon(Coupon coupon) {
+        this.coupon = coupon;
+    }
+
     @Override
     public String toString() {
         return "Oder{" +
                 "oderId : " + orderId + ", " +
-                "oderDate : " + oderDate +
+                "oderDate : " + oderDate + ", " +
                 "oderPrice : " + oderPrice +
                 "}";
     }

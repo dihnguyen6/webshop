@@ -1,14 +1,11 @@
 package com.mrKhoai.webshop.controller.role;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mrKhoai.webshop.controller.ObjectService;
-import com.mrKhoai.webshop.controller.WebshopConst;
-import com.mrKhoai.webshop.objects.Customer;
 import com.mrKhoai.webshop.objects.Role;
-import com.mrKhoai.webshop.objects.Staff;
 import com.mrKhoai.webshop.repositories.RoleRepository;
 import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -52,15 +49,13 @@ public class RoleService implements ObjectService<Role> {
     }
 
     @Override
-    public JSONArray getAll() throws JSONException {
+    public JSONArray getAll() throws JsonProcessingException {
         JSONArray jsonArray = new JSONArray();
         Iterator<Role> roleList = roleRepository.findAll().iterator();
         while (roleList.hasNext()) {
             Role role = roleList.next();
-            JSONObject jsonObject = new JSONObject();
-            jsonObject.put("roleId", role.getRoleId());
-            jsonObject.put("roleName", role.getRoleName());
-            jsonArray.put(jsonObject);
+            ObjectMapper mapper = new ObjectMapper();
+            jsonArray.put(mapper.writeValueAsString(role));
         }
         return jsonArray;
     }

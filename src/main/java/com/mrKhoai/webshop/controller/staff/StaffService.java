@@ -1,12 +1,11 @@
 package com.mrKhoai.webshop.controller.staff;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mrKhoai.webshop.controller.ObjectService;
-import com.mrKhoai.webshop.controller.WebshopConst;
 import com.mrKhoai.webshop.objects.Staff;
 import com.mrKhoai.webshop.repositories.StaffRepository;
 import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,44 +52,14 @@ public class StaffService implements ObjectService<Staff> {
     }
 
     @Override
-    public JSONArray getAll() throws JSONException {
+    public JSONArray getAll() throws JsonProcessingException {
         JSONArray jsonArray = new JSONArray();
         Iterator<Staff> staffList = staffRepository.findAll().iterator();
         while (staffList.hasNext()) {
             Staff staff = staffList.next();
-            JSONObject jsonObject = new JSONObject();
-            jsonObject.put(WebshopConst.USER_NAME, staff.getStaffName());
-            jsonObject.put(WebshopConst.USER_MAIL, staff.getEmail());
-            jsonObject.put(WebshopConst.USER_FULLNAME, staff.getStaffFullName());
-            jsonObject.put(WebshopConst.ROLE, staff.getRole().getRoleName());
-            jsonObject.put("id", staff.getStaffId());
-            jsonArray.put(jsonObject);
+            ObjectMapper mapper = new ObjectMapper();
+            jsonArray.put(mapper.writeValueAsString(staff));
         }
         return jsonArray;
-    }
-
-    public Staff findByName(String username) {
-        username = username.toLowerCase();
-        Iterator<Staff> staffList = staffRepository.findAll().iterator();
-        while (staffList.hasNext()) {
-            Staff staff = staffList.next();
-            LOGGER.info("{} compare with {}", staff.getStaffName(), username);
-            if (staff.getStaffName().equals(username)) {
-                return staff;
-            }
-        }
-        LOGGER.info("Cant find Staff " + username);
-        return null;
-    }
-
-    public boolean containsName(String username){
-        Iterator<Staff> userList = staffRepository.findAll().iterator();
-        while (userList.hasNext()) {
-            Staff staff = userList.next();
-            if (staff.getStaffName().equals(username)) {
-                return true;
-            }
-        }
-        return false;
     }
 }

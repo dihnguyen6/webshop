@@ -1,5 +1,6 @@
 package com.mrKhoai.webshop.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.mrKhoai.webshop.objects.Staff;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -17,5 +18,5 @@ public interface ObjectService<T> {
 
     boolean contains(int id);
 
-    JSONArray getAll() throws JSONException;
+    JSONArray getAll() throws JsonProcessingException;
 }

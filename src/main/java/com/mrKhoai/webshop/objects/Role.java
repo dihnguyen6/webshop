@@ -8,29 +8,17 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "ROLE")
 public class Role {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ROLE_ID", nullable = false, unique = true)
-    private int roleId;
-
-    @Column(name = "ROLE_NAME", nullable = false)
+    @Column(name = "ROLE_NAME", nullable = false, unique = true, length = 15)
     private String roleName;
 
     @OneToMany(mappedBy = "role", fetch = FetchType.EAGER)
-    private List<Staff> staffs;
-
-    public int getRoleId() {
-        return roleId;
-    }
-
-    public void setRoleId(int roleId) {
-        this.roleId = roleId;
-    }
+    private Set<Staff> staffs;
 
     public String getRoleName() {
         return roleName;
@@ -40,19 +28,18 @@ public class Role {
         this.roleName = roleName;
     }
 
-    public List<Staff> getStaffs() {
+    public Set<Staff> getStaffs() {
         return staffs;
     }
 
-    public void setStaffs(List<Staff> staffs) {
+    public void setStaffs(Set<Staff> staffs) {
         this.staffs = staffs;
     }
 
     @Override
     public String toString() {
         return "Role{" +
-                "roleId : " + roleId + ", " +
-                "roleName : " + roleName +
+                "role : " + roleName +
                 "}";
     }
 }

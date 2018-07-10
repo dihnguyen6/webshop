@@ -41,7 +41,7 @@ public class UserService implements UserDetailsService {
     @Transactional(readOnly = true)
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        username = username.toLowerCase();
+        /*username = username.toLowerCase();
         Staff staff = staffService.findByName(username);
         if(staff == null) {
             Customer customer = customerService.findByName(username);
@@ -59,6 +59,7 @@ public class UserService implements UserDetailsService {
             String role = staff.getRole().getRoleName().toUpperCase();
             builder.authorities(WebshopConst.ROLE + role);
             return builder.build();
-        }
+        }*/
+        return null;
     }
 }

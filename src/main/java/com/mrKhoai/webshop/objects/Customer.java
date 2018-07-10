@@ -1,47 +1,55 @@
 package com.mrKhoai.webshop.objects;
 
-import org.hibernate.annotations.GenericGenerator;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "CUSTOMER")
 public class Customer {
     @Id
-    @GenericGenerator(name = "customer_generator", strategy = "com.mrKhoai.webshop.objects.CustomerIdGenerator")
-    @GeneratedValue(generator = "customer_generator")
-    @Column(name = "CUSTOMER_ID", length = 20, nullable = false, unique = true)
-    private String customerId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "CUSTOMER_ID", nullable = false, unique = true)
+    private int customerId;
 
     @Column(name = "CUSTOMER_NAME", nullable = false)
     private String customerName;
 
-    @Column(name = "CUSTOMER_FULL_NAME", nullable = false)
-    private String customerFullName;
+    @Column(name = "CUSTOMER_EMAIL")
+    private String customerEmail;
 
-    @Column(name = "PASSWORD", nullable = false)
-    private String password;
+    @Column(name = "CUSTOMER_ADDRESS")
+    private String customerAddress;
 
-    @Column(name = "EMAIL", unique = true)
-    private String email;
+    @Column(name = "CUSTOMER_CITY")
+    private String customerCity;
+
+    @Column(name = "CUSTOMER_POSTCODE")
+    private int customerPostcode;
+
+    @Column(name = "CUSTOMER_COUNTRY")
+    private String customerCountry;
 
     @OneToMany(mappedBy = "customer", fetch = FetchType.EAGER)
-    private List<Order> oders;
+    private Set<Order> oders;
 
-    public String getCustomerId() {
+    @OneToOne
+    @JoinColumn(name = "ACCOUNT_ID")
+    private Account account;
+
+    public int getCustomerId() {
         return customerId;
     }
 
-    public void setCustomerId(String customerId) {
+    public void setCustomerId(int customerId) {
         this.customerId = customerId;
     }
 
@@ -53,45 +61,72 @@ public class Customer {
         this.customerName = customerName;
     }
 
-    public String getPassword() {
-        return password;
+    public String getCustomerEmail() {
+        return customerEmail;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setCustomerEmail(String customerEmail) {
+        this.customerEmail = customerEmail;
     }
 
-    public String getEmail() {
-        return email;
+    public String getCustomerAddress() {
+        return customerAddress;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setCustomerAddress(String customerAddress) {
+        this.customerAddress = customerAddress;
     }
 
-    public List<Order> getOders() {
+    public String getCustomerCity() {
+        return customerCity;
+    }
+
+    public void setCustomerCity(String customerCity) {
+        this.customerCity = customerCity;
+    }
+
+    public int getCustomerPostcode() {
+        return customerPostcode;
+    }
+
+    public void setCustomerPostcode(int customerPostcode) {
+        this.customerPostcode = customerPostcode;
+    }
+
+    public String getCustomerCountry() {
+        return customerCountry;
+    }
+
+    public void setCustomerCountry(String customerCountry) {
+        this.customerCountry = customerCountry;
+    }
+
+    public Set<Order> getOders() {
         return oders;
     }
 
-    public void setOders(List<Order> oders) {
+    public void setOders(Set<Order> oders) {
         this.oders = oders;
     }
 
-    public String getCustomerFullName() {
-        return customerFullName;
+    public Account getAccount() {
+        return account;
     }
 
-    public void setCustomerFullName(String customerFullName) {
-        this.customerFullName = customerFullName;
+    public void setAccount(Account account) {
+        this.account = account;
     }
 
     @Override
     public String toString() {
-        return "Staff{" +
-                "staffId : " + customerId + ", " +
-                "staffName : " + customerName +
-                "password : " + password +
-                "email : " + email +
+        return "Customer{" +
+                "id : " + customerId + ", " +
+                "name : " + customerName + ", " +
+                "email : " + customerEmail + ", " +
+                "adress : " + customerAddress + ", " +
+                "city : " + customerCity + ", " +
+                "postcode : " + customerPostcode + ", " +
+                "country : " + customerCountry +
                 "}";
     }
 }
