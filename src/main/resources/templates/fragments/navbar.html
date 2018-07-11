@@ -90,11 +90,16 @@
                 </nav>
             </div>
 
+
             <!-- Header Icon -->
             <div class="header-icons">
-                <a href="#" class="header-wrapicon1 dis-block">
-                    <img src="basis/images/icons/icon-header-01.png" class="header-icon1" alt="ICON">
+
+                <a href="#" class="header-wrapicon1 dis-block" >
+                    <img src="basis/images/icons/icon-header-01.png" data-toggle="modal" data-target="#login" class="header-icon1" alt="ICON">
                 </a>
+
+
+
 
                 <span class="linedivide1"></span>
 
@@ -364,6 +369,130 @@
                 </li>
             </ul>
         </nav>
+    </div>
+
+
+    <div class="modal fade" id="login" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="wrap-login100 p-l-50 p-r-50 p-t-72 p-b-50">
+                    <div class="form">
+                        <form class="login100-form validate-form register-form" action="/register" method="post">
+                        <span class="login100-form-title p-b-59">
+                            Sign Up
+                        </span>
+
+                            <div class="wrap-input100 validate-input" data-validate="Name is required">
+                                <span class="label-input100">Full Name</span>
+                                <input class="input100" type="text" name="name" placeholder="Name...">
+                                <span class="focus-input100"></span>
+                            </div>
+
+                            <div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
+                                <span class="label-input100">Email</span>
+                                <input class="input100" type="text" name="email" placeholder="Email addess...">
+                                <span class="focus-input100"></span>
+                            </div>
+
+                            <div class="wrap-input100 validate-input" data-validate="Username is required">
+                                <span class="label-input100">Username</span>
+                                <input class="input100" type="text" name="username" placeholder="Username...">
+                                <span class="focus-input100"></span>
+                            </div>
+
+                            <div class="wrap-input100 validate-input" data-validate="Password is required">
+                                <span class="label-input100">Password</span>
+                                <input class="input100" type="password" name="pass" placeholder="*************">
+                                <span class="focus-input100"></span>
+                            </div>
+
+                            <div class="wrap-input100 validate-input" data-validate="Repeat Password is required">
+                                <span class="label-input100">Repeat Password</span>
+                                <input class="input100" type="password" name="repeat-pass" placeholder="*************">
+                                <span class="focus-input100"></span>
+                            </div>
+
+                            <div class="flex-m w-full p-b-33">
+                                <div class="contact100-form-checkbox">
+                                    <input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
+                                    <label class="label-checkbox100" for="ckb1">
+                                    <span class="txt1">
+                                        I agree to the
+                                        <a href="#" class="txt2">
+                                            Terms of User
+                                        </a>
+                                    </span>
+                                    </label>
+                                </div>
+
+
+                            </div>
+
+                            <div class="container-login100-form-btn">
+                                <div class="wrap-login100-form-btn">
+                                    <div class="login100-form-bgbtn"></div>
+                                    <button class="login100-form-btn">
+                                        Sign Up
+                                    </button>
+                                </div>
+
+                                <p class="message"><a href="#" class="txt3 p-r-30 p-t-10 p-b-10 p-l-30">
+                                    Sign in
+                                    <i class="fa fa-long-arrow-right m-l-5"></i>
+                                </a></p>
+                            </div>
+                        </form>
+
+                        <form class="login100-form validate-form login-form" action="/login" method="post">
+                        <span class="login100-form-title p-b-59">
+                            Sign In
+                        </span>
+
+                            <div class="wrap-input100 validate-input" data-validate="Username is required">
+                                <span class="label-input100">Username</span>
+                                <input class="input100" type="text" name="username" placeholder="Username...">
+                                <span class="focus-input100"></span>
+                            </div>
+
+                            <div class="wrap-input100 validate-input" data-validate="Password is required">
+                                <span class="label-input100">Password</span>
+                                <input class="input100" type="password" name="password" placeholder="*************">
+                                <span class="focus-input100"></span>
+                            </div>
+
+                            <div class="container-login100-form-btn">
+                                <div class="wrap-login100-form-btn m-b-30">
+                                    <div class="login100-form-bgbtn"></div>
+                                    <button class="login100-form-btn">
+                                        Sign In
+                                    </button>
+                                </div>
+
+                                <a href="#" class="btn-face p-t-20">
+                                    <i class="fa fa-facebook-official"></i>
+                                    Sign in with Facebook
+                                </a>
+
+                                <a href="#" class="btn-google">
+                                    <img src="basis/images/icons/icon-google.png" alt="GOOGLE">
+                                    Sign in with Google
+                                </a>
+
+                                <p class="message m-t-10 m-l-5">Not a member ?
+                                    <a href="#" class="txt1 p-r-30 p-t-10 p-b-10">
+                                        Sign up now
+                                    </a>
+                                </p>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
     </div>
 </header>
 
