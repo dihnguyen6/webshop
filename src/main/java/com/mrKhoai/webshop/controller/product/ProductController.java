@@ -7,8 +7,15 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 @RestController
 @RequestMapping(path = "/product")
@@ -24,5 +31,23 @@ public class ProductController {
         Product prod = new Product();
         prod.setProductName(name);
         productRepository.save(prod);
+    }
+
+    @RequestMapping(value = "/edit-car", method = RequestMethod.POST)
+    public void getInformation(@RequestPart("file") MultipartFile request,
+                               @RequestParam(name = "index") String index) throws IOException {
+        File folder = new File(System.getProperty("user.home"), "/carousel");
+        if (!folder.exists()) {
+            folder.mkdir();
+        }
+        File file = new File(System.getProperty("user.home"), "/carousel/carousel" + index);
+        if (file.exists()) {
+            file.delete();
+        }
+        file.createNewFile();
+        FileOutputStream ostream = new FileOutputStream(file);
+        ostream.write(request.getBytes());
+        ostream.flush();
+        ostream.close();
     }
 }

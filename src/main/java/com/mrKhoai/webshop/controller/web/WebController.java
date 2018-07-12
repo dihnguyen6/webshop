@@ -4,13 +4,29 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.mrKhoai.webshop.controller.customer.CustomerService;
 import com.mrKhoai.webshop.controller.role.RoleService;
 import com.mrKhoai.webshop.controller.staff.StaffService;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestPart;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.net.URL;
+import java.util.Base64;
 
 @Controller
 public class WebController {
+
+    private static final Logger LOGGER = LogManager.getLogger(WebController.class);
 
     @Autowired
     CustomerService customerService;
@@ -27,7 +43,33 @@ public class WebController {
     }
 
     @GetMapping("/home")
-    public String home() {
+    public String home(Model model) throws IOException {
+        URL fileUrl = getClass().getResource("/");
+        String [] carousel = new String[3];
+        //File actdir = new File(fileUrl.getFile() + "static/basis/images/carousel");
+        File actdir = new File(System.getProperty("user.home"), "/carousel");
+
+        if (!actdir.isDirectory()) {
+            throw new IllegalArgumentException(actdir.getAbsolutePath());
+        }
+
+        File[] ls = null;
+
+        ls = actdir.listFiles();
+
+        LOGGER.info("Have {} files", ls.length);
+
+        for (int i = 0; i < 3; i++) {
+            LOGGER.info("File name: {}", ls[i].getAbsoluteFile());
+            FileInputStream istream = new FileInputStream(ls[i]);
+            byte [] fileContent = new byte[(int) ls[i].length()];
+            istream.read(fileContent);
+            istream.close();
+            carousel[i] = Base64.getEncoder().encodeToString(fileContent);
+        }
+        model.addAttribute("carousel1", carousel[0]);
+        model.addAttribute("carousel2", carousel[1]);
+        model.addAttribute("carousel3", carousel[2]);
         return "anonymous/home";
     }
 
@@ -74,5 +116,10 @@ public class WebController {
     public String adminPage(Model model) {
 
         return "admin/index";
+    }
+
+    @GetMapping("edit-carousel")
+    public String editCarousel() {
+        return "anonymous/edit-carousel";
     }
 }

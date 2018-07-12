@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import java.io.File;
 import java.io.FileFilter;
+import java.net.URL;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
@@ -38,13 +39,14 @@ public class CustomerController {
         /*String name = request.getParameter("username").toLowerCase();
         String email = request.getParameter("email");*/
 
+        URL fileUrl = getClass().getResource("/");
         String webappRoot = servletContext.getRealPath("/");
         //webappRoot = webappRoot.substring(0, webappRoot.length() - 1);
-        LOGGER.info("Webapp Root Real Path: {}",webappRoot);
+        LOGGER.info("Webapp Root Real Path: {}",fileUrl);
         LOGGER.info("Somthing {}", servletContext.getResourcePaths("/"));
         LOGGER.info("Test path: {} {} {}", request.getServletPath(), request.getLocale().getDisplayCountry(), request.getLocale().getDisplayLanguage());
 
-        File actdir = new File(webappRoot);
+        File actdir = new File(fileUrl.getFile() + "static/basis/images/carousel");
 
         if (!actdir.isDirectory()) {
             throw new IllegalArgumentException(actdir.getAbsolutePath());
