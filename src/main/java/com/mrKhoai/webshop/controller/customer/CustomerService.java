@@ -13,6 +13,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.Iterator;
+import java.util.Optional;
 
 @Service
 public class CustomerService implements ObjectService<Customer> {
@@ -37,7 +38,11 @@ public class CustomerService implements ObjectService<Customer> {
 
     @Override
     public Customer findById(int id) {
-        return customerRepository.findById(id).get();
+        Optional<Customer> customerOptional = customerRepository.findById(id);
+        if (customerOptional.isPresent()) {
+            return customerOptional.get();
+        }
+        return null;
     }
 
     @Override

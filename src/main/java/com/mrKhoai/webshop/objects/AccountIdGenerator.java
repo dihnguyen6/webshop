@@ -18,19 +18,33 @@ public class AccountIdGenerator implements IdentifierGenerator {
 
         Customer s = (Customer) o;
         Connection connection = sharedSessionContractImplementor.connection();
-
+        Statement statement = null;
+        ResultSet resultSet = null;
         try {
-            Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery("select count(customer_id) as Id from customer");
+            statement = connection.createStatement();
+            resultSet = statement.executeQuery("select count(customer_id) as Id from customer");
             if(resultSet.next()) {
                 int id = resultSet.getInt(1) + 1;
                 String generatedId = WebshopConst.PREFIX + new Integer(id).toString();
                 return generatedId;
             }
-            statement.close();
-            resultSet.close();
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            if (statement != null) {
+                try {
+                    statement.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (resultSet != null) {
+                try {
+                    resultSet.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
         }
 
         return WebshopConst.PREFIX;

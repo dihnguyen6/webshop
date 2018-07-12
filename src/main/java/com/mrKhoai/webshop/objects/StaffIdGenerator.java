@@ -18,10 +18,11 @@ public class StaffIdGenerator implements IdentifierGenerator {
 
         Staff s = (Staff) o;
         Connection connection = sharedSessionContractImplementor.connection();
-
+        Statement statement = null;
+        ResultSet resultSet = null;
         try {
-            Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery("select count(staff_id) as Id from staff");
+            statement = connection.createStatement();
+            resultSet = statement.executeQuery("select count(staff_id) as Id from staff");
             if(resultSet.next()) {
                 int id = resultSet.getInt(1) + 1;
                 String generatedId = WebshopConst.PREFIX + s.getRole().getRoleName() + new Integer(id).toString();
@@ -31,6 +32,21 @@ public class StaffIdGenerator implements IdentifierGenerator {
             resultSet.close();
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            if (statement != null) {
+                try {
+                    statement.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (resultSet != null) {
+                try {
+                    resultSet.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
         }
 
         return WebshopConst.PREFIX;
