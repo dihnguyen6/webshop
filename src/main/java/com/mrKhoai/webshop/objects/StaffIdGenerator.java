@@ -27,6 +27,8 @@ public class StaffIdGenerator implements IdentifierGenerator {
                 String generatedId = WebshopConst.PREFIX + s.getRole().getRoleName() + new Integer(id).toString();
                 return generatedId;
             }
+            statement.close();
+            resultSet.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }

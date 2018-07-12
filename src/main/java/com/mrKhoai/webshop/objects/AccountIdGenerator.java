@@ -27,6 +27,8 @@ public class AccountIdGenerator implements IdentifierGenerator {
                 String generatedId = WebshopConst.PREFIX + new Integer(id).toString();
                 return generatedId;
             }
+            statement.close();
+            resultSet.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
