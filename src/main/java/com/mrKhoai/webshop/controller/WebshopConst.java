@@ -11,7 +11,7 @@ public final class WebshopConst {
     public static final String ROLE = "ROLE_";
 
     public static final String USER_NAME = "username";
-    public static final String USER_PASSWORD = "password";
+    public static final String USER_PWD = "password";
     public static final String USER_MAIL = "email";
     public static final String USER_FULLNAME = "userFullName";
     public static final String STATUS = "status";

@@ -1,20 +1,14 @@
 package com.mrKhoai.webshop.beta;
 
-import com.mrKhoai.webshop.controller.WebshopConst;
-import com.mrKhoai.webshop.controller.role.RoleService;
 import com.mrKhoai.webshop.controller.customer.CustomerService;
+import com.mrKhoai.webshop.controller.role.RoleService;
 import com.mrKhoai.webshop.controller.staff.StaffService;
-import com.mrKhoai.webshop.objects.Customer;
-import com.mrKhoai.webshop.objects.Staff;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.User.UserBuilder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

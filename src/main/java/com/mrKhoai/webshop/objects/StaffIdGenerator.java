@@ -33,22 +33,8 @@ public class StaffIdGenerator implements IdentifierGenerator {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            if (statement != null) {
-                try {
-                    statement.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-            if (resultSet != null) {
-                try {
-                    resultSet.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
+            AccountIdGenerator.closeStatement(statement, resultSet);
         }
-
         return WebshopConst.PREFIX;
     }
 }

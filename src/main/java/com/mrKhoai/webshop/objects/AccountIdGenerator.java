@@ -31,22 +31,22 @@ public class AccountIdGenerator implements IdentifierGenerator {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            if (statement != null) {
-                try {
-                    statement.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-            if (resultSet != null) {
-                try {
-                    resultSet.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
+            closeStatement(statement, resultSet);
         }
 
         return WebshopConst.PREFIX;
+    }
+
+    public static void closeStatement(Statement statement, ResultSet resultSet) {
+        try {
+            if (statement != null) {
+                statement.close();
+            }
+            if (resultSet != null) {
+                resultSet.close();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }
