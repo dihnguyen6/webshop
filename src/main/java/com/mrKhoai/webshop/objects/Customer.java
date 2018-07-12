@@ -1,5 +1,6 @@
 package com.mrKhoai.webshop.objects;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -10,6 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -38,8 +40,8 @@ public class Customer {
     @Column(name = "CUSTOMER_COUNTRY")
     private String customerCountry;
 
-    @OneToMany(mappedBy = "customer", fetch = FetchType.EAGER)
-    private Set<Order> oders;
+    @OneToMany(mappedBy = "customer", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private Set<Basket> baskets = new HashSet<>();
 
     @OneToOne
     @JoinColumn(name = "ACCOUNT_ID")
@@ -101,12 +103,12 @@ public class Customer {
         this.customerCountry = customerCountry;
     }
 
-    public Set<Order> getOders() {
-        return oders;
+    public Set<Basket> getBaskets() {
+        return baskets;
     }
 
-    public void setOders(Set<Order> oders) {
-        this.oders = oders;
+    public void setBaskets(Set<Basket> baskets) {
+        this.baskets = baskets;
     }
 
     public Account getAccount() {

@@ -14,6 +14,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -30,14 +31,14 @@ public class Product {
     @Column(name = "PRODUCT_DESCRIPTION", nullable = false)
     private String productDescription;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "TYPE_PRODUCT_TYPE",
-            joinColumns = @JoinColumn(name = "PRODUCT_TYPE_NAME", referencedColumnName = "PRODUCT_ID"),
-            inverseJoinColumns = @JoinColumn(name = "PRODUCT_ID", referencedColumnName = "PRODUCT_TYPE_NAME"))
-    private Set<ProductType> productTypes;
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinTable(name = "PRODUCT_PRODUCT_TYPE",
+            joinColumns = @JoinColumn(name = "PRODUCT_TYPE_NAME"),
+            inverseJoinColumns = @JoinColumn(name = "PRODUCT_ID"))
+    private Set<ProductType> productTypes = new HashSet<>();
 
     @OneToMany(mappedBy = "product", fetch = FetchType.EAGER)
-    private Set<Color> colors;
+    private Set<Color> colors = new HashSet<>();
 
     public int getProductId() {
         return productId;

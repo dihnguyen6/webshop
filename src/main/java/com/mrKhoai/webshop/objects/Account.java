@@ -2,6 +2,7 @@ package com.mrKhoai.webshop.objects;
 
 import org.hibernate.annotations.GenericGenerator;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -10,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -30,8 +32,8 @@ public class Account {
     @OneToOne(mappedBy = "account")
     private Customer customer;
 
-    @OneToMany(mappedBy = "account", fetch = FetchType.EAGER)
-    private Set<Delivery> deliveries;
+    @OneToMany(mappedBy = "account", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private Set<Delivery> deliveries = new HashSet<>();
 
     public String getAccountId() {
         return accountId;

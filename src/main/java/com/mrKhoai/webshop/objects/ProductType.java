@@ -3,23 +3,27 @@ package com.mrKhoai.webshop.objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
 @Table(name = "PRODUCT_TYPE")
 public class ProductType {
+
     @Id
-    @Column(name = "PRODUCT_TYPE_NAME", nullable = false, unique = true, length = 20)
+    @Column(name = "PRODUCT_TYPE_NAME", nullable = false, unique = true, length = 30)
     private String productTypeName;
 
     @ManyToMany(mappedBy = "productTypes")
-    private Set<Catalog> catalogs;
+    private Set<Catalog> catalogs = new HashSet<>();
 
     @ManyToMany(mappedBy = "productTypes")
-    private Set<Product> products;
+    private Set<Product> products = new HashSet<>();
 
     public String getProductTypeName() {
         return productTypeName;

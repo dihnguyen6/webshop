@@ -30,7 +30,7 @@ public class Coupon {
     private Date expiredDate;
 
     @OneToOne(mappedBy = "coupon")
-    private Order order;
+    private Basket basket;
 
     public int getCouponId() {
         return couponId;
@@ -72,12 +72,12 @@ public class Coupon {
         this.expiredDate = expiredDate;
     }
 
-    public Order getOrder() {
-        return order;
+    public Basket getBasket() {
+        return basket;
     }
 
-    public void setOrder(Order order) {
-        this.order = order;
+    public void setBasket(Basket basket) {
+        this.basket = basket;
     }
 
     @Override

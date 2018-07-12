@@ -23,7 +23,7 @@ public class Payment {
     private double paymentPrice;
 
     @OneToOne(mappedBy = "payment")
-    private Order order;
+    private Basket basket;
 
     public int getPaymentId() {
         return paymentId;
@@ -49,12 +49,12 @@ public class Payment {
         this.paymentPrice = paymentPrice;
     }
 
-    public Order getOrder() {
-        return order;
+    public Basket getBasket() {
+        return basket;
     }
 
-    public void setOrder(Order order) {
-        this.order = order;
+    public void setBasket(Basket basket) {
+        this.basket = basket;
     }
 
     @Override

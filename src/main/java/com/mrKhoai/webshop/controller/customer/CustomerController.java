@@ -8,8 +8,13 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import java.io.File;
+import java.io.FileFilter;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 @Controller
 public class CustomerController {
@@ -25,17 +30,39 @@ public class CustomerController {
     @Autowired
     RoleService roleService;
 
-    @PostMapping("/register")
-    public String register(HttpServletRequest request) {
-        String name = request.getParameter("username").toLowerCase();
-        String fullName = request.getParameter("name");
-        String email = request.getParameter("email");
-        String password = request.getParameter("pass");
-        String repeatPassword = request.getParameter("repeat-pass");
+    @Autowired
+    ServletContext servletContext;
 
-        Customer customer = new Customer();
+    @RequestMapping("/register")
+    public String register(HttpServletRequest request, HttpServletResponse reponse) {
+        /*String name = request.getParameter("username").toLowerCase();
+        String email = request.getParameter("email");*/
+
+        String webappRoot = servletContext.getRealPath("/");
+        //webappRoot = webappRoot.substring(0, webappRoot.length() - 1);
+        LOGGER.info("Webapp Root Real Path: {}",webappRoot);
+        LOGGER.info("Somthing {}", servletContext.getResourcePaths("/"));
+        LOGGER.info("Test path: {} {} {}", request.getServletPath(), request.getLocale().getDisplayCountry(), request.getLocale().getDisplayLanguage());
+
+        File actdir = new File(webappRoot);
+
+        if (!actdir.isDirectory()) {
+            throw new IllegalArgumentException(actdir.getAbsolutePath());
+        }
+
+        File[] ls = null;
+
+        ls = actdir.listFiles();
+
+        LOGGER.info("Have {} files", ls.length);
+
+        for (int i = 0; i < ls.length; i++) {
+            LOGGER.info("File name: {}", ls[i].getAbsoluteFile());
+        }
+
+       /* Customer customer = new Customer();
         customer.setCustomerName(name);
-        customerService.save(customer);
+        customerService.save(customer);*/
 
         /*try {
             request.login(customer.getCustomerName(), customer.getPassword());

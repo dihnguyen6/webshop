@@ -1,7 +1,9 @@
 package com.mrKhoai.webshop.objects;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -12,57 +14,57 @@ import javax.persistence.Table;
 import java.util.Date;
 
 @Entity
-@Table(name = "ODER")
-public class Order {
+@Table(name = "BASKET")
+public class Basket {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ODER_ID", nullable = false, unique = true)
-    private int orderId;
+    @Column(name = "BASKET_ID", nullable = false, unique = true)
+    private int basketId;
 
-    @Column(name = "ODER_DATE", nullable = false)
-    private Date oderDate;
+    @Column(name = "BASKET_DATE", nullable = false)
+    private Date basketDate;
 
-    @Column(name = "ODER_PRICE", nullable = false)
-    private double oderPrice;
+    @Column(name = "BASKET_PRICE", nullable = false)
+    private double basketPrice;
 
     @ManyToOne
     @JoinColumn(name = "CUSTOMER_ID")
     private Customer customer;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "PAYMENT_ID")
     private Payment payment;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "BILL_ID")
     private Bill bill;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "COUPON_ID")
     private Coupon coupon;
 
-    public int getOrderId() {
-        return orderId;
+    public int getBasketId() {
+        return basketId;
     }
 
-    public void setOrderId(int orderId) {
-        this.orderId = orderId;
+    public void setBasketId(int basketId) {
+        this.basketId = basketId;
     }
 
-    public Date getOderDate() {
-        return oderDate;
+    public Date getBasketDate() {
+        return basketDate;
     }
 
-    public void setOderDate(Date oderDate) {
-        this.oderDate = oderDate;
+    public void setBasketDate(Date basketDate) {
+        this.basketDate = basketDate;
     }
 
-    public double getOderPrice() {
-        return oderPrice;
+    public double getBasketPrice() {
+        return basketPrice;
     }
 
-    public void setOderPrice(double oderPrice) {
-        this.oderPrice = oderPrice;
+    public void setBasketPrice(double basketPrice) {
+        this.basketPrice = basketPrice;
     }
 
     public Customer getCustomer() {
@@ -99,10 +101,10 @@ public class Order {
 
     @Override
     public String toString() {
-        return "Oder{" +
-                "oderId : " + orderId + ", " +
-                "oderDate : " + oderDate + ", " +
-                "oderPrice : " + oderPrice +
+        return "Basket{" +
+                "basketId : " + basketId + ", " +
+                "basketDate : " + basketDate + ", " +
+                "basketPrice : " + basketPrice +
                 "}";
     }
 }

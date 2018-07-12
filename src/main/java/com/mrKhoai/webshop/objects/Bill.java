@@ -20,7 +20,7 @@ public class Bill {
     private String trackingNumber;
 
     @OneToOne(mappedBy = "bill")
-    private Order order;
+    private Basket basket;
 
     public int getBillId() {
         return billId;
@@ -38,12 +38,12 @@ public class Bill {
         this.trackingNumber = trackingNumber;
     }
 
-    public Order getOrder() {
-        return order;
+    public Basket getBasket() {
+        return basket;
     }
 
-    public void setOrder(Order order) {
-        this.order = order;
+    public void setBasket(Basket basket) {
+        this.basket = basket;
     }
 
     @Override

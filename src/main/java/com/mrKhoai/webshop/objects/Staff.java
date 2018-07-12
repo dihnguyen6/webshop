@@ -26,7 +26,7 @@ public class Staff {
     private String staffPassword;
 
     @ManyToOne
-    @JoinColumn(name = "ROLE_ID")
+    @JoinColumn(name = "ROLE_NAME")
     private Role role;
 
 

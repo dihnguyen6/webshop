@@ -1,5 +1,6 @@
 package com.mrKhoai.webshop.objects;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -8,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -17,8 +19,8 @@ public class Role {
     @Column(name = "ROLE_NAME", nullable = false, unique = true, length = 15)
     private String roleName;
 
-    @OneToMany(mappedBy = "role", fetch = FetchType.EAGER)
-    private Set<Staff> staffs;
+    @OneToMany(mappedBy = "role", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private Set<Staff> staffs = new HashSet<>();
 
     public String getRoleName() {
         return roleName;
