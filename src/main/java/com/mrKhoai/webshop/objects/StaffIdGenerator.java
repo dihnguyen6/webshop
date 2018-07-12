@@ -1,6 +1,8 @@
 package com.mrKhoai.webshop.objects;
 
 import com.mrKhoai.webshop.controller.WebshopConst;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.hibernate.HibernateException;
 import org.hibernate.engine.spi.SharedSessionContractImplementor;
 import org.hibernate.id.IdentifierGenerator;
@@ -12,6 +14,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class StaffIdGenerator implements IdentifierGenerator {
+
+    private static final Logger LOGGER = LogManager.getLogger(StaffIdGenerator.class);
 
     @Override
     public Serializable generate(SharedSessionContractImplementor sharedSessionContractImplementor, Object o) throws HibernateException {
@@ -31,7 +35,7 @@ public class StaffIdGenerator implements IdentifierGenerator {
             statement.close();
             resultSet.close();
         } catch (SQLException e) {
-            e.printStackTrace();
+            LOGGER.info(e.getMessage());
         } finally {
             AccountIdGenerator.closeStatement(statement, resultSet);
         }
