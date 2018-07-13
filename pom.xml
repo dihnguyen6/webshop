@@ -124,6 +124,11 @@
             <scope>test</scope>
         </dependency>
 
+		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+		</dependency>
+
 	</dependencies>
 
 	<build>
@@ -153,19 +158,15 @@
 
 	<profiles>
 		<profile>
-			<id>openshift</id>
-			<build>
-				<plugins>
-					<plugin>
-						<artifactId>maven-war-plugin</artifactId>
-						<version>3.2.0</version>
-						<configuration>
-							<outputDirectory>deployments</outputDirectory>
-							<warName>ROOT</warName>
-						</configuration>
-					</plugin>
-				</plugins>
-			</build>
+			<id>live</id>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+			</activation>
+			<properties>
+				<mysql.username>mrkhoai</mysql.username>
+				<mysql.password>khoaithisan</mysql.password>
+				<mysql.databaseUrl>jdbc:mysql://85.10.205.173:3306/webshopdb?useSSL=false</mysql.databaseUrl>
+			</properties>
 		</profile>
 	</profiles>
 </project>
