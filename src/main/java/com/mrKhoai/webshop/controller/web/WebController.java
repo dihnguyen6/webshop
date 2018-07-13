@@ -60,14 +60,14 @@ public class WebController {
         LOGGER.info("Have {} files", ls.length);
 
         StringBuilder builder = new StringBuilder();
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < ls.length; i++) {
             LOGGER.info("File name: {}", ls[i].getAbsoluteFile());
             FileInputStream istream = new FileInputStream(ls[i]);
             byte [] fileContent = new byte[(int) ls[i].length()];
             istream.read(fileContent);
             istream.close();
-            carousel[i] = Base64.getEncoder().encodeToString(fileContent);
-            builder.append("<div id=\"c1\" class=\"item-slick1 item1-slick1\" style=\"background-image: url(data:image/jpeg;base64," + carousel[i] + ");\">\n" +
+            //carousel[i] = Base64.getEncoder().encodeToString(fileContent);
+            builder.append("<div id=\"c1\" class=\"item-slick1 item1-slick1\" style=\"background-image: url(data:image/jpeg;base64," + Base64.getEncoder().encodeToString(fileContent) + ");\">\n" +
                     "                <div class=\"wrap-content-slide1 sizefull flex-col-c-m p-l-15 p-r-15 p-t-150 p-b-170\">\n" +
                     "\n" +
                     "                    <h2 class=\"caption2-slide1 xl-text1 t-center animated visible-false m-b-37\" data-appear=\"fadeInUp\">\n" +
