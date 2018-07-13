@@ -59,6 +59,7 @@ public class WebController {
 
         LOGGER.info("Have {} files", ls.length);
 
+        StringBuilder builder = new StringBuilder();
         for (int i = 0; i < 3; i++) {
             LOGGER.info("File name: {}", ls[i].getAbsoluteFile());
             FileInputStream istream = new FileInputStream(ls[i]);
@@ -66,10 +67,26 @@ public class WebController {
             istream.read(fileContent);
             istream.close();
             carousel[i] = Base64.getEncoder().encodeToString(fileContent);
+            builder.append("<div id=\"c1\" class=\"item-slick1 item1-slick1\" style=\"background-image: url(data:image/jpeg;base64," + carousel[i] + ");\">\n" +
+                    "                <div class=\"wrap-content-slide1 sizefull flex-col-c-m p-l-15 p-r-15 p-t-150 p-b-170\">\n" +
+                    "\n" +
+                    "                    <h2 class=\"caption2-slide1 xl-text1 t-center animated visible-false m-b-37\" data-appear=\"fadeInUp\">\n" +
+                    "                        New arrivals\n" +
+                    "                    </h2>\n" +
+                    "\n" +
+                    "                    <div class=\"wrap-btn-slide1 w-size1 animated visible-false\" data-appear=\"zoomIn\">\n" +
+                    "                        <!-- Button -->\n" +
+                    "                        <a href=\"product.html\" class=\"flex-c-m size2 bo-rad-23 s-text2 bgwhite hov1 trans-0-4\">\n" +
+                    "                            Shop Now\n" +
+                    "                        </a>\n" +
+                    "                    </div>\n" +
+                    "                </div>\n" +
+                    "            </div>");
         }
         model.addAttribute("carousel1", carousel[0]);
         model.addAttribute("carousel2", carousel[1]);
         model.addAttribute("carousel3", carousel[2]);
+        model.addAttribute("carousel", builder.toString());
         return "anonymous/home";
     }
 

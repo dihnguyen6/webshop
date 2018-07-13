@@ -7,17 +7,11 @@
     <th:block th:include="fragments/headerfiles.html :: headerfiles"></th:block>
     <script th:inline="javascript">
         /*<![CDATA[*/
-        carousel1 = /*[[${carousel1}]]*/ 'Image List';
-        carousel2 = /*[[${carousel2}]]*/ 'Image List';
-        carousel3 = /*[[${carousel3}]]*/ 'Image List';
+        carousel = /*[[${carousel}]]*/ 'Image List';
         /*]]>*/
     </script>
     <script>
-        function load() {
-            $('#c1').css({"background-image" : "url(data:image/jpeg;base64," + carousel1 + ")"});
-            $('#c2').css({"background-image" : "url(data:image/jpeg;base64," + carousel2 + ")"});
-            $('#c3').css({"background-image" : "url(data:image/jpeg;base64," + carousel3 + ")"});
-        }
+        document.getElementById('carousel').innerHTML = carousel;
     </script>
 </head>
 <body class="animsition" onload="load()">
