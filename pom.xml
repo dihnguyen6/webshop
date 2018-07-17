@@ -124,10 +124,10 @@
             <scope>test</scope>
         </dependency>
 
-		<dependency>
+		<!--<dependency>
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
-		</dependency>
+		</dependency>-->
 
 	</dependencies>
 
@@ -153,6 +153,17 @@
                     <update>true</update>
                 </configuration>
             </plugin>
+			<plugin>
+				<groupId>com.heroku.sdk</groupId>
+				<artifactId>heroku-maven-plugin</artifactId>
+				<version>2.0.3</version>
+				<configuration>
+					<processTypes>
+						<web>java -jar target/beta-0.0.1-SNAPSHOT.jar</web>
+						<appName>mrkhoai-webshop</appName>
+					</processTypes>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
 

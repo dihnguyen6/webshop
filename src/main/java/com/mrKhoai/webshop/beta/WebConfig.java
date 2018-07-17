@@ -17,23 +17,4 @@ import javax.sql.DataSource;
 @EnableJpaRepositories(basePackages = "com.mrKhoai.webshop.repositories")
 @EnableTransactionManagement
 public class WebConfig {
-
-    @Bean
-    public DataSource dataSource(){
-        HikariConfig hikariConfig = new HikariConfig();
-        hikariConfig.setDataSourceClassName("org.postgresql.Driver");
-
-        hikariConfig.setMaximumPoolSize(5);
-        hikariConfig.setConnectionTestQuery("SELECT 1");
-        hikariConfig.setPoolName("springHikariCP");
-
-        hikariConfig.addDataSourceProperty("dataSource.cachePrepStmts", "true");
-        hikariConfig.addDataSourceProperty("dataSource.prepStmtCacheSize", "250");
-        hikariConfig.addDataSourceProperty("dataSource.prepStmtCacheSqlLimit", "2048");
-        hikariConfig.addDataSourceProperty("dataSource.useServerPrepStmts", "true");
-
-        HikariDataSource dataSource = new HikariDataSource(hikariConfig);
-
-        return dataSource;
-    }
 }
