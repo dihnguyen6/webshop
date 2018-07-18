@@ -124,11 +124,6 @@
             <scope>test</scope>
         </dependency>
 
-		<!--<dependency>
-			<groupId>org.postgresql</groupId>
-			<artifactId>postgresql</artifactId>
-		</dependency>-->
-
 	</dependencies>
 
 	<build>
@@ -137,37 +132,55 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
-            <!--<plugin>
-                <groupId>org.sonarsource.scanner.api</groupId>
-                <artifactId>sonar-scanner-api</artifactId>
-                <version>2.10.0.1189</version>
-            </plugin>-->
-            <plugin>
-                <groupId>org.apache.tomcat.maven</groupId>
-                <artifactId>tomcat7-maven-plugin</artifactId>
-                <version>2.2</version>
-                <configuration>
-                    <url>http://141.39.226.249:80/manager/text</url>
-                    <server>TomcatServer</server>
-                    <path>/MrKhoai</path>
-                    <update>true</update>
-                </configuration>
-            </plugin>
 			<plugin>
-				<groupId>com.heroku.sdk</groupId>
-				<artifactId>heroku-maven-plugin</artifactId>
-				<version>2.0.3</version>
+				<artifactId>maven-war-plugin</artifactId>
 				<configuration>
-					<processTypes>
-						<web>java -jar target/beta-0.0.1-SNAPSHOT.jar</web>
-						<appName>mrkhoai-webshop</appName>
-					</processTypes>
+					<webXml>src/main/webapp/web.xml</webXml>
 				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.tomcat.maven</groupId>
+				<artifactId>tomcat7-maven-plugin</artifactId>
+				<version>2.2</version>
+				<executions>
+					<execution>
+						<id>tomcat-run</id>
+						<goals>
+							<goal>run-war-only</goal>
+						</goals>
+						<configuration>
+							<fork>true</fork>
+							<path>/mrkhoai-webshop</path>
+						</configuration>
+					</execution>
+					<!--<execution>
+						<id>tomcat-deploy</id>
+						<phase>integration-test</phase>
+						<goals>
+							<goal>deploy-only</goal>
+						</goals>
+						<configuration>
+							<url>http://localhost:8080/manager</url>
+							<path>/bar</path>
+							<warFile>beta-0-0-1-SNAPSHOT.jar</warFile>
+							<username>tomcat</username>
+							<password>tomcat</password>
+							<tag>test</tag>
+						</configuration>
+					</execution>
+					<execution>
+						<id>tomcat-shutdown</id>
+						<phase>post-integration-test</phase>
+						<goals>
+							<goal>shutdown</goal>
+						</goals>
+					</execution>-->
+				</executions>
 			</plugin>
 		</plugins>
 	</build>
 
-	<profiles>
+	<!--<profiles>
 		<profile>
 			<id>live</id>
 			<activation>
@@ -179,5 +192,5 @@
 				<mysql.databaseUrl>jdbc:mysql://85.10.205.173:3306/webshopdb?useSSL=false</mysql.databaseUrl>
 			</properties>
 		</profile>
-	</profiles>
+	</profiles>-->
 </project>
