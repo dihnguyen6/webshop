@@ -10,15 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RequestPart;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Base64;
@@ -46,42 +40,32 @@ public class WebController {
     public String home(Model model) throws IOException {
         URL fileUrl = getClass().getResource("/");
         String [] carousel = new String[3];
-        //File actdir = new File(fileUrl.getFile() + "static/basis/images/carousel");
         File actdir = new File(System.getProperty("user.home"), "/carousel");
 
         if (!actdir.isDirectory()) {
             throw new IllegalArgumentException(actdir.getAbsolutePath());
         }
 
-        File[] ls = null;
-
-        ls = actdir.listFiles();
-
-        LOGGER.info("Have {} files", ls.length);
+        File[] ls = actdir.listFiles();
 
         StringBuilder builder = new StringBuilder();
         for (int i = 0; i < ls.length; i++) {
-            LOGGER.info("File name: {}", ls[i].getAbsoluteFile());
             FileInputStream istream = new FileInputStream(ls[i]);
             byte [] fileContent = new byte[(int) ls[i].length()];
             istream.read(fileContent);
             istream.close();
             //carousel[i] = Base64.getEncoder().encodeToString(fileContent);
-            builder.append("<div id=\"c1\" class=\"item-slick1 item1-slick1\" style=\"background-image: url(data:image/jpeg;base64," + Base64.getEncoder().encodeToString(fileContent) + ");\">\n" +
-                    "                <div class=\"wrap-content-slide1 sizefull flex-col-c-m p-l-15 p-r-15 p-t-150 p-b-170\">\n" +
-                    "\n" +
-                    "                    <h2 class=\"caption2-slide1 xl-text1 t-center animated visible-false m-b-37\" data-appear=\"fadeInUp\">\n" +
-                    "                        New arrivals\n" +
-                    "                    </h2>\n" +
-                    "\n" +
-                    "                    <div class=\"wrap-btn-slide1 w-size1 animated visible-false\" data-appear=\"zoomIn\">\n" +
-                    "                        <!-- Button -->\n" +
-                    "                        <a href=\"product.html\" class=\"flex-c-m size2 bo-rad-23 s-text2 bgwhite hov1 trans-0-4\">\n" +
-                    "                            Shop Now\n" +
-                    "                        </a>\n" +
-                    "                    </div>\n" +
-                    "                </div>\n" +
-                    "            </div>");
+            builder.append("<div id=\"c1\" class=\"item-slick1 item1-slick1\""
+                    + " style=\"background-image: url(data:image/jpeg;base64,"
+                    + Base64.getEncoder().encodeToString(fileContent)
+                    + ");\">" +
+                    "<div class=\"wrap-content-slide1 sizefull flex-col-c-m p-l-15 p-r-15 p-t-150 p-b-170\">" +
+                    "<h2 class=\"caption2-slide1 xl-text1 t-center"
+                    + " animated visible-false m-b-37\" data-appear=\"fadeInUp\">" +
+                    "New arrivals </h2>\n" +
+                    "<div class=\"wrap-btn-slide1 w-size1 animated visible-false\" data-appear=\"zoomIn\">" +
+                    "<a href=\"product.html\" class=\"flex-c-m size2 bo-rad-23 s-text2 bgwhite hov1 trans-0-4\">" +
+                    "Shop Now</a></div></div></div>");
         }
         model.addAttribute("carousel1", carousel[0]);
         model.addAttribute("carousel2", carousel[1]);
@@ -123,9 +107,8 @@ public class WebController {
         return "web-dev/web-dev";
     }
 
-    @GetMapping("/admin**")
-    public String adminLogin(Model model) {
-
+    @GetMapping("/loginAdmin")
+    public String adminLogin() {
         return "admin/loginAdmin";
     }
 

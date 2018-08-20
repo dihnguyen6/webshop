@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -29,6 +30,8 @@ public class Staff {
     @JoinColumn(name = "ROLE_NAME")
     private Role role;
 
+    @OneToOne(mappedBy = "staff")
+    private CV cv;
 
     public String getStaffId() {
         return staffId;
@@ -60,6 +63,14 @@ public class Staff {
 
     public void setRole(Role role) {
         this.role = role;
+    }
+
+    public CV getCv() {
+        return cv;
+    }
+
+    public void setCv(CV cv) {
+        this.cv = cv;
     }
 
     @Override

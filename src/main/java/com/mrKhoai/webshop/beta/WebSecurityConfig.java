@@ -1,26 +1,21 @@
 package com.mrKhoai.webshop.beta;
 
-import com.mrKhoai.webshop.controller.WebshopConst;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig {
 
     @Configuration
-    @Order(1)
-    public static class AdminConfigurationAdapter extends WebSecurityConfigurerAdapter {
+    public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
         @Autowired
         private UserService userService;
@@ -31,10 +26,6 @@ public class WebSecurityConfig {
         @Autowired
         private BCryptPasswordEncoder bCryptPasswordEncoder() {
             return new BCryptPasswordEncoder();
-        }
-
-        public AdminConfigurationAdapter() {
-            super();
         }
 
         @Override
@@ -49,38 +40,33 @@ public class WebSecurityConfig {
                     .enableSessionUrlRewriting(false)
                     .sessionAuthenticationErrorUrl("/home");
 
-            http.authorizeRequests()
-                    .antMatchers("/", "/css/**", "/js/**", "/images/**",
-                            "/fonts/**", "/includes/**", "/sass/**", "/vendor/**","/admin/**")
+            http.antMatcher("/admin*")
+                    .authorizeRequests()
+                    .antMatchers("/", "/basis/**", "/special/**")
                     .permitAll()
-                    .antMatchers(HttpMethod.POST, "/register").permitAll()
-                    .antMatchers(HttpMethod.POST, "/login").permitAll()
-                    .antMatchers(HttpMethod.GET, "/login").permitAll()
-                    .antMatchers(HttpMethod.POST, "/admin").permitAll()
-                    .antMatchers(HttpMethod.GET, "/admin").permitAll()
-                    .antMatchers("/web-dev").hasRole(WebshopConst.WEB_DEV)
-                    .antMatchers("/admin/**").hasRole(WebshopConst.ADMINISTRATOR)
-                    .antMatchers("/**").permitAll()
-                    .anyRequest().authenticated()
+                    .and()
+                    .authorizeRequests()
+                    .anyRequest()
+                    .hasRole("ADMIN")
+
                     .and()
                     .formLogin()
-                    .loginPage("/login")
-                    .loginProcessingUrl("/login")
-                    .usernameParameter("username")
-                    .passwordParameter("password")
-                    .successForwardUrl("/home")
+                    .loginPage("/loginAdmin")
+                    .loginProcessingUrl("/admin_login")
+                    .failureUrl("/loginAdmin?error=loginError")
+                    .defaultSuccessUrl("/adminPage")
                     .successHandler(successHandler)
-                    .permitAll()
+
                     .and()
                     .logout()
-                    .logoutUrl("/logout")
-                    .logoutSuccessUrl("/home")
-                    .permitAll().and()
-                    .rememberMe()
-                    .alwaysRemember(true)
+                    .logoutUrl("/admin_logout")
+                    .logoutSuccessUrl("/protectedLinks")
+                    .deleteCookies("JSESSIONID")
+
                     .and()
                     .exceptionHandling()
                     .accessDeniedPage("/error-403")
+
                     .and()
                     .csrf().disable();
         }
@@ -93,7 +79,7 @@ public class WebSecurityConfig {
 
     @Configuration
     @Order(2)
-    public static class UserConfigurationAdapter extends WebSecurityConfigurerAdapter {
+    public static class SpringSecurityConfig2 extends WebSecurityConfigurerAdapter {
 
         @Autowired
         private UserService userService;
@@ -106,11 +92,6 @@ public class WebSecurityConfig {
             return new BCryptPasswordEncoder();
         }
 
-        public UserConfigurationAdapter() {
-            super();
-        }
-
-        @Override
         protected void configure(HttpSecurity http) throws Exception {
             http.sessionManagement()
                     .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
@@ -122,32 +103,32 @@ public class WebSecurityConfig {
                     .enableSessionUrlRewriting(false)
                     .sessionAuthenticationErrorUrl("/home");
 
-            http.antMatcher("/admin").authorizeRequests()
-                    .antMatchers("/", "/css/**", "/js/**", "/images/**",
-                            "/fonts/**", "/includes/**", "/sass/**", "/vendor/**","/admin/**")
+            http.antMatcher("/user*")
+                    .authorizeRequests()
+                    .antMatchers("/", "/basis/**", "/special/**")
                     .permitAll()
-                    .antMatchers(HttpMethod.POST, "/register").permitAll()
-                    .antMatchers(HttpMethod.POST, "/login").permitAll()
-                    .antMatchers(HttpMethod.GET, "/login").permitAll()
-                    .antMatchers(HttpMethod.POST, "/admin").permitAll()
-                    .antMatchers(HttpMethod.GET, "/admin").permitAll()
-                    .antMatchers("/**").permitAll()
-                    .antMatchers("/web-dev").hasRole(WebshopConst.WEB_DEV)
-                    .antMatchers("/admin/**").hasRole(WebshopConst.ADMINISTRATOR)
-                    .anyRequest().authenticated()
+                    .and()
+                    .authorizeRequests()
+                    .anyRequest()
+                    .hasRole("USER")
+
                     .and()
                     .formLogin()
-                    .loginPage("/admin")
-                    .loginProcessingUrl("/loginAdmin")
-                    .usernameParameter("username")
-                    .passwordParameter("password")
+                    .loginPage("/login")
+                    .loginProcessingUrl("/user_login")
+                    .failureUrl("/loginUser?error=loginError")
+                    .defaultSuccessUrl("/home")
                     .successHandler(successHandler)
-                    .permitAll()
+
                     .and()
                     .logout()
-                    .logoutUrl("/logout")
-                    .logoutSuccessUrl("/home")
-                    .permitAll()
+                    .logoutUrl("/user_logout")
+                    .logoutSuccessUrl("/protectedLinks")
+
+                    .and()
+                    .exceptionHandling()
+                    .accessDeniedPage("/error-403")
+
                     .and()
                     .csrf().disable();
         }

@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="de"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head></head>
+<body>
+<!-- Header -->
+<header class="header1" th:fragment="header">
+    <!-- Header desktop -->
+    <div class="container-menu-header">
+        <div class="topbar">
+            <div class="topbar-social">
+                <a href="#" class="topbar-social-item fa fa-facebook"></a>
+                <a href="#" class="topbar-social-item fa fa-instagram"></a>
+            </div>
+
+            <span class="topbar-child1">
+					Quang Cao
+				</span>
+
+            <div class="topbar-child2">
+					<span class="topbar-email">
+						suche
+					</span>
+
+                <div class="topbar-language rs1-select2">
+                    <select class="selection-1" name="time">
+                        <option>USD</option>
+                        <option>EUR</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="wrap_header">
+            <!-- Logo -->
+            <a href="index.html" class="logo">
+                <img src="basis/images/icons/logo.png" alt="IMG-LOGO">
+            </a>
+
+            <!-- Menu -->
+            <div class="wrap_menu">
+                <nav class="menu">
+                    <ul class="main_menu">
+                        <li>
+                            <a th:href="@{#}">Home</a>
+                        </li>
+
+                        <li>
+                            <a href="../anonymous/product.html">Sofa</a>
+                            <ul class="sub_menu">
+                                <li><a th:href="@{#}">2-Seater Sofas</a></li>
+                                <li><a th:href="@{#}">3-Seater Sofas</a></li>
+                                <li><a th:href="@{#}">Ecksofas</a></li>
+                            </ul>
+                        </li>
+
+                        <li>
+                            <a href="../anonymous/cart.html">Sessel</a>
+                            <ul class="sub_menu">
+                                <li><a th:href="@{#}">Hocker</a></li>
+                                <li><a th:href="@{#}">Bench</a></li>
+                            </ul>
+                        </li>
+
+                        <li>
+                            <a th:href="@{#}">Betten</a>
+                        </li>
+
+                        <li>
+                            <a href="../anonymous/about.html">Tische</a>
+                            <ul class="sub_menu">
+                                <li><a th:href="@{#}">Esstische</a></li>
+                                <li><a th:href="@{#}">Couchtische</a></li>
+                            </ul>
+                        </li>
+
+                        <li>
+                            <a th:href="@{#}">St&uuml;hle</a>
+                        </li>
+
+                        <li>
+                            <a th:href="@{#}">Accessorires</a>
+                        </li>
+
+                        <li class="sale-noti">
+                            <a th:href="@{#}">Sale</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+
+
+            <!-- Header Icon -->
+            <div class="header-icons">
+
+                <a href="#" class="header-wrapicon1 dis-block" >
+                    <img src="basis/images/icons/icon-header-01.png" data-toggle="modal" data-target="#login" class="header-icon1" alt="ICON">
+                </a>
+
+
+
+
+                <span class="linedivide1"></span>
+
+                <div class="header-wrapicon2">
+                    <img src="basis/images/icons/icon-header-02.png" class="header-icon1 js-show-header-dropdown"
+                         alt="ICON">
+                    <span class="header-icons-noti">0</span>
+
+                    <!-- Header cart noti -->
+                    <div class="header-cart header-dropdown">
+                        <ul class="header-cart-wrapitem">
+                            <li class="header-cart-item">
+                                <div class="header-cart-item-img">
+                                    <img src="basis/images/item-cart-01.jpg" alt="IMG">
+                                </div>
+
+                                <div class="header-cart-item-txt">
+                                    <a href="#" class="header-cart-item-name">
+                                        White Shirt With Pleat Detail Back
+                                    </a>
+
+                                    <span class="header-cart-item-info">
+											1 x $19.00
+										</span>
+                                </div>
+                            </li>
+
+                            <li class="header-cart-item">
+                                <div class="header-cart-item-img">
+                                    <img src="basis/images/item-cart-02.jpg" alt="IMG">
+                                </div>
+
+                                <div class="header-cart-item-txt">
+                                    <a href="#" class="header-cart-item-name">
+                                        Converse All Star Hi Black Canvas
+                                    </a>
+
+                                    <span class="header-cart-item-info">
+											1 x $39.00
+										</span>
+                                </div>
+                            </li>
+
+                            <li class="header-cart-item">
+                                <div class="header-cart-item-img">
+                                    <img src="basis/images/item-cart-03.jpg" alt="IMG">
+                                </div>
+
+                                <div class="header-cart-item-txt">
+                                    <a href="#" class="header-cart-item-name">
+                                        Nixon Porter Leather Watch In Tan
+                                    </a>
+
+                                    <span class="header-cart-item-info">
+											1 x $17.00
+										</span>
+                                </div>
+                            </li>
+                        </ul>
+
+                        <div class="header-cart-total">
+                            Total: $75.00
+                        </div>
+
+                        <div class="header-cart-buttons">
+                            <div class="header-cart-wrapbtn">
+                                <!-- Button -->
+                                <a href="cart.html" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
+                                    View Cart
+                                </a>
+                            </div>
+
+                            <div class="header-cart-wrapbtn">
+                                <!-- Button -->
+                                <a href="#" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
+                                    Check Out
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header Mobile -->
+    <div class="wrap_header_mobile">
+        <!-- Logo moblie -->
+        <a href="index.html" class="logo-mobile">
+            <img src="basis/images/icons/logo.png" alt="IMG-LOGO">
+        </a>
+
+        <!-- Button show menu -->
+        <div class="btn-show-menu">
+            <!-- Header Icon mobile -->
+            <div class="header-icons-mobile">
+                <a href="#" class="header-wrapicon1 dis-block">
+                    <img src="basis/images/icons/icon-header-01.png" class="header-icon1" alt="ICON">
+                </a>
+
+                <span class="linedivide2"></span>
+
+                <div class="header-wrapicon2">
+                    <img src="basis/images/icons/icon-header-02.png" class="header-icon1 js-show-header-dropdown"
+                         alt="ICON">
+                    <span class="header-icons-noti">0</span>
+
+                    <!-- Header cart noti -->
+                    <div class="header-cart header-dropdown">
+                        <ul class="header-cart-wrapitem">
+                            <li class="header-cart-item">
+                                <div class="header-cart-item-img">
+                                    <img src="basis/images/item-cart-01.jpg" alt="IMG">
+                                </div>
+
+                                <div class="header-cart-item-txt">
+                                    <a href="#" class="header-cart-item-name">
+                                        White Shirt With Pleat Detail Back
+                                    </a>
+
+                                    <span class="header-cart-item-info">
+											1 x $19.00
+										</span>
+                                </div>
+                            </li>
+
+                            <li class="header-cart-item">
+                                <div class="header-cart-item-img">
+                                    <img src="basis/images/item-cart-02.jpg" alt="IMG">
+                                </div>
+
+                                <div class="header-cart-item-txt">
+                                    <a href="#" class="header-cart-item-name">
+                                        Converse All Star Hi Black Canvas
+                                    </a>
+
+                                    <span class="header-cart-item-info">
+											1 x $39.00
+										</span>
+                                </div>
+                            </li>
+
+                            <li class="header-cart-item">
+                                <div class="header-cart-item-img">
+                                    <img src="basis/images/item-cart-03.jpg" alt="IMG">
+                                </div>
+
+                                <div class="header-cart-item-txt">
+                                    <a href="#" class="header-cart-item-name">
+                                        Nixon Porter Leather Watch In Tan
+                                    </a>
+
+                                    <span class="header-cart-item-info">
+											1 x $17.00
+										</span>
+                                </div>
+                            </li>
+                        </ul>
+
+                        <div class="header-cart-total">
+                            Total: $75.00
+                        </div>
+
+                        <div class="header-cart-buttons">
+                            <div class="header-cart-wrapbtn">
+                                <!-- Button -->
+                                <a href="cart.html" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
+                                    View Cart
+                                </a>
+                            </div>
+
+                            <div class="header-cart-wrapbtn">
+                                <!-- Button -->
+                                <a href="#" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
+                                    Check Out
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="btn-show-menu-mobile hamburger hamburger--squeeze">
+					<span class="hamburger-box">
+						<span class="hamburger-inner"></span>
+					</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Menu Mobile -->
+    <div class="wrap-side-menu">
+        <nav class="side-menu">
+            <ul class="main-menu">
+                <li class="item-topbar-mobile p-l-20 p-t-8 p-b-8">
+						<span class="topbar-child1">
+							Quang Cao
+						</span>
+                </li>
+
+                <li class="item-topbar-mobile p-l-20 p-t-8 p-b-8">
+                    <div class="topbar-child2-mobile">
+							<span class="topbar-email">
+								suche
+							</span>
+
+                        <div class="topbar-language rs1-select2">
+                            <select class="selection-1" name="time">
+                                <option>USD</option>
+                                <option>EUR</option>
+                            </select>
+                        </div>
+                    </div>
+                </li>
+
+                <li class="item-topbar-mobile p-l-10">
+                    <div class="topbar-social-mobile">
+                        <a href="#" class="topbar-social-item fa fa-facebook"></a>
+                        <a href="#" class="topbar-social-item fa fa-instagram"></a>
+
+                    </div>
+                </li>
+
+                <li>
+                    <a th:href="@{#}">Home</a>
+                </li>
+
+                <li>
+                    <a href="../anonymous/product.html">Sofa</a>
+                    <ul class="sub_menu">
+                        <li><a th:href="@{#}">2-Seater Sofas</a></li>
+                        <li><a th:href="@{#}">3-Seater Sofas</a></li>
+                        <li><a th:href="@{#}">Ecksofas</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="../anonymous/cart.html">Sessel</a>
+                    <ul class="sub_menu">
+                        <li><a th:href="@{#}">Hocker</a></li>
+                        <li><a th:href="@{#}">Bench</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a th:href="@{#}">Betten</a>
+                </li>
+
+                <li>
+                    <a href="../anonymous/about.html">Tische</a>
+                    <ul class="sub_menu">
+                        <li><a th:href="@{#}">Esstische</a></li>
+                        <li><a th:href="@{#}">Couchtische</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a th:href="@{#}">St&uuml;hle</a>
+                </li>
+
+                <li>
+                    <a th:href="@{#}">Accessorires</a>
+                </li>
+
+                <li class="sale-noti">
+                    <a th:href="@{#}">Sale</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+
+    <div class="modal fade" id="login" role="dialog" style="border: solid 1px white; border-radius: 25px">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="wrap-login100 p-l-50 p-r-50 p-t-72 p-b-50" style="height: 100%">
+                    <div class="form">
+                        <form class="login100-form validate-form register-form" action="/register" method="post">
+                        <span class="login100-form-title p-b-59">
+                            Sign Up
+                        </span>
+
+                            <div class="wrap-input100 validate-input" data-validate="Name is required">
+                                <span class="label-input100">Full Name</span>
+                                <input class="input100" type="text" name="name" placeholder="Name...">
+                                <span class="focus-input100"></span>
+                            </div>
+
+                            <div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
+                                <span class="label-input100">Email</span>
+                                <input class="input100" type="text" name="email" placeholder="Email addess...">
+                                <span class="focus-input100"></span>
+                            </div>
+
+                            <div class="wrap-input100 validate-input" data-validate="Username is required">
+                                <span class="label-input100">Username</span>
+                                <input class="input100" type="text" name="username" placeholder="Username...">
+                                <span class="focus-input100"></span>
+                            </div>
+
+                            <div class="wrap-input100 validate-input" data-validate="Password is required">
+                                <span class="label-input100">Password</span>
+                                <input class="input100" type="password" name="pass" placeholder="*************">
+                                <span class="focus-input100"></span>
+                            </div>
+
+                            <div class="wrap-input100 validate-input" data-validate="Repeat Password is required">
+                                <span class="label-input100">Repeat Password</span>
+                                <input class="input100" type="password" name="repeat-pass" placeholder="*************">
+                                <span class="focus-input100"></span>
+                            </div>
+
+                            <div class="flex-m w-full p-b-33">
+                                <div class="contact100-form-checkbox">
+                                    <input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
+                                    <label class="label-checkbox100" for="ckb1">
+                                    <span class="txt1">
+                                        I agree to the
+                                        <a href="#" class="txt2">
+                                            Terms of User
+                                        </a>
+                                    </span>
+                                    </label>
+                                </div>
+
+
+                            </div>
+
+                            <div class="container-login100-form-btn">
+                                <div class="wrap-login100-form-btn">
+                                    <div class="login100-form-bgbtn"></div>
+                                    <button class="login100-form-btn">
+                                        Sign Up
+                                    </button>
+                                </div>
+
+                                <p class="message"><a href="#" class="txt3 p-r-30 p-t-10 p-b-10 p-l-30">
+                                    Sign in
+                                    <i class="fa fa-long-arrow-right m-l-5"></i>
+                                </a></p>
+                            </div>
+                        </form>
+
+                        <form class="login100-form validate-form login-form" action="/login" method="post">
+                        <span class="login100-form-title p-b-59">
+                            Sign In
+                        </span>
+
+                            <div class="wrap-input100 validate-input" data-validate="Username is required">
+                                <span class="label-input100">Username</span>
+                                <input class="input100" type="text" name="username" placeholder="Username...">
+                                <span class="focus-input100"></span>
+                            </div>
+
+                            <div class="wrap-input100 validate-input" data-validate="Password is required">
+                                <span class="label-input100">Password</span>
+                                <input class="input100" type="password" name="password" placeholder="*************">
+                                <span class="focus-input100"></span>
+                            </div>
+
+                            <div class="container-login100-form-btn">
+                                <div class="wrap-login100-form-btn m-b-30">
+                                    <div class="login100-form-bgbtn"></div>
+                                    <button class="login100-form-btn">
+                                        Sign In
+                                    </button>
+                                </div>
+
+                                <a href="#" class="btn-face p-t-20">
+                                    <i class="fa fa-facebook-official"></i>
+                                    Sign in with Facebook
+                                </a>
+
+                                <a href="#" class="btn-google">
+                                    <img src="basis/images/icons/icon-google.png" alt="GOOGLE">
+                                    Sign in with Google
+                                </a>
+
+                                <p class="message m-t-10 m-l-5">Not a member ?
+                                    <a href="#" class="txt1 p-r-30 p-t-10 p-b-10">
+                                        Sign up now
+                                    </a>
+                                </p>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</header>
+
+</body>
+</html>

@@ -40,7 +40,7 @@ public class UserService implements UserDetailsService {
         if(staff == null) {
             Customer customer = customerService.findByName(username);
             if (customer == null) {
-                UserBuilder builder = User.withUsername(customer.getCustomerName());
+                UserBuilder builder = User.withUsername(customer.getCvName());
                 builder.password(customer.getPassword());
                 builder.authorities(WebshopConst.ROLE_CUSTOMER);
                 return builder.build();

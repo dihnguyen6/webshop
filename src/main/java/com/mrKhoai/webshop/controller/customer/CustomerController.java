@@ -63,11 +63,11 @@ public class CustomerController {
         }
 
        /* Customer customer = new Customer();
-        customer.setCustomerName(name);
+        customer.setCvName(name);
         customerService.save(customer);*/
 
         /*try {
-            request.login(customer.getCustomerName(), customer.getPassword());
+            request.login(customer.getCvName(), customer.getPassword());
         } catch (ServletException e) {
             LOGGER.info(e.getMessage());
         }*/

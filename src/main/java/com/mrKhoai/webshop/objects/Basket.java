@@ -9,9 +9,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "BASKET")
@@ -42,6 +45,9 @@ public class Basket {
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "COUPON_ID")
     private Coupon coupon;
+
+    @OneToMany(mappedBy = "basket", fetch = FetchType.EAGER)
+    private Set<Product> products = new HashSet<>();
 
     public int getBasketId() {
         return basketId;
@@ -97,6 +103,14 @@ public class Basket {
 
     public void setCoupon(Coupon coupon) {
         this.coupon = coupon;
+    }
+
+    public Set<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(Set<Product> products) {
+        this.products = products;
     }
 
     @Override

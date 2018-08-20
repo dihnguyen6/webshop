@@ -40,6 +40,10 @@ public class Product {
     @OneToMany(mappedBy = "product", fetch = FetchType.EAGER)
     private Set<Color> colors = new HashSet<>();
 
+    @ManyToOne
+    @JoinColumn(name = "BASET_ID")
+    private Basket basket;
+
     public int getProductId() {
         return productId;
     }
@@ -78,6 +82,14 @@ public class Product {
 
     public void setColors(Set<Color> colors) {
         this.colors = colors;
+    }
+
+    public Basket getBasket() {
+        return basket;
+    }
+
+    public void setBasket(Basket basket) {
+        this.basket = basket;
     }
 
     @Override
