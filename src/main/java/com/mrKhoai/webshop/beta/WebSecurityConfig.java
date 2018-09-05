@@ -40,7 +40,7 @@ public class WebSecurityConfig {
                     .enableSessionUrlRewriting(false)
                     .sessionAuthenticationErrorUrl("/home");
 
-            http.antMatcher("/admin*")
+            http.antMatcher("/admin/*")
                     .authorizeRequests()
                     .antMatchers("/", "/basis/**", "/special/**")
                     .permitAll()
@@ -51,7 +51,7 @@ public class WebSecurityConfig {
 
                     .and()
                     .formLogin()
-                    .loginPage("/loginAdmin")
+                    .loginPage("/admin")
                     .loginProcessingUrl("/admin_login")
                     .failureUrl("/loginAdmin?error=loginError")
                     .defaultSuccessUrl("/adminPage")
