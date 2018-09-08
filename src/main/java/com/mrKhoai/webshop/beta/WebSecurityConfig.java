@@ -7,7 +7,6 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Configuration
@@ -15,7 +14,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 public class WebSecurityConfig {
 
     @Configuration
-    public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
+    public class AdminSecurityConfig extends WebSecurityConfigurerAdapter {
 
         @Autowired
         private UserService userService;
@@ -28,23 +27,26 @@ public class WebSecurityConfig {
             return new BCryptPasswordEncoder();
         }
 
+        public AdminSecurityConfig() {
+            super();
+        }
+
         @Override
         protected void configure(HttpSecurity http) throws Exception {
-            http.sessionManagement()
-                    .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
+           /* http.sessionManagement()
+                    .sessionCreationPolicy(SessionCreationPolicy.ALWAYS)
                     .maximumSessions(1)
                     .expiredUrl("/home")
                     .maxSessionsPreventsLogin(true)
                     .and().invalidSessionUrl("/home")
                     .sessionFixation().migrateSession()
                     .enableSessionUrlRewriting(false)
-                    .sessionAuthenticationErrorUrl("/home");
+                    .sessionAuthenticationErrorUrl("/home");*/
 
-            http.antMatcher("/admin/*")
-                    .authorizeRequests()
-                    .antMatchers("/", "/basis/**", "/special/**")
-                    .permitAll()
-                    .and()
+            http.authorizeRequests().antMatchers("/", "/basis/**", "/special/**")
+                    .permitAll().anyRequest().authenticated();
+
+            http.antMatcher("/admin**")
                     .authorizeRequests()
                     .anyRequest()
                     .hasRole("ADMIN")
@@ -52,20 +54,27 @@ public class WebSecurityConfig {
                     .and()
                     .formLogin()
                     .loginPage("/admin")
-                    .loginProcessingUrl("/admin_login")
-                    .failureUrl("/loginAdmin?error=loginError")
-                    .defaultSuccessUrl("/adminPage")
-                    .successHandler(successHandler)
+                    .loginProcessingUrl("/admin")
+                    .usernameParameter("username")
+                    .passwordParameter("password")
+                    .defaultSuccessUrl("/admin/management")
+                    .failureForwardUrl("/admin?error=loginError")
+                    .permitAll()
 
                     .and()
                     .logout()
                     .logoutUrl("/admin_logout")
-                    .logoutSuccessUrl("/protectedLinks")
+                    .logoutSuccessUrl("/home")
                     .deleteCookies("JSESSIONID")
 
                     .and()
                     .exceptionHandling()
                     .accessDeniedPage("/error-403")
+
+                    .and()
+                    .rememberMe()
+                    .key("uniqueAndSecret")
+                    .alwaysRemember(true)
 
                     .and()
                     .csrf().disable();
@@ -74,12 +83,24 @@ public class WebSecurityConfig {
         @Override
         protected void configure(AuthenticationManagerBuilder auth) throws Exception {
             auth.userDetailsService(userService).passwordEncoder(bCryptPasswordEncoder());
+            /*auth.inMemoryAuthentication()
+                    .withUser("admin")
+                    .password("admin")
+                    .roles("ADMIN")
+                    *//*.and()
+                    .withUser("admin")
+                    .password("admin")
+                    .credentialsExpired(true)
+                    .accountExpired(true)
+                    .accountLocked(true)
+                    .authorities("WRITE_PRIVILEGES", "READ_PRIVILEGES")
+                    .roles("ADMIN")*//*;*/
         }
     }
 
     @Configuration
-    @Order(2)
-    public static class SpringSecurityConfig2 extends WebSecurityConfigurerAdapter {
+    @Order(1)
+    public static class UserSecurityConfig extends WebSecurityConfigurerAdapter {
 
         @Autowired
         private UserService userService;
@@ -92,8 +113,12 @@ public class WebSecurityConfig {
             return new BCryptPasswordEncoder();
         }
 
+        public UserSecurityConfig() {
+            super();
+        }
+
         protected void configure(HttpSecurity http) throws Exception {
-            http.sessionManagement()
+            /*http.sessionManagement()
                     .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
                     .maximumSessions(1)
                     .expiredUrl("/home")
@@ -101,13 +126,12 @@ public class WebSecurityConfig {
                     .and().invalidSessionUrl("/home")
                     .sessionFixation().migrateSession()
                     .enableSessionUrlRewriting(false)
-                    .sessionAuthenticationErrorUrl("/home");
+                    .sessionAuthenticationErrorUrl("/home");*/
 
-            http.antMatcher("/user*")
-                    .authorizeRequests()
-                    .antMatchers("/", "/basis/**", "/special/**")
-                    .permitAll()
-                    .and()
+            http.authorizeRequests().antMatchers("/", "/basis/**", "/special/**")
+                    .permitAll().anyRequest().authenticated();
+
+            http.antMatcher("/user**")
                     .authorizeRequests()
                     .anyRequest()
                     .hasRole("USER")
@@ -116,7 +140,7 @@ public class WebSecurityConfig {
                     .formLogin()
                     .loginPage("/login")
                     .loginProcessingUrl("/user_login")
-                    .failureUrl("/loginUser?error=loginError")
+                    .failureUrl("/login?error=loginError")
                     .defaultSuccessUrl("/home")
                     .successHandler(successHandler)
 
@@ -128,6 +152,11 @@ public class WebSecurityConfig {
                     .and()
                     .exceptionHandling()
                     .accessDeniedPage("/error-403")
+
+                    .and()
+                    .rememberMe()
+                    .key("uniqueAndSecret")
+                    .alwaysRemember(true)
 
                     .and()
                     .csrf().disable();

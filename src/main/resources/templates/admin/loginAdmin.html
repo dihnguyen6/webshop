@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
 	<title>Login V14</title>
 	<meta charset="UTF-8">
@@ -26,22 +26,29 @@
 	<link rel="stylesheet" type="text/css" href="special/admin/css/helper.css">
 	<link rel="stylesheet" type="text/css" href="special/admin/css/main.css">
 <!--===============================================================================================-->
+
+	<script th:inline="javascript">
+        /*<![CDATA[*/
+        message = /*[[${message}]]*/ 'Login Message';
+        messColor = /*[[${messColor}]]*/ 'Message Color';
+        /*]]>*/
+	</script>
 </head>
 <body>
 	
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100 p-l-85 p-r-85 p-t-55 p-b-55">
-				<form class="login100-form validate-form flex-sb flex-w" action="/loginAdmin" method="post">
+				<form class="login100-form validate-form flex-sb flex-w" role="form" th:action="@{/admin}" method="POST">
 					<span class="login100-form-title p-b-32">
-						Account Login
+						Admin Login
 					</span>
 
 					<span class="txt1 p-b-11">
 						Username
 					</span>
 					<div class="wrap-input100 validate-input m-b-36" data-validate = "Username is required">
-						<input class="input100" type="text" name="username" >
+						<input class="input100" type="text" name="username" id="username" for="username">
 						<span class="focus-input100"></span>
 					</div>
 					
@@ -52,19 +59,19 @@
 						<span class="btn-show-pass">
 							<i class="fa fa-eye"></i>
 						</span>
-						<input class="input100" type="password" name="password" >
+						<input class="input100" type="password" name="password" id="password" for="password">
 						<span class="focus-input100"></span>
 					</div>
 					
-					<div class="flex-sb-m w-full p-b-48">
+					<div id="mess" class="flex-sb-m w-full p-b-48">
 
 					</div>
 
 					<div class="container-login100-form-btn">
-						<button class="login100-form-btn">
-							Login
-						</button>
+						<button type="submit" class="login100-form-btn align-self-center">Login</button>
 					</div>
+
+					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 
 				</form>
 			</div>
@@ -90,6 +97,11 @@
 	<script src="special/admin/vendor/countdowntime/countdowntime.js"></script>
 <!--===============================================================================================-->
 	<script src="special/admin/js/main.js"></script>
+
+<script>
+	$('#mess').html(message);
+	$('#mess').css("color", messColor);
+</script>
 
 </body>
 </html>

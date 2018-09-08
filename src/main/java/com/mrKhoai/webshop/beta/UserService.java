@@ -1,14 +1,17 @@
 package com.mrKhoai.webshop.beta;
 
+import com.mrKhoai.webshop.controller.WebshopConst;
 import com.mrKhoai.webshop.controller.customer.CustomerService;
 import com.mrKhoai.webshop.controller.role.RoleService;
 import com.mrKhoai.webshop.controller.staff.StaffService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -35,6 +38,14 @@ public class UserService implements UserDetailsService {
     @Transactional(readOnly = true)
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        if(!username.equalsIgnoreCase("admin")) {
+            throw new UsernameNotFoundException(WebshopConst.USER_NOT_FOUND);
+        }
+        User.UserBuilder builder = User.withUsername(username);
+        builder.password(new BCryptPasswordEncoder().encode("admin"));
+        String role = "ADMIN";
+        builder.authorities(WebshopConst.ROLE + role);
+        return builder.build();
         /*username = username.toLowerCase();
         Staff staff = staffService.findByName(username);
         if(staff == null) {
@@ -54,6 +65,6 @@ public class UserService implements UserDetailsService {
             builder.authorities(WebshopConst.ROLE + role);
             return builder.build();
         }*/
-        return null;
+        //return null;
     }
 }
