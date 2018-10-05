@@ -1,3 +1,14 @@
+$(document).ready(function() {
+    console.log(getCookie("lang"));
+    $('#locales').val(getCookie("lang")).change();
+    $("#locales").change(function () {
+        var selectedOption = $('#locales').val();
+        var unselectOption = (selectedOption === "de") ? "en" : "de";
+        if (selectedOption != ''){
+            window.location.replace(window.location.href.replace(unselectOption,selectedOption));
+        }
+    });
+});
 
 (function ($) {
     "use strict";
@@ -211,3 +222,9 @@ String.format = function() {
     }
     return s;
 };
+
+function getCookie(name) {
+    var value = "; " + document.cookie;
+    var parts = value.split("; " + name + "=");
+    if (parts.length == 2) return parts.pop().split(";").shift();
+}

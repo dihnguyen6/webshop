@@ -20,13 +20,12 @@ public class AccountIdGenerator implements IdentifierGenerator {
     @Override
     public Serializable generate(SharedSessionContractImplementor sharedSessionContractImplementor, Object o) throws HibernateException {
 
-        Customer s = (Customer) o;
         Connection connection = sharedSessionContractImplementor.connection();
         Statement statement = null;
         ResultSet resultSet = null;
         try {
             statement = connection.createStatement();
-            resultSet = statement.executeQuery("select count(customer_id) as Id from customer");
+            resultSet = statement.executeQuery("select count(account_id) as Id from account");
             if(resultSet.next()) {
                 int id = resultSet.getInt(1) + 1;
                 String generatedId = WebshopConst.PREFIX + new Integer(id).toString();

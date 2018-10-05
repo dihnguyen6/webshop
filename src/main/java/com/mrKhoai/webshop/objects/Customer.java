@@ -40,7 +40,7 @@ public class Customer {
     @Column(name = "CUSTOMER_COUNTRY")
     private String customerCountry;
 
-    @OneToMany(mappedBy = "customer", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "customer", fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     private Set<Basket> baskets = new HashSet<>();
 
     @OneToOne

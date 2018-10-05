@@ -19,14 +19,13 @@
 				</span>
 
             <div class="topbar-child2">
-					<span class="topbar-email">
-						suche
-					</span>
-
+                <span class="topbar-email">
+                    suche
+                </span>
                 <div class="topbar-language rs1-select2">
-                    <select class="selection-1" name="time">
-                        <option>USD</option>
-                        <option>EUR</option>
+                    <select class="selection-1" name="time" id="locales">
+                        <option value="de" style="background-image:url(../basis/images/icons/germany.png);" th:utext="#{lang.de}"></option>
+                        <option value="en" style="background-image:url(../basis/images/icons/england.png);" th:utext="#{lang.en}"></option>
                     </select>
                 </div>
             </div>
@@ -35,7 +34,7 @@
         <div class="wrap_header">
             <!-- Logo -->
             <a href="index.html" class="logo">
-                <img src="basis/images/icons/logo.png" alt="IMG-LOGO">
+                <img src="../basis/images/icons/logo.png" alt="IMG-LOGO">
             </a>
 
             <!-- Menu -->
@@ -43,48 +42,48 @@
                 <nav class="menu">
                     <ul class="main_menu">
                         <li>
-                            <a th:href="@{#}">Home</a>
+                            <a th:href="@{/home}">Home</a>
                         </li>
 
                         <li>
-                            <a href="../anonymous/product.html">Sofa</a>
+                            <a th:href="@{'/product?id=Uo8nTDBKW61uUUfZwmd09Q=='}" th:utext="#{catalog.sofa}"></a>
                             <ul class="sub_menu">
-                                <li><a th:href="@{#}">2-Seater Sofas</a></li>
-                                <li><a th:href="@{#}">3-Seater Sofas</a></li>
-                                <li><a th:href="@{#}">Ecksofas</a></li>
+                                <li><a th:href="@{'/product?id=FCi42BuLMenXuxJtLd5Ukw=='}" th:utext="#{productType.twoSeaterSofas}"></a></li>
+                                <li><a th:href="@{'/product?id=OBh8SKr/HOoVPm7W13jxdA=='}" th:utext="#{productType.threeSeaterSofas}"></a></li>
+                                <li><a th:href="@{'/product?id=heofmButy5q+YxP/CcJOrA=='}" th:utext="#{productType.cornerCouch}"></a></li>
                             </ul>
                         </li>
 
                         <li>
-                            <a href="../anonymous/cart.html">Sessel</a>
+                            <a th:href="@{'/product?id=EVL3NuVWzb+J7aXOECvh7w=='}" th:utext="#{catalog.armchair}"></a>
                             <ul class="sub_menu">
-                                <li><a th:href="@{#}">Hocker</a></li>
-                                <li><a th:href="@{#}">Bench</a></li>
+                                <li><a th:href="@{'/product?id=hJJvWziatqy/ihtUtoBlxQ=='}" th:utext="#{productType.stool}"></a></li>
+                                <li><a th:href="@{'/product?id=DTacNYdybFdzyTi2pT57mw=='}" th:utext="#{productType.bench}"></a></li>
                             </ul>
                         </li>
 
                         <li>
-                            <a th:href="@{#}">Betten</a>
+                            <a th:href="@{'/product?id=0ZxlvCbsAlZT2VWG2ywx3g=='}" th:utext="#{catalog.bed}"></a>
                         </li>
 
                         <li>
-                            <a href="../anonymous/about.html">Tische</a>
+                            <a th:href="@{'/product?id=UcRbeV1dGKPk4MN+iyChQQ=='}" th:utext="#{catalog.table}"></a>
                             <ul class="sub_menu">
-                                <li><a th:href="@{#}">Esstische</a></li>
-                                <li><a th:href="@{#}">Couchtische</a></li>
+                                <li><a th:href="@{'/product?id=BvsvPHz2eB3qra8iSPI7cA=='}" th:utext="#{productType.diningTables}"></a></li>
+                                <li><a th:href="@{'/product?id=Rb547LVQJaSQA2QVLpcwGA=='}" th:utext="#{productType.coffeeTables}"></a></li>
                             </ul>
                         </li>
 
                         <li>
-                            <a th:href="@{#}">St&uuml;hle</a>
+                            <a th:href="@{'/product?id=pg2w8NWuOVsiqSlyWdgYzQ=='}" th:utext="#{catalog.chair}"></a>
                         </li>
 
                         <li>
-                            <a th:href="@{#}">Accessorires</a>
+                            <a th:href="@{'/product?id=mO24WwDZUnrVrOvkUbP65g=='}" th:utext="#{catalog.accessories}"></a>
                         </li>
 
                         <li class="sale-noti">
-                            <a th:href="@{#}">Sale</a>
+                            <a th:href="@{'/product?id=8s0XG9QiICg7ellcP/Kqrw=='}" th:utext="#{catalog.sale}"></a>
                         </li>
                     </ul>
                 </nav>
@@ -95,7 +94,7 @@
             <div class="header-icons">
 
                 <a href="#" class="header-wrapicon1 dis-block" >
-                    <img src="basis/images/icons/icon-header-01.png" data-toggle="modal" data-target="#login" class="header-icon1" alt="ICON">
+                    <img src="../basis/images/icons/icon-header-01.png" data-toggle="modal" data-target="#login" class="header-icon1" alt="ICON">
                 </a>
 
 
@@ -104,7 +103,7 @@
                 <span class="linedivide1"></span>
 
                 <div class="header-wrapicon2">
-                    <img src="basis/images/icons/icon-header-02.png" class="header-icon1 js-show-header-dropdown"
+                    <img src="../basis/images/icons/icon-header-02.png" class="header-icon1 js-show-header-dropdown"
                          alt="ICON">
                     <span class="header-icons-noti">0</span>
 
@@ -113,7 +112,7 @@
                         <ul class="header-cart-wrapitem">
                             <li class="header-cart-item">
                                 <div class="header-cart-item-img">
-                                    <img src="basis/images/item-cart-01.jpg" alt="IMG">
+                                    <img src="../basis/images/item-cart-01.jpg" alt="IMG">
                                 </div>
 
                                 <div class="header-cart-item-txt">
@@ -129,7 +128,7 @@
 
                             <li class="header-cart-item">
                                 <div class="header-cart-item-img">
-                                    <img src="basis/images/item-cart-02.jpg" alt="IMG">
+                                    <img src="../basis/images/item-cart-02.jpg" alt="IMG">
                                 </div>
 
                                 <div class="header-cart-item-txt">
@@ -145,7 +144,7 @@
 
                             <li class="header-cart-item">
                                 <div class="header-cart-item-img">
-                                    <img src="basis/images/item-cart-03.jpg" alt="IMG">
+                                    <img src="../basis/images/item-cart-03.jpg" alt="IMG">
                                 </div>
 
                                 <div class="header-cart-item-txt">
@@ -189,7 +188,7 @@
     <div class="wrap_header_mobile">
         <!-- Logo moblie -->
         <a href="index.html" class="logo-mobile">
-            <img src="basis/images/icons/logo.png" alt="IMG-LOGO">
+            <img src="../basis/images/icons/logo.png" alt="IMG-LOGO">
         </a>
 
         <!-- Button show menu -->
@@ -197,13 +196,13 @@
             <!-- Header Icon mobile -->
             <div class="header-icons-mobile">
                 <a href="#" class="header-wrapicon1 dis-block">
-                    <img src="basis/images/icons/icon-header-01.png" class="header-icon1" alt="ICON">
+                    <img src="../basis/images/icons/icon-header-01.png" class="header-icon1" alt="ICON">
                 </a>
 
                 <span class="linedivide2"></span>
 
                 <div class="header-wrapicon2">
-                    <img src="basis/images/icons/icon-header-02.png" class="header-icon1 js-show-header-dropdown"
+                    <img src="../basis/images/icons/icon-header-02.png" class="header-icon1 js-show-header-dropdown"
                          alt="ICON">
                     <span class="header-icons-noti">0</span>
 
@@ -212,7 +211,7 @@
                         <ul class="header-cart-wrapitem">
                             <li class="header-cart-item">
                                 <div class="header-cart-item-img">
-                                    <img src="basis/images/item-cart-01.jpg" alt="IMG">
+                                    <img src="../basis/images/item-cart-01.jpg" alt="IMG">
                                 </div>
 
                                 <div class="header-cart-item-txt">
@@ -228,7 +227,7 @@
 
                             <li class="header-cart-item">
                                 <div class="header-cart-item-img">
-                                    <img src="basis/images/item-cart-02.jpg" alt="IMG">
+                                    <img src="../basis/images/item-cart-02.jpg" alt="IMG">
                                 </div>
 
                                 <div class="header-cart-item-txt">
@@ -244,7 +243,7 @@
 
                             <li class="header-cart-item">
                                 <div class="header-cart-item-img">
-                                    <img src="basis/images/item-cart-03.jpg" alt="IMG">
+                                    <img src="../basis/images/item-cart-03.jpg" alt="IMG">
                                 </div>
 
                                 <div class="header-cart-item-txt">
@@ -476,7 +475,7 @@
                                 </a>
 
                                 <a href="#" class="btn-google">
-                                    <img src="basis/images/icons/icon-google.png" alt="GOOGLE">
+                                    <img src="../basis/images/icons/icon-google.png" alt="GOOGLE">
                                     Sign in with Google
                                 </a>
 

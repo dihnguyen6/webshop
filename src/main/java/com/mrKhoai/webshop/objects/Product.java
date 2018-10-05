@@ -1,6 +1,8 @@
 package com.mrKhoai.webshop.objects;
 
 
+import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -21,51 +23,76 @@ import java.util.Set;
 @Table(name = "PRODUCT")
 public class Product {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "PRODUCT_ID", nullable = false, unique = true)
-    private int productId;
+    @GenericGenerator(name = "product_generator", strategy = "com.mrKhoai.webshop.objects.ProductIdGenerator")
+    @GeneratedValue(generator = "product_generator")
+    @Column(name = "PRODUCT_ID", nullable = false, unique = true, length = 64)
+    private String productId;
 
-    @Column(name = "PRODUCT_NAME", nullable = false)
-    private String productName;
+    @Column(name = "PRODUCT_NAME_EN", nullable = false)
+    private String productNameEN;
 
-    @Column(name = "PRODUCT_DESCRIPTION", nullable = false)
-    private String productDescription;
+    @Column(name = "PRODUCT_NAME_DE", nullable = false)
+    private String productNameDE;
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @Column(name = "PRODUCT_DESCRIPTION_EN", nullable = false)
+    private String productDescriptionEN;
+
+    @Column(name = "PRODUCT_DESCRIPTION_DE", nullable = false)
+    private String productDescriptionDE;
+
+    @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     @JoinTable(name = "PRODUCT_PRODUCT_TYPE",
-            joinColumns = @JoinColumn(name = "PRODUCT_TYPE_NAME"),
-            inverseJoinColumns = @JoinColumn(name = "PRODUCT_ID"))
+            joinColumns = @JoinColumn(name = "PRODUCT_ID"),
+            inverseJoinColumns = @JoinColumn(name = "PRODUCT_TYPE_ID"))
     private Set<ProductType> productTypes = new HashSet<>();
 
-    @OneToMany(mappedBy = "product", fetch = FetchType.EAGER)
+    @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+    @JoinTable(name = "PRODUCT_COLOR",
+            joinColumns = @JoinColumn(name = "PRODUCT_ID"),
+            inverseJoinColumns = @JoinColumn(name = "COLOR_NAME"))
     private Set<Color> colors = new HashSet<>();
 
-    @ManyToOne
-    @JoinColumn(name = "BASET_ID")
-    private Basket basket;
+    @ManyToMany(mappedBy = "products")
+    private Set<Basket> baskets = new HashSet<>();
 
-    public int getProductId() {
+    public String getProductId() {
         return productId;
     }
 
-    public void setProductId(int productId) {
+    public void setProductId(String productId) {
         this.productId = productId;
     }
 
-    public String getProductName() {
-        return productName;
+    public String getProductNameEN() {
+        return productNameEN;
     }
 
-    public void setProductName(String productName) {
-        this.productName = productName;
+    public void setProductNameEN(String productNameEN) {
+        this.productNameEN = productNameEN;
     }
 
-    public String getProductDescription() {
-        return productDescription;
+    public String getProductNameDE() {
+        return productNameDE;
     }
 
-    public void setProductDescription(String productDescription) {
-        this.productDescription = productDescription;
+    public void setProductNameDE(String productNameDE) {
+        this.productNameDE = productNameDE;
+    }
+
+    public String getProductDescriptionEN() {
+        return productDescriptionEN;
+    }
+
+    public void setProductDescriptionEN(String productDescriptionEN) {
+        this.productDescriptionEN = productDescriptionEN;
+    }
+
+    public String getProductDescriptionDE() {
+        return productDescriptionDE;
+    }
+
+    public void setProductDescriptionDE(String productDescriptionDE) {
+        this.productDescriptionDE = productDescriptionDE;
     }
 
     public Set<ProductType> getProductTypes() {
@@ -84,20 +111,22 @@ public class Product {
         this.colors = colors;
     }
 
-    public Basket getBasket() {
-        return basket;
+    public Set<Basket> getBaskets() {
+        return baskets;
     }
 
-    public void setBasket(Basket basket) {
-        this.basket = basket;
+    public void setBaskets(Set<Basket> baskets) {
+        this.baskets = baskets;
     }
 
     @Override
     public String toString() {
         return "Product{" +
                 "id : " + productId + ", " +
-                "name : " + productName + ", " +
-                "description : " + productDescription +
+                "nameEN : " + productNameEN + ", " +
+                "nameDE : " + productNameDE + ", " +
+                "descriptionEN : " + productDescriptionEN + ", " +
+                "descriptionDE : " + productDescriptionDE +
                 "}";
     }
 }

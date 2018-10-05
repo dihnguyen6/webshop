@@ -44,16 +44,16 @@
 						Admin Login
 					</span>
 
-					<span class="txt1 p-b-11">
-						Username
+					<span class="txt1 p-b-11" th:utext="#{admin.username}">
+
 					</span>
 					<div class="wrap-input100 validate-input m-b-36" data-validate = "Username is required">
 						<input class="input100" type="text" name="username" id="username" for="username">
 						<span class="focus-input100"></span>
 					</div>
 					
-					<span class="txt1 p-b-11">
-						Password
+					<span class="txt1 p-b-11" th:utext="#{admin.password}">
+
 					</span>
 					<div class="wrap-input100 validate-input m-b-12" data-validate = "Password is required">
 						<span class="btn-show-pass">
@@ -67,8 +67,15 @@
 
 					</div>
 
+					<span th:utext="#{lang.change}"></span>:
+					<select id="locales">
+						<option value=""></option>
+						<option value="en" th:utext="#{lang.en}"></option>
+						<option value="de" th:utext="#{lang.de}"></option>
+					</select>
+
 					<div class="container-login100-form-btn">
-						<button type="submit" class="login100-form-btn align-self-center">Login</button>
+						<input type="submit" class="login100-form-btn align-self-center" th:value="#{admin.submit}">
 					</div>
 
 					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>

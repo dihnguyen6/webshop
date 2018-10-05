@@ -32,7 +32,7 @@ public class Account {
     @OneToOne(mappedBy = "account")
     private Customer customer;
 
-    @OneToMany(mappedBy = "account", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "account", fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     private Set<Delivery> deliveries = new HashSet<>();
 
     public String getAccountId() {

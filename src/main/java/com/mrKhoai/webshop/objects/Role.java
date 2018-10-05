@@ -17,7 +17,7 @@ public class Role {
     @Column(name = "ROLE_NAME", nullable = false, unique = true, length = 15)
     private String roleName;
 
-    @OneToMany(mappedBy = "role", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "role", fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     private Set<Staff> staffs = new HashSet<>();
 
     public String getRoleName() {

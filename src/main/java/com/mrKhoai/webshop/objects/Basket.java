@@ -8,6 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -46,7 +48,10 @@ public class Basket {
     @JoinColumn(name = "COUPON_ID")
     private Coupon coupon;
 
-    @OneToMany(mappedBy = "basket", fetch = FetchType.EAGER)
+    @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+    @JoinTable(name = "BASKET_PRODUCT",
+            joinColumns = @JoinColumn(name = "BASKET_ID"),
+            inverseJoinColumns = @JoinColumn(name = "PRODUCT_ID"))
     private Set<Product> products = new HashSet<>();
 
     public int getBasketId() {

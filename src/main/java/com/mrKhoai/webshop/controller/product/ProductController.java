@@ -29,7 +29,7 @@ public class ProductController {
     @PostMapping("/add")
     public void addProduct(@RequestParam(name = "name") String name) {
         Product prod = new Product();
-        prod.setProductName(name);
+        prod.setProductNameEN(name);
         productRepository.save(prod);
     }
 

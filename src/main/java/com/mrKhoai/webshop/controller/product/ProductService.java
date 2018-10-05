@@ -25,12 +25,12 @@ public class ProductService implements ObjectService<Product> {
 
     @Override
     public Product findById(String id) {
-        return null;
+        return productRepository.findById(id).get();
     }
 
     @Override
     public Product findById(int id) {
-        return productRepository.findById(id).get();
+        return null;
     }
 
     @Override

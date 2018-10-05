@@ -1,3 +1,12 @@
+$(document).ready(function() {
+    console.log(getCookie("lang"));
+    /*history.replaceState({}, document.title, window.location.href.substr(0, window.location.href.indexOf('?')));*/
+    $("#locales").change(function () {
+        var selectedOption = $('#locales').val();
+        var unselect = ((selectedOption === "en") ? "de" : "en");
+        window.location.replace(window.location.href.replace(unselect, selectedOption));
+    });
+});
 
 (function ($) {
     "use strict";
@@ -73,3 +82,9 @@
     
 
 })(jQuery);
+
+function getCookie(name) {
+    var value = "; " + document.cookie;
+    var parts = value.split("; " + name + "=");
+    if (parts.length == 2) return parts.pop().split(";").shift();
+}

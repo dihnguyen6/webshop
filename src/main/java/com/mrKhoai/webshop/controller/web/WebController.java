@@ -1,6 +1,7 @@
 package com.mrKhoai.webshop.controller.web;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.mrKhoai.webshop.controller.WebshopConst;
 import com.mrKhoai.webshop.controller.customer.CustomerService;
 import com.mrKhoai.webshop.controller.role.RoleService;
 import com.mrKhoai.webshop.controller.staff.StaffService;
@@ -13,14 +14,18 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.net.URL;
 import java.util.Base64;
+import java.util.Locale;
 
 @Controller
 public class WebController {
@@ -41,9 +46,10 @@ public class WebController {
         return "login";
     }
 
-    @GetMapping("/home")
-    public String home(Model model) throws IOException {
-        URL fileUrl = getClass().getResource("/");
+    @GetMapping("/{lang:en|de}/home")
+    public String home(Model model, /*@RequestParam(name = "lang", required = true) String lang,*/
+                       @PathVariable String lang, HttpServletResponse response) throws IOException {
+        setLang(lang, response);
         String [] carousel = new String[3];
         File actdir = new File(System.getProperty("user.home"), "/carousel");
 
@@ -94,13 +100,18 @@ public class WebController {
         return "anonymous/product-detail";
     }
 
-    @GetMapping("/")
-    public String landing() {
-        return "redirect:/home";
+    @RequestMapping("/")
+    public String landing(HttpServletRequest request) {
+        return "redirect:/" + getLocale(request).getLanguage() + "/home";
     }
 
     @GetMapping("/product")
-    public String product() {
+    public String product(@RequestParam(name = "id") String id, HttpServletRequest request) {
+        return "redirect:/" + getLocale(request).getLanguage() + "/product?id=" + id;
+    }
+
+    @GetMapping("/{lang:en|de}/product")
+    public String redirectProduct() {
         return "anonymous/product";
     }
 
@@ -145,5 +156,49 @@ public class WebController {
     @GetMapping("edit-carousel")
     public String editCarousel() {
         return "anonymous/edit-carousel";
+    }
+
+    /**
+     * Get pramater "lang" from cookie in request header
+     * @param request
+     * @return
+     */
+    private String getLang(HttpServletRequest request) {
+        String rawCookie = request.getHeader("Cookie");
+        String[] rawCookieParams = rawCookie.split(";");
+        for(String rawCookieNameAndValue : rawCookieParams)
+        {
+            String[] rawCookieNameAndValuePair = rawCookieNameAndValue.split("=");
+            System.out.println(rawCookieNameAndValuePair[0] + " " + rawCookieNameAndValuePair[1]);
+            if (rawCookieNameAndValuePair[0].trim().equals("locale")) {
+                LOGGER.info(rawCookieNameAndValuePair[0] + ": " + rawCookieNameAndValuePair[1]);
+                return rawCookieNameAndValuePair[1];
+            }
+        }
+        return "de";
+    }
+
+    /**
+     * Get attribute "lang" from Session
+     * @param request
+     * @return
+     */
+    private Locale getLocale(HttpServletRequest request) {
+        Locale locale = null;
+        locale = (Locale) request.getSession().getAttribute(WebshopConst.URL_LOCALE_ATTRIBUTE_NAME);
+        if (locale == null) {
+            locale = Locale.GERMAN;
+        }
+        return locale;
+    }
+
+    /**
+     * Update "lang" by response header
+     * @param lang
+     * @param response
+     */
+    private void setLang(String lang, HttpServletResponse response) {
+        Cookie myCookie = new Cookie("locale", lang);
+        response.addCookie(myCookie);
     }
 }

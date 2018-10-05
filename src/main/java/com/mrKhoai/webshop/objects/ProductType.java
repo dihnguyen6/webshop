@@ -1,8 +1,11 @@
 package com.mrKhoai.webshop.objects;
 
 
+import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
@@ -14,8 +17,16 @@ import java.util.Set;
 public class ProductType {
 
     @Id
-    @Column(name = "PRODUCT_TYPE_NAME", nullable = false, unique = true, length = 30)
-    private String productTypeName;
+    @GenericGenerator(name = "product_type_generator", strategy = "com.mrKhoai.webshop.objects.ProductTypeIdGenerator")
+    @GeneratedValue(generator = "product_type_generator")
+    @Column(name = "PRODUCT_TYPE_ID", nullable = false, unique = true, length = 32)
+    private String productTypeId;
+
+    @Column(name = "PRODUCT_TYPE_NAME_EN", nullable = false)
+    private String productTypeNameEN;
+
+    @Column(name = "PRODUCT_TYPE_NAME_DE", nullable = false)
+    private String productTypeNameDE;
 
     @ManyToMany(mappedBy = "productTypes")
     private Set<Catalog> catalogs = new HashSet<>();
@@ -23,12 +34,28 @@ public class ProductType {
     @ManyToMany(mappedBy = "productTypes")
     private Set<Product> products = new HashSet<>();
 
-    public String getProductTypeName() {
-        return productTypeName;
+    public String getProductTypeId() {
+        return productTypeId;
     }
 
-    public void setProductTypeName(String productTypeName) {
-        this.productTypeName = productTypeName;
+    public void setProductTypeId(String productTypeId) {
+        this.productTypeId = productTypeId;
+    }
+
+    public String getProductTypeNameEN() {
+        return productTypeNameEN;
+    }
+
+    public void setProductTypeNameEN(String productTypeNameEN) {
+        this.productTypeNameEN = productTypeNameEN;
+    }
+
+    public String getProductTypeNameDE() {
+        return productTypeNameDE;
+    }
+
+    public void setProductTypeNameDE(String productTypeNameDE) {
+        this.productTypeNameDE = productTypeNameDE;
     }
 
     public Set<Catalog> getCatalogs() {
@@ -50,7 +77,9 @@ public class ProductType {
     @Override
     public String toString() {
         return "ProductType{" +
-                "productTypeName : " + productTypeName +
+                "productTypeId : " + productTypeId + ", " +
+                "productTypeNameEN : " + productTypeNameEN + ", " +
+                "productTypeNameDE : " + productTypeNameDE +
                 "}";
     }
 }
