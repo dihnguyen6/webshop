@@ -1,12 +1,14 @@
 package com.mrKhoai.webshop.controller.product;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mrKhoai.webshop.controller.ObjectService;
 import com.mrKhoai.webshop.objects.Product;
 import com.mrKhoai.webshop.repositories.ProductRepository;
-import com.mrKhoai.webshop.repositories.ProductTypeRepository;
 import org.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.Iterator;
 
 public class ProductService implements ObjectService<Product> {
 
@@ -45,6 +47,13 @@ public class ProductService implements ObjectService<Product> {
 
     @Override
     public JSONArray getAll() throws JsonProcessingException {
-        return null;
+        JSONArray jsonArray = new JSONArray();
+        Iterator<Product> userList = productRepository.findAll().iterator();
+        while (userList.hasNext()) {
+            Product product = userList.next();
+            ObjectMapper mapper = new ObjectMapper();
+            jsonArray.put(mapper.writeValueAsString(product));
+        }
+        return jsonArray;
     }
 }
