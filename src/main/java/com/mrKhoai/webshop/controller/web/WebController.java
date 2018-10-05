@@ -149,7 +149,6 @@ public class WebController {
 
     @RequestMapping("/admin/management")
     public String adminPage(Model model) {
-
         return "admin/index";
     }
 
