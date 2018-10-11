@@ -125,7 +125,6 @@
     </footer>
 
 
-
     <!-- Back to top -->
     <div class="btn-back-to-top bg0-hov" id="myBtn">
 		<span class="symbol-btn-back-to-top">
@@ -134,51 +133,32 @@
     </div>
 
     <!-- Container Selection1 -->
-    <div id="dropDownSelect1"></div>
 
-
-
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.bundle.min.js"
+            integrity="sha384-3ziFidFTgxJXHMDttyPJKDuTlmxJlwbSkojudK/CkRqKDOmeSbN6KLrGdrBQnT2n"
+            crossorigin="anonymous"></script>
     <!--===============================================================================================-->
-    <script type="text/javascript" src="../basis/jquery/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" th:src="@{/../basis/jquery/jquery-3.3.1.min.js}"></script>
     <!--===============================================================================================-->
-    <script type="text/javascript" src="../basis/animsition/js/animsition.min.js"></script>
+    <script type="text/javascript" th:src="@{/../basis/animsition/js/animsition.min.js}"></script>
     <!--===============================================================================================-->
-    <script type="text/javascript" src="../basis/bootstrap/js/popper.js"></script>
-    <script type="text/javascript" src="../basis/bootstrap/js/bootstrap.min.js"></script>
+    <!--<script type="text/javascript" th:src="@{/../basis/bootstrap/js/popper.min.js}"></script>-->
+    <script type="text/javascript" th:src="@{/../basis/bootstrap/js/bootstrap.min.js}"></script>
     <!--===============================================================================================-->
-    <script type="text/javascript" src="../basis/select2/select2.min.js"></script>
-    <script type="text/javascript">
-        $(".selection-1").select2({
-            minimumResultsForSearch: 20,
-            dropdownParent: $('#dropDownSelect1')
-        });
-    </script>
+    <script type="text/javascript" th:src="@{/../basis/select2/select2.min.js}"></script>
     <!--===============================================================================================-->
-    <script type="text/javascript" src="../basis/slick/slick.min.js"></script>
-    <script type="text/javascript" src="../basis/js/slick-custom.js"></script>
+    <script type="text/javascript" th:src="@{/../basis/slick/slick.min.js}"></script>
+    <script type="text/javascript" th:src="@{/../basis/js/slick-custom.js}"></script>
     <!--===============================================================================================-->
-    <script type="text/javascript" src="../basis/lightbox2/js/lightbox.min.js"></script>
+    <script type="text/javascript" th:src="@{/../basis/lightbox2/js/lightbox.min.js}"></script>
     <!--===============================================================================================-->
-    <script type="text/javascript" src="../basis/sweetalert/sweetalert.min.js"></script>
-    <script type="text/javascript">
-        $('.block2-btn-addcart').each(function(){
-            var nameProduct = $(this).parent().parent().parent().find('.block2-name').html();
-            $(this).on('click', function(){
-                swal(nameProduct, "is added to cart !", "success");
-            });
-        });
-
-        $('.block2-btn-addwishlist').each(function(){
-            var nameProduct = $(this).parent().parent().parent().find('.block2-name').html();
-            $(this).on('click', function(){
-                swal(nameProduct, "is added to wishlist !", "success");
-            });
-        });
-    </script>
-
+    <script type="text/javascript" th:src="@{/../basis/sweetalert/sweetalert.min.js}"></script>
     <!--===============================================================================================-->
-    <script src="../basis/js/main.js"></script>
-    <script src="../basis/js/index.js"></script>
+    <script th:src="@{/../basis/js/main.js}"></script>
+    <script th:src="@{/../basis/js/index.js}"></script>
 </div>
 
 
