@@ -105,6 +105,11 @@ public class WebController {
         return "redirect:/" + getLocale(request).getLanguage() + "/home";
     }
 
+    @RequestMapping("/home")
+    public String home(HttpServletRequest request) {
+        return "redirect:/" + getLocale(request).getLanguage() + "/home";
+    }
+
     @GetMapping("/product")
     public String product(@RequestParam(name = "id") String id, HttpServletRequest request) {
         return "redirect:/" + getLocale(request).getLanguage() + "/product?id=" + id;

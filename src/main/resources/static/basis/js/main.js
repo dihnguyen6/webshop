@@ -1,6 +1,6 @@
 $(document).ready(function() {
-    console.log(getCookie("lang"));
-    $('#locales').val(getCookie("lang")).change();
+    console.log(getCookie("locale"));
+    $('#locales').val(getCookie("locale")).change();
     $("#locales").change(function () {
         var selectedOption = $('#locales').val();
         var unselectOption = (selectedOption === "de") ? "en" : "de";
