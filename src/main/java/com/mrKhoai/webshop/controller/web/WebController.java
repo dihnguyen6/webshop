@@ -100,6 +100,11 @@ public class WebController {
         return "anonymous/product-detail";
     }
 
+    @GetMapping("/{lang:en|de}/product-detail")
+    public String redirectProductDetail() {
+        return "anonymous/product-detail";
+    }
+
     @RequestMapping("/")
     public String landing(HttpServletRequest request) {
         return "redirect:/" + getLocale(request).getLanguage() + "/home";
