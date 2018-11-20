@@ -2275,7 +2275,7 @@ li.sale-noti > a {
 ///////////////////////////////////////////////////////////
 */
 input.num-product {
-    -moz-appearance: textfield;
+    -moz-appearance: none;
     appearance: none;
     -webkit-appearance: none;
 
