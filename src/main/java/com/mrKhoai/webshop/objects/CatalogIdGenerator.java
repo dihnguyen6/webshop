@@ -31,9 +31,9 @@ public class CatalogIdGenerator implements IdentifierGenerator {
         try {
             statement = connection.createStatement();
             resultSet = statement.executeQuery("select count(catalog_id) as Id from catalog");
-            if(resultSet.next()) {
+            if (resultSet.next()) {
                 try {
-                    byte [] name = c.getCatalogNameEN().getBytes("UTF-8");
+                    byte[] name = c.getCatalogNameEN().getBytes("UTF-8");
                     MessageDigest md = MessageDigest.getInstance("MD5");
                     String generatedId = Base64.getEncoder().encodeToString(md.digest(name));
                     LOGGER.info(generatedId);

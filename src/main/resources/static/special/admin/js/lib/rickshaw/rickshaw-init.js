@@ -1,10 +1,9 @@
-
-$(document).ready(function() {
+$(document).ready(function () {
 
     // Realtime Rickshaw Chart
     if ($('#rickshaw-realtime').length != 0) {
 
-        (function() {
+        (function () {
 
             var container = '#rickshaw-realtime';
 
@@ -47,7 +46,7 @@ $(document).ready(function() {
             });
 
             // Update the graph with realtime data
-            setInterval(function() {
+            setInterval(function () {
                 random.removeData(seriesData);
                 random.addData(seriesData);
                 graph.update();
@@ -56,7 +55,7 @@ $(document).ready(function() {
             d3.selectAll('#rickshaw-realtime_y_axis .tick.major line').attr('x2', '9');
             d3.selectAll('#rickshaw-realtime_y_axis .tick.major text').attr('x', '14');
 
-            $(window).resize(function() {
+            $(window).resize(function () {
                 graph.configure({
                     width: $(container).width(),
                     height: 338
@@ -73,7 +72,7 @@ $(document).ready(function() {
     // Stacked bar chart using Rickshaw
     if ($('#rickshaw-stacked-bars').length != 0) {
 
-        (function() {
+        (function () {
             var container = '#rickshaw-stacked-bars';
 
             var seriesData = [
@@ -107,7 +106,7 @@ $(document).ready(function() {
 
             var hoverDetail = new Rickshaw.Graph.HoverDetail({
                 graph: graph,
-                formatter: function(series, x, y) {
+                formatter: function (series, x, y) {
                     var date = '<span class="date">' + new Date(x * 1000).toUTCString() + '</span>';
                     var swatch = '<span class="detail_swatch" style="background-color: ' + series.color + '"></span>';
                     var content = swatch + series.name + ": " + parseInt(y) + '<br>' + date;
@@ -118,7 +117,7 @@ $(document).ready(function() {
             graph.render();
 
 
-            $(window).resize(function() {
+            $(window).resize(function () {
                 graph.configure({
                     width: $(container).width(),
                     height: 400

@@ -31,10 +31,10 @@ public class ProductIdGenerator implements IdentifierGenerator {
         try {
             statement = connection.createStatement();
             resultSet = statement.executeQuery("select count(product_id) as Id from product");
-            if(resultSet.next()) {
+            if (resultSet.next()) {
                 try {
                     int id = resultSet.getInt(1) + 1;
-                    byte [] name = p.getProductNameEN().getBytes("UTF-8");
+                    byte[] name = p.getProductNameEN().getBytes("UTF-8");
                     MessageDigest md = MessageDigest.getInstance("SHA-256");
                     String generatedId = Base64.getEncoder().encodeToString(md.digest(name)) + id;
                     LOGGER.info(generatedId);

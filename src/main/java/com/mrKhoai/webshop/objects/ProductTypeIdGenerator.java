@@ -31,9 +31,9 @@ public class ProductTypeIdGenerator implements IdentifierGenerator {
         try {
             statement = connection.createStatement();
             resultSet = statement.executeQuery("select count(product_type_id) as Id from product_type");
-            if(resultSet.next()) {
+            if (resultSet.next()) {
                 try {
-                    byte [] name = pt.getProductTypeNameEN().getBytes("UTF-8");
+                    byte[] name = pt.getProductTypeNameEN().getBytes("UTF-8");
                     MessageDigest md = MessageDigest.getInstance("MD5");
                     String generatedId = Base64.getEncoder().encodeToString(md.digest(name));
                     LOGGER.info(generatedId);

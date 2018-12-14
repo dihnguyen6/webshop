@@ -27,7 +27,7 @@ public class StaffIdGenerator implements IdentifierGenerator {
         try {
             statement = connection.createStatement();
             resultSet = statement.executeQuery("select count(staff_id) as Id from staff");
-            if(resultSet.next()) {
+            if (resultSet.next()) {
                 int id = resultSet.getInt(1) + 1;
                 String generatedId = WebshopConst.PREFIX + s.getRole().getRoleName() + new Integer(id).toString();
                 return generatedId;

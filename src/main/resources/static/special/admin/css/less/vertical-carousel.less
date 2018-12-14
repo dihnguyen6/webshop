@@ -28,17 +28,19 @@
         transform: translate3d(0, 100%, 0);
         top: 0;
       }
+
       &.prev,
       &.active.left {
         transform: translate3d(0, -100%, 0);
         top: 0;
       }
+
       &.next.left,
       &.prev.right,
       &.active {
         transform: translate3d(0, 0, 0);
         top: 0;
-        width:100%; //For Safari
+        width: 100%; //For Safari
       }
     }
   }
@@ -63,9 +65,11 @@
   > .next {
     top: 100%;
   }
+
   > .prev {
     top: -100%;
   }
+
   > .next.left,
   > .prev.right {
     top: 0;
@@ -74,6 +78,7 @@
   > .active.left {
     top: -100%;
   }
+
   > .active.right {
     top: 100%;
   }

@@ -10,7 +10,7 @@ var granimInstance = new Granim({
     direction: 'left-right',
     opacity: [1, 1],
     isPausedWhenNotInView: true,
-    states : {
+    states: {
         "default-state": {
             gradients: [
                 ['#AA076B', '#61045F'],
@@ -20,8 +20,6 @@ var granimInstance = new Granim({
         }
     }
 });
-
-
 
 
 //})(jQuery);

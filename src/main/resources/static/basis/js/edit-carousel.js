@@ -17,12 +17,10 @@ function uploadFile(url, file) {
             enctype: 'multipart/form-data',
             processData: false,
             contentType: false,
-            success: function (data, status, xhr)
-            {
+            success: function (data, status, xhr) {
 
             },
-            error: function (XMLHttpRequest, textStatus, errorThrown)
-            {
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
 
             }
         }

@@ -1,13 +1,6 @@
 package com.mrKhoai.webshop.objects;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "DELIVERY")
@@ -64,6 +57,10 @@ public class Delivery {
         return deliveryAddress;
     }
 
+    public void setDeliveryAddress(String deliveryAddress) {
+        this.deliveryAddress = deliveryAddress;
+    }
+
     public void setCustomerAddress(String customerAddress) {
         this.deliveryAddress = customerAddress;
     }
@@ -82,10 +79,6 @@ public class Delivery {
 
     public void setDeliveryPostcode(int deliveryPostcode) {
         this.deliveryPostcode = deliveryPostcode;
-    }
-
-    public void setDeliveryAddress(String deliveryAddress) {
-        this.deliveryAddress = deliveryAddress;
     }
 
     public Account getAccount() {

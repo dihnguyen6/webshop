@@ -1,12 +1,11 @@
 package com.mrKhoai.webshop.beta;
 
-import java.util.Locale;
+import com.mrKhoai.webshop.controller.WebshopConst;
+import org.springframework.web.servlet.LocaleResolver;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import com.mrKhoai.webshop.controller.WebshopConst;
-import org.springframework.web.servlet.LocaleResolver;
+import java.util.Locale;
 
 public class UrlLocaleResolver implements LocaleResolver {
 

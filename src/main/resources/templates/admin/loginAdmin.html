@@ -1,113 +1,113 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-	<title>Login V14</title>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-<!--===============================================================================================-->	
-	<link rel="icon" type="image/png" href="special/admin/images/icons/favicon.ico"/>
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="special/admin/vendor/bootstrap/css/bootstrap.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="special/admin/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="special/admin/fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="special/admin/vendor/animate/animate.css">
-<!--===============================================================================================-->	
-	<link rel="stylesheet" type="text/css" href="special/admin/vendor/css-hamburgers/hamburgers.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="special/admin/vendor/animsition/css/animsition.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="special/admin/vendor/select2/select2.min.css">
-<!--===============================================================================================-->	
-	<link rel="stylesheet" type="text/css" href="special/admin/vendor/daterangepicker/daterangepicker.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="special/admin/css/helper.css">
-	<link rel="stylesheet" type="text/css" href="special/admin/css/main.css">
-<!--===============================================================================================-->
+    <title>Login V14</title>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <!--===============================================================================================-->
+    <link href="special/admin/images/icons/favicon.ico" rel="icon" type="image/png"/>
+    <!--===============================================================================================-->
+    <link href="special/admin/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <!--===============================================================================================-->
+    <link href="special/admin/fonts/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <!--===============================================================================================-->
+    <link href="special/admin/fonts/Linearicons-Free-v1.0.0/icon-font.min.css" rel="stylesheet" type="text/css">
+    <!--===============================================================================================-->
+    <link href="special/admin/vendor/animate/animate.css" rel="stylesheet" type="text/css">
+    <!--===============================================================================================-->
+    <link href="special/admin/vendor/css-hamburgers/hamburgers.min.css" rel="stylesheet" type="text/css">
+    <!--===============================================================================================-->
+    <link href="special/admin/vendor/animsition/css/animsition.min.css" rel="stylesheet" type="text/css">
+    <!--===============================================================================================-->
+    <link href="special/admin/vendor/select2/select2.min.css" rel="stylesheet" type="text/css">
+    <!--===============================================================================================-->
+    <link href="special/admin/vendor/daterangepicker/daterangepicker.css" rel="stylesheet" type="text/css">
+    <!--===============================================================================================-->
+    <link href="special/admin/css/helper.css" rel="stylesheet" type="text/css">
+    <link href="special/admin/css/main.css" rel="stylesheet" type="text/css">
+    <!--===============================================================================================-->
 
-	<script th:inline="javascript">
+    <script th:inline="javascript">
         /*<![CDATA[*/
         message = /*[[${message}]]*/ 'Login Message';
         messColor = /*[[${messColor}]]*/ 'Message Color';
         /*]]>*/
-	</script>
+    </script>
 </head>
 <body>
-	
-	<div class="limiter">
-		<div class="container-login100">
-			<div class="wrap-login100 p-l-85 p-r-85 p-t-55 p-b-55">
-				<form class="login100-form validate-form flex-sb flex-w" role="form" th:action="@{/admin}" method="POST">
+
+<div class="limiter">
+    <div class="container-login100">
+        <div class="wrap-login100 p-l-85 p-r-85 p-t-55 p-b-55">
+            <form class="login100-form validate-form flex-sb flex-w" method="POST" role="form" th:action="@{/admin}">
 					<span class="login100-form-title p-b-32">
 						Admin Login
 					</span>
 
-					<span class="txt1 p-b-11" th:utext="#{admin.username}">
+                <span class="txt1 p-b-11" th:utext="#{admin.username}">
 
 					</span>
-					<div class="wrap-input100 validate-input m-b-36" data-validate = "Username is required">
-						<input class="input100" type="text" name="username" id="username" for="username">
-						<span class="focus-input100"></span>
-					</div>
-					
-					<span class="txt1 p-b-11" th:utext="#{admin.password}">
+                <div class="wrap-input100 validate-input m-b-36" data-validate="Username is required">
+                    <input class="input100" for="username" id="username" name="username" type="text">
+                    <span class="focus-input100"></span>
+                </div>
+
+                <span class="txt1 p-b-11" th:utext="#{admin.password}">
 
 					</span>
-					<div class="wrap-input100 validate-input m-b-12" data-validate = "Password is required">
+                <div class="wrap-input100 validate-input m-b-12" data-validate="Password is required">
 						<span class="btn-show-pass">
 							<i class="fa fa-eye"></i>
 						</span>
-						<input class="input100" type="password" name="password" id="password" for="password">
-						<span class="focus-input100"></span>
-					</div>
-					
-					<div id="mess" class="flex-sb-m w-full p-b-48">
+                    <input class="input100" for="password" id="password" name="password" type="password">
+                    <span class="focus-input100"></span>
+                </div>
 
-					</div>
+                <div class="flex-sb-m w-full p-b-48" id="mess">
 
-					<!--<span th:utext="#{lang.change}"></span>:
-					<select id="locales">
-						<option value=""></option>
-						<option value="en" th:utext="#{lang.en}"></option>
-						<option value="de" th:utext="#{lang.de}"></option>
-					</select>-->
+                </div>
 
-					<div class="container-login100-form-btn">
-						<input type="submit" class="login100-form-btn align-self-center" th:value="#{admin.submit}">
-					</div>
+                <!--<span th:utext="#{lang.change}"></span>:
+                <select id="locales">
+                    <option value=""></option>
+                    <option value="en" th:utext="#{lang.en}"></option>
+                    <option value="de" th:utext="#{lang.de}"></option>
+                </select>-->
 
-					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                <div class="container-login100-form-btn">
+                    <input class="login100-form-btn align-self-center" th:value="#{admin.submit}" type="submit">
+                </div>
 
-				</form>
-			</div>
-		</div>
-	</div>
-	
+                <input name="${_csrf.parameterName}" type="hidden" value="${_csrf.token}"/>
 
-	<div id="dropDownSelect1"></div>
-	
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<div id="dropDownSelect1"></div>
+
 <!--===============================================================================================-->
-	<script src="special/admin/vendor/jquery/jquery-3.2.1.min.js"></script>
+<script src="special/admin/vendor/jquery/jquery-3.2.1.min.js"></script>
 <!--===============================================================================================-->
-	<script src="special/admin/vendor/animsition/js/animsition.min.js"></script>
+<script src="special/admin/vendor/animsition/js/animsition.min.js"></script>
 <!--===============================================================================================-->
-	<script src="special/admin/vendor/bootstrap/js/popper.js"></script>
-	<script src="special/admin/vendor/bootstrap/js/bootstrap.min.js"></script>
+<script src="special/admin/vendor/bootstrap/js/popper.js"></script>
+<script src="special/admin/vendor/bootstrap/js/bootstrap.min.js"></script>
 <!--===============================================================================================-->
-	<script src="special/admin/vendor/select2/select2.min.js"></script>
+<script src="special/admin/vendor/select2/select2.min.js"></script>
 <!--===============================================================================================-->
-	<script src="special/admin/vendor/daterangepicker/moment.min.js"></script>
-	<script src="special/admin/vendor/daterangepicker/daterangepicker.js"></script>
+<script src="special/admin/vendor/daterangepicker/moment.min.js"></script>
+<script src="special/admin/vendor/daterangepicker/daterangepicker.js"></script>
 <!--===============================================================================================-->
-	<script src="special/admin/vendor/countdowntime/countdowntime.js"></script>
+<script src="special/admin/vendor/countdowntime/countdowntime.js"></script>
 <!--===============================================================================================-->
-	<script src="special/admin/js/main.js"></script>
+<script src="special/admin/js/main.js"></script>
 
 <script>
-	$('#mess').html(message);
-	$('#mess').css("color", messColor);
+    $('#mess').html(message);
+    $('#mess').css("color", messColor);
 </script>
 
 </body>

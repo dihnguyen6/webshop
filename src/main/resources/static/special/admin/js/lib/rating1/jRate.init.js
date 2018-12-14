@@ -1,4 +1,4 @@
-(function($) {
+(function ($) {
     "use strict";
 
 
@@ -15,15 +15,13 @@
         endColor: '#E3B146',
         precision: 0.1,
         minSelected: 1,
-        onChange: function(rating) {
-            console.log("OnChange: Rating: "+rating);
+        onChange: function (rating) {
+            console.log("OnChange: Rating: " + rating);
         },
-        onSet: function(rating) {
-            console.log("OnSet: Rating: "+rating);
+        onSet: function (rating) {
+            console.log("OnSet: Rating: " + rating);
         }
     });
-
-
 
 
     //Half & Full Stars
@@ -39,14 +37,13 @@
         endColor: '#E3B146',
         precision: 0.1,
         minSelected: 1,
-        onChange: function(rating) {
-            console.log("OnChange: Rating: "+rating);
+        onChange: function (rating) {
+            console.log("OnChange: Rating: " + rating);
         },
-        onSet: function(rating) {
-            console.log("OnSet: Rating: "+rating);
+        onSet: function (rating) {
+            console.log("OnSet: Rating: " + rating);
         }
     });
-
 
 
     //Full Stars Only
@@ -62,11 +59,11 @@
         endColor: '#E3B146',
         precision: 0.1,
         minSelected: 1,
-        onChange: function(rating) {
-            console.log("OnChange: Rating: "+rating);
+        onChange: function (rating) {
+            console.log("OnChange: Rating: " + rating);
         },
-        onSet: function(rating) {
-            console.log("OnSet: Rating: "+rating);
+        onSet: function (rating) {
+            console.log("OnSet: Rating: " + rating);
         }
     });
 
@@ -84,23 +81,13 @@
         endColor: '#14B9D5',
         precision: 0.1,
         minSelected: 1,
-        onChange: function(rating) {
-            console.log("OnChange: Rating: "+rating);
+        onChange: function (rating) {
+            console.log("OnChange: Rating: " + rating);
         },
-        onSet: function(rating) {
-            console.log("OnSet: Rating: "+rating);
+        onSet: function (rating) {
+            console.log("OnSet: Rating: " + rating);
         }
     });
-
-
-
-
-
-
-
-
-
-
 
 
     //Horizontal stars
@@ -117,11 +104,11 @@
         endColor: '#E3B146',
         precision: 0.1,
         minSelected: 1,
-        onChange: function(rating) {
-            console.log("OnChange: Rating: "+rating);
+        onChange: function (rating) {
+            console.log("OnChange: Rating: " + rating);
         },
-        onSet: function(rating) {
-            console.log("OnSet: Rating: "+rating);
+        onSet: function (rating) {
+            console.log("OnSet: Rating: " + rating);
         }
     });
 
@@ -140,11 +127,11 @@
         endColor: '#E3B146',
         precision: 0.1,
         minSelected: 1,
-        onChange: function(rating) {
-            console.log("OnChange: Rating: "+rating);
+        onChange: function (rating) {
+            console.log("OnChange: Rating: " + rating);
         },
-        onSet: function(rating) {
-            console.log("OnSet: Rating: "+rating);
+        onSet: function (rating) {
+            console.log("OnSet: Rating: " + rating);
         }
     });
 
@@ -163,11 +150,11 @@
         endColor: '#E3B146',
         precision: 0.1,
         minSelected: 1,
-        onChange: function(rating) {
-            console.log("OnChange: Rating: "+rating);
+        onChange: function (rating) {
+            console.log("OnChange: Rating: " + rating);
         },
-        onSet: function(rating) {
-            console.log("OnSet: Rating: "+rating);
+        onSet: function (rating) {
+            console.log("OnSet: Rating: " + rating);
         }
     });
 
@@ -185,14 +172,13 @@
         endColor: '#E3B146',
         precision: 0.5,
         minSelected: 1,
-        onChange: function(rating) {
-            console.log("OnChange: Rating: "+rating);
+        onChange: function (rating) {
+            console.log("OnChange: Rating: " + rating);
         },
-        onSet: function(rating) {
-            console.log("OnSet: Rating: "+rating);
+        onSet: function (rating) {
+            console.log("OnSet: Rating: " + rating);
         }
     });
-
 
 
     //Custom Icon-1
@@ -209,11 +195,11 @@
         endColor: '#E892B6',
         precision: 0.5,
         minSelected: 1,
-        onChange: function(rating) {
-            console.log("OnChange: Rating: "+rating);
+        onChange: function (rating) {
+            console.log("OnChange: Rating: " + rating);
         },
-        onSet: function(rating) {
-            console.log("OnSet: Rating: "+rating);
+        onSet: function (rating) {
+            console.log("OnSet: Rating: " + rating);
         }
     });
 
@@ -231,11 +217,11 @@
         endColor: '#4898F7',
         precision: 0.5,
         minSelected: 1,
-        onChange: function(rating) {
-            console.log("OnChange: Rating: "+rating);
+        onChange: function (rating) {
+            console.log("OnChange: Rating: " + rating);
         },
-        onSet: function(rating) {
-            console.log("OnSet: Rating: "+rating);
+        onSet: function (rating) {
+            console.log("OnSet: Rating: " + rating);
         }
     });
 
@@ -253,15 +239,13 @@
         endColor: '#F96868',
         precision: 0.5,
         minSelected: 1,
-        onChange: function(rating) {
-            console.log("OnChange: Rating: "+rating);
+        onChange: function (rating) {
+            console.log("OnChange: Rating: " + rating);
         },
-        onSet: function(rating) {
-            console.log("OnSet: Rating: "+rating);
+        onSet: function (rating) {
+            console.log("OnSet: Rating: " + rating);
         }
     });
-
-
 
 
     //Custom Icon-4
@@ -278,20 +262,19 @@
         endColor: '#67AE32',
         precision: 0.5,
         minSelected: 1,
-        onChange: function(rating) {
-            console.log("OnChange: Rating: "+rating);
+        onChange: function (rating) {
+            console.log("OnChange: Rating: " + rating);
         },
-        onSet: function(rating) {
-            console.log("OnSet: Rating: "+rating);
+        onSet: function (rating) {
+            console.log("OnSet: Rating: " + rating);
         }
     });
 
-    
-    
+
     /*  order list
     ---------------*/
-    
-        //Full Stars Only
+
+    //Full Stars Only
     var that = this;
     var toolitup = $(".full-stars-only").jRate({
         rating: 5,
@@ -304,16 +287,16 @@
         endColor: '#E3B146',
         precision: 0.1,
         minSelected: 1,
-        onChange: function(rating) {
-            console.log("OnChange: Rating: "+rating);
+        onChange: function (rating) {
+            console.log("OnChange: Rating: " + rating);
         },
-        onSet: function(rating) {
-            console.log("OnSet: Rating: "+rating);
+        onSet: function (rating) {
+            console.log("OnSet: Rating: " + rating);
         }
     });
-    
-    
-        //Half & Full Stars
+
+
+    //Half & Full Stars
     var that = this;
     var toolitup = $(".half-full-stars").jRate({
         rating: 2,
@@ -326,15 +309,13 @@
         endColor: '#E3B146',
         precision: 0.1,
         minSelected: 1,
-        onChange: function(rating) {
-            console.log("OnChange: Rating: "+rating);
+        onChange: function (rating) {
+            console.log("OnChange: Rating: " + rating);
         },
-        onSet: function(rating) {
-            console.log("OnSet: Rating: "+rating);
+        onSet: function (rating) {
+            console.log("OnSet: Rating: " + rating);
         }
     });
-
-    
 
 
 })(jQuery);

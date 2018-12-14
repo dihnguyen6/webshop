@@ -50,7 +50,7 @@ public class WebController {
     public String home(Model model, /*@RequestParam(name = "lang", required = true) String lang,*/
                        @PathVariable String lang, HttpServletResponse response) throws IOException {
         setLang(lang, response);
-        String [] carousel = new String[3];
+        String[] carousel = new String[3];
         File actdir = new File(System.getProperty("user.home"), "/carousel");
 
         if (!actdir.isDirectory()) {
@@ -62,7 +62,7 @@ public class WebController {
         StringBuilder builder = new StringBuilder();
         for (int i = 0; i < ls.length; i++) {
             FileInputStream istream = new FileInputStream(ls[i]);
-            byte [] fileContent = new byte[(int) ls[i].length()];
+            byte[] fileContent = new byte[(int) ls[i].length()];
             istream.read(fileContent);
             istream.close();
             //carousel[i] = Base64.getEncoder().encodeToString(fileContent);
@@ -92,6 +92,11 @@ public class WebController {
 
     @GetMapping("/cart")
     public String cart() {
+        return "anonymous/cart";
+    }
+
+    @GetMapping("/{lang:en|de}/cart")
+    public String redirectCart() {
         return "anonymous/cart";
     }
 
@@ -169,14 +174,14 @@ public class WebController {
 
     /**
      * Get pramater "lang" from cookie in request header
+     *
      * @param request
      * @return
      */
     private String getLang(HttpServletRequest request) {
         String rawCookie = request.getHeader("Cookie");
         String[] rawCookieParams = rawCookie.split(";");
-        for(String rawCookieNameAndValue : rawCookieParams)
-        {
+        for (String rawCookieNameAndValue : rawCookieParams) {
             String[] rawCookieNameAndValuePair = rawCookieNameAndValue.split("=");
             System.out.println(rawCookieNameAndValuePair[0] + " " + rawCookieNameAndValuePair[1]);
             if (rawCookieNameAndValuePair[0].trim().equals("locale")) {
@@ -189,6 +194,7 @@ public class WebController {
 
     /**
      * Get attribute "lang" from Session
+     *
      * @param request
      * @return
      */
@@ -203,6 +209,7 @@ public class WebController {
 
     /**
      * Update "lang" by response header
+     *
      * @param lang
      * @param response
      */

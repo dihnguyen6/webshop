@@ -232,7 +232,7 @@ $(function () {
             me._offPanelClick();
             //remove panel-unpin class
             me.$el.removeClass('panel-unpin')
-                //save current position, z-index and size to use it for later unpin
+            //save current position, z-index and size to use it for later unpin
                 .attr('old-style', me.$el.attr('style'))
                 .removeAttr('style')
                 .css('position', 'relative');
@@ -620,7 +620,7 @@ $(function () {
                 } else if (me.$options.bodyHeight !== 'auto') {
                     bHeight = me.$options.bodyHeight;
                 }
-                if (me.$options.bodyHeight !== 'auto'){
+                if (me.$options.bodyHeight !== 'auto') {
                     me._saveState('pinnned');
                 } else {
                     me._updateUnpinnedState();
@@ -657,7 +657,7 @@ $(function () {
          */
         close: function (animationDuration) {
             var me = this,
-                animationDuration = animationDuration  === undefined ? 100 : animationDuration;
+                animationDuration = animationDuration === undefined ? 100 : animationDuration;
             me._triggerEvent('beforeClose');
             me.$el.hide(animationDuration, function () {
                 if (me.isOnFullScreen()) {
@@ -684,7 +684,7 @@ $(function () {
          */
         setPosition: function (left, top, animationDuration) {
             var me = this,
-                animationDuration = animationDuration  === undefined ? 100 : animationDuration;
+                animationDuration = animationDuration === undefined ? 100 : animationDuration;
 
             //this method works only if panel is not pinned
             if (me.isPinned()) {
@@ -706,7 +706,7 @@ $(function () {
          */
         setWidth: function (w, animationDuration) {
             var me = this,
-                animationDuration = animationDuration  === undefined ? 100 : animationDuration;
+                animationDuration = animationDuration === undefined ? 100 : animationDuration;
             if (me.isPinned()) {
                 return me;
             }
@@ -729,7 +729,7 @@ $(function () {
          */
         setHeight: function (h, animationDuration) {
             var me = this,
-                animationDuration = animationDuration  === undefined ? 100 : animationDuration;
+                animationDuration = animationDuration === undefined ? 100 : animationDuration;
             if (me.isPinned()) {
                 return me;
             }
@@ -753,7 +753,7 @@ $(function () {
          */
         setSize: function (w, h, animationDuration) {
             var me = this,
-                animationDuration = animationDuration  === undefined ? 100 : animationDuration;
+                animationDuration = animationDuration === undefined ? 100 : animationDuration;
             if (me.isPinned()) {
                 return me;
             }
@@ -1068,7 +1068,7 @@ $(function () {
         finishTitleEditing: function () {
             var me = this,
                 input = me.$heading.find('input');
-            if (me._triggerEvent('beforeTitleChange', input.val()) === false){
+            if (me._triggerEvent('beforeTitleChange', input.val()) === false) {
                 return me;
             }
             me.$heading.find('.panel-title').html(input.val());
@@ -1113,9 +1113,9 @@ $(function () {
         disableTooltips: function () {
             var me = this;
             var $links = me.$heading.find('.dropdown-menu>li>a');
-            $links.each(function(ind, el){
+            $links.each(function (ind, el) {
                 var bsTooltip = $(el).data('bs.tooltip');
-                if (bsTooltip){
+                if (bsTooltip) {
                     $(el).tooltip('destroy');
                 }
             });
@@ -1186,10 +1186,10 @@ $(function () {
             });
         },
 
-        hideTooltip: function($el){
+        hideTooltip: function ($el) {
             var bsTooltip = $el.data('bs.tooltip');
 
-            if (bsTooltip){
+            if (bsTooltip) {
                 $el.tooltip('hide');
             }
             return this;
@@ -1510,7 +1510,7 @@ $(function () {
             items.each(function (index, el) {
                 $(el).attr('data-index', index);
                 var lobiPanel = $(el).data('lobiPanel');
-                if (lobiPanel && lobiPanel.$options.stateful && !lobiPanel.hasRandomId){
+                if (lobiPanel && lobiPanel.$options.stateful && !lobiPanel.hasRandomId) {
                     lobiPanel._saveState('pinned', {index: index});
                 }
             });
@@ -1630,31 +1630,31 @@ $(function () {
             args.unshift(me);
 
             me.$el.trigger(eventType + '.lobiPanel', args);
-            if (me.$options[eventType] && typeof me.$options[eventType] === 'function'){
+            if (me.$options[eventType] && typeof me.$options[eventType] === 'function') {
                 return me.$options[eventType].apply(me, args);
             }
 
             return true;
         },
-        doPin: function(){
+        doPin: function () {
             var me = this;
-            if (me._triggerEvent("beforePin") !== false){
+            if (me._triggerEvent("beforePin") !== false) {
                 me.pin();
                 me._saveState('pinned');
                 me._triggerEvent("onPin");
             }
             return me;
         },
-        doUnpin: function(){
+        doUnpin: function () {
             var me = this;
-            if (me._triggerEvent('beforeUnpin') !== false){
+            if (me._triggerEvent('beforeUnpin') !== false) {
                 me.unpin();
                 me._updateUnpinnedState();
                 me._triggerEvent('onUnpin');
             }
             return me;
         },
-        doTogglePin: function(){
+        doTogglePin: function () {
             var me = this;
             if (this.isPinned()) {
                 this.doUnpin();
@@ -1663,11 +1663,11 @@ $(function () {
             }
             return me;
         },
-        _updateUnpinnedState: function(){
+        _updateUnpinnedState: function () {
             var me = this;
             me._saveState('unpinned', me.getAlignment());
         },
-        getAlignment: function(){
+        getAlignment: function () {
             var me = this;
             return {
                 top: me.$el.css('top'),
@@ -1771,8 +1771,6 @@ $(function () {
             icon2: 'glyphicon glyphicon-floppy-disk',
             tooltip: 'Edit title'
         },
-
-
 
 
         // Events

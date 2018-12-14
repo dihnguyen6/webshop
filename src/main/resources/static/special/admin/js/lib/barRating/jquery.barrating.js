@@ -21,13 +21,13 @@
     }
 }(function ($) {
 
-    var BarRating = (function() {
+    var BarRating = (function () {
 
         function BarRating() {
             var self = this;
 
             // wrap element in a wrapper div
-            var wrapElement = function() {
+            var wrapElement = function () {
                 var classes = ['br-wrapper'];
 
                 if (self.options.theme !== '') {
@@ -40,21 +40,21 @@
             };
 
             // unwrap element
-            var unwrapElement = function() {
+            var unwrapElement = function () {
                 self.$elem.unwrap();
             };
 
             // find option by value
-            var findOption = function(value) {
+            var findOption = function (value) {
                 if ($.isNumeric(value)) {
                     value = Math.floor(value);
                 }
 
-                return $('option[value="' + value  + '"]', self.$elem);
+                return $('option[value="' + value + '"]', self.$elem);
             };
 
             // get initial option
-            var getInitialOption = function() {
+            var getInitialOption = function () {
                 var initialRating = self.options.initialRating;
 
                 if (!initialRating) {
@@ -65,11 +65,11 @@
             };
 
             // get empty option
-            var getEmptyOption = function() {
+            var getEmptyOption = function () {
                 var $emptyOpt = self.$elem.find('option[value="' + self.options.emptyValue + '"]');
 
                 if (!$emptyOpt.length && self.options.allowEmpty) {
-                    $emptyOpt = $('<option />', { 'value': self.options.emptyValue });
+                    $emptyOpt = $('<option />', {'value': self.options.emptyValue});
 
                     return $emptyOpt.prependTo(self.$elem);
                 }
@@ -78,7 +78,7 @@
             };
 
             // get data
-            var getData = function(key) {
+            var getData = function (key) {
                 var data = self.$elem.data('barrating');
 
                 if (typeof key !== 'undefined') {
@@ -89,7 +89,7 @@
             };
 
             // set data
-            var setData = function(key, value) {
+            var setData = function (key, value) {
                 if (value !== null && typeof value === 'object') {
                     self.$elem.data('barrating', value);
                 } else {
@@ -98,7 +98,7 @@
             };
 
             // save data on element
-            var saveDataOnElement = function() {
+            var saveDataOnElement = function () {
                 var $opt = getInitialOption();
                 var $emptyOpt = getEmptyOption();
 
@@ -140,26 +140,26 @@
             };
 
             // remove data on element
-            var removeDataOnElement = function() {
+            var removeDataOnElement = function () {
                 self.$elem.removeData('barrating');
             };
 
             // return current rating text
-            var ratingText = function() {
+            var ratingText = function () {
                 return getData('ratingText');
             };
 
             // return current rating value
-            var ratingValue = function() {
+            var ratingValue = function () {
                 return getData('ratingValue');
             };
 
             // build widget and return jQuery element
-            var buildWidget = function() {
-                var $w = $('<div />', { 'class': 'br-widget' });
+            var buildWidget = function () {
+                var $w = $('<div />', {'class': 'br-widget'});
 
                 // create A elements that will replace OPTIONs
-                self.$elem.find('option').each(function() {
+                self.$elem.find('option').each(function () {
                     var val, text, html, $a;
 
                     val = $(this).val();
@@ -168,7 +168,9 @@
                     if (val !== getData('emptyRatingValue')) {
                         text = $(this).text();
                         html = $(this).data('html');
-                        if (html) { text = html; }
+                        if (html) {
+                            text = html;
+                        }
 
                         $a = $('<a />', {
                             'href': '#',
@@ -184,7 +186,7 @@
 
                 // append .br-current-rating div to the widget
                 if (self.options.showSelectedRating) {
-                    $w.append($('<div />', { 'text': '', 'class': 'br-current-rating' }));
+                    $w.append($('<div />', {'text': '', 'class': 'br-current-rating'}));
                 }
 
                 // additional classes for the widget
@@ -200,7 +202,7 @@
             };
 
             // return a jQuery function name depending on the 'reverse' setting
-            var nextAllorPreviousAll = function() {
+            var nextAllorPreviousAll = function () {
                 if (getData('userOptions').reverse) {
                     return 'nextAll';
                 } else {
@@ -209,7 +211,7 @@
             };
 
             // set the value of the select field
-            var setSelectFieldValue = function(value) {
+            var setSelectFieldValue = function (value) {
                 // change selected option
                 findOption(value).prop('selected', true);
 
@@ -219,8 +221,8 @@
             };
 
             // reset select field
-            var resetSelectField = function() {
-                $('option', self.$elem).prop('selected', function() {
+            var resetSelectField = function () {
+                $('option', self.$elem).prop('selected', function () {
                     return this.defaultSelected;
                 });
 
@@ -230,7 +232,7 @@
             };
 
             // display the currently selected rating
-            var showSelectedRating = function(text) {
+            var showSelectedRating = function (text) {
                 // text undefined?
                 text = text ? text : ratingText();
 
@@ -246,20 +248,20 @@
             };
 
             // return rounded fraction of a value (14.4 -> 40, 0.99 -> 90)
-            var fraction = function(value) {
+            var fraction = function (value) {
                 return Math.round(((Math.floor(value * 10) / 10) % 1) * 100);
             };
 
             // remove all classes from elements
-            var resetStyle = function() {
+            var resetStyle = function () {
                 // remove all classes starting with br-*
-                self.$widget.find('a').removeClass(function(index, classes) {
+                self.$widget.find('a').removeClass(function (index, classes) {
                     return (classes.match(/(^|\s)br-\S+/g) || []).join(' ');
                 });
             };
 
             // apply style by setting classes on elements
-            var applyStyle = function() {
+            var applyStyle = function () {
                 var $a = self.$widget.find('a[data-rating-value="' + ratingValue() + '"]');
                 var initialRating = getData('userOptions').initialRating;
                 var baseValue = $.isNumeric(ratingValue()) ? ratingValue() : 0;
@@ -289,7 +291,7 @@
             };
 
             // check if the element is deselectable?
-            var isDeselectable = function($element) {
+            var isDeselectable = function ($element) {
                 if (!getData('allowEmpty') || !getData('userOptions').deselectable) {
                     return false;
                 }
@@ -298,8 +300,8 @@
             };
 
             // handle click events
-            var attachClickHandler = function($elements) {
-                $elements.on('click.barrating', function(event) {
+            var attachClickHandler = function ($elements) {
+                $elements.on('click.barrating', function (event) {
                     var $a = $(this),
                         options = getData('userOptions'),
                         value,
@@ -339,8 +341,8 @@
             };
 
             // handle mouseenter events
-            var attachMouseEnterHandler = function($elements) {
-                $elements.on('mouseenter.barrating', function() {
+            var attachMouseEnterHandler = function ($elements) {
+                $elements.on('mouseenter.barrating', function () {
                     var $a = $(this);
 
                     resetStyle();
@@ -353,8 +355,8 @@
             };
 
             // handle mouseleave events
-            var attachMouseLeaveHandler = function($elements) {
-                self.$widget.on('mouseleave.barrating blur.barrating', function() {
+            var attachMouseLeaveHandler = function ($elements) {
+                self.$widget.on('mouseleave.barrating blur.barrating', function () {
                     showSelectedRating();
                     applyStyle();
                 });
@@ -363,8 +365,8 @@
             // somewhat primitive way to remove 300ms click delay on touch devices
             // for a more advanced solution consider setting `fastClicks` option to false
             // and using a library such as fastclick (https://github.com/ftlabs/fastclick)
-            var fastClicks = function($elements) {
-                $elements.on('touchstart.barrating', function(event) {
+            var fastClicks = function ($elements) {
+                $elements.on('touchstart.barrating', function (event) {
                     event.preventDefault();
                     event.stopPropagation();
 
@@ -373,13 +375,13 @@
             };
 
             // disable clicks
-            var disableClicks = function($elements) {
-                $elements.on('click.barrating', function(event) {
+            var disableClicks = function ($elements) {
+                $elements.on('click.barrating', function (event) {
                     event.preventDefault();
                 });
             };
 
-            var attachHandlers = function($elements) {
+            var attachHandlers = function ($elements) {
                 // attach click event handler
                 attachClickHandler($elements);
 
@@ -392,12 +394,12 @@
                 }
             };
 
-            var detachHandlers = function($elements) {
+            var detachHandlers = function ($elements) {
                 // remove event handlers in the ".barrating" namespace
                 $elements.off('.barrating');
             };
 
-            var setupHandlers = function(readonly) {
+            var setupHandlers = function (readonly) {
                 var $elements = self.$widget.find('a');
 
                 if (fastClicks) {
@@ -412,7 +414,7 @@
                 }
             };
 
-            this.show = function() {
+            this.show = function () {
                 // run only once
                 if (getData()) return;
 
@@ -436,7 +438,7 @@
                 self.$elem.hide();
             };
 
-            this.readonly = function(state) {
+            this.readonly = function (state) {
                 if (typeof state !== 'boolean' || getData('readOnly') == state) return;
 
                 setupHandlers(state);
@@ -444,7 +446,7 @@
                 self.$widget.toggleClass('br-readonly');
             };
 
-            this.set = function(value) {
+            this.set = function (value) {
                 var options = getData('userOptions');
 
                 if (self.$elem.find('option[value="' + value + '"]').length === 0) return;
@@ -469,7 +471,7 @@
                 }
             };
 
-            this.clear = function() {
+            this.clear = function () {
                 var options = getData('userOptions');
 
                 // restore original data
@@ -490,7 +492,7 @@
                 );
             };
 
-            this.destroy = function() {
+            this.destroy = function () {
                 var value = ratingValue();
                 var text = ratingText();
                 var options = getData('userOptions');
@@ -551,7 +553,7 @@
                     }
                 }
 
-            // no method supplied or only options supplied
+                // no method supplied or only options supplied
             } else if (typeof method === 'object' || !method) {
                 options = method;
                 plugin.init(options, this);
@@ -564,24 +566,24 @@
     };
 
     $.fn.barrating.defaults = {
-        theme:'',
-        initialRating:null, // initial rating
-        allowEmpty:null, // allow empty ratings?
-        emptyValue:'', // this is the expected value of the empty rating
-        showValues:false, // display rating values on the bars?
-        showSelectedRating:true, // append a div with a rating to the widget?
-        deselectable:true, // allow to deselect ratings?
-        reverse:false, // reverse the rating?
-        readonly:false, // make the rating ready-only?
-        fastClicks:true, // remove 300ms click delay on touch devices?
-        hoverState:true, // change state on hover?
-        silent:false, // supress callbacks when controlling ratings programatically
-        triggerChange:true, // trigger change event when ratings are set or reset
-        onSelect:function (value, text, event) {
+        theme: '',
+        initialRating: null, // initial rating
+        allowEmpty: null, // allow empty ratings?
+        emptyValue: '', // this is the expected value of the empty rating
+        showValues: false, // display rating values on the bars?
+        showSelectedRating: true, // append a div with a rating to the widget?
+        deselectable: true, // allow to deselect ratings?
+        reverse: false, // reverse the rating?
+        readonly: false, // make the rating ready-only?
+        fastClicks: true, // remove 300ms click delay on touch devices?
+        hoverState: true, // change state on hover?
+        silent: false, // supress callbacks when controlling ratings programatically
+        triggerChange: true, // trigger change event when ratings are set or reset
+        onSelect: function (value, text, event) {
         }, // callback fired when a rating is selected
-        onClear:function (value, text) {
+        onClear: function (value, text) {
         }, // callback fired when a rating is cleared
-        onDestroy:function (value, text) {
+        onDestroy: function (value, text) {
         } // callback fired when a widget is destroyed
     };
 

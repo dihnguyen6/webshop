@@ -18,19 +18,17 @@ import org.springframework.transaction.annotation.Transactional;
 @Service("userDetailsService")
 public class UserService implements UserDetailsService {
 
+    private static final Logger LOGGER = LogManager.getLogger(UserService.class);
     @Autowired
     private StaffService staffService;
-
     @Autowired
     private RoleService roleService;
-
     @Autowired
     private CustomerService customerService;
 
-    private static final Logger LOGGER = LogManager.getLogger(UserService.class);
-
     /**
      * load User by ussername
+     *
      * @param username
      * @return UserDetails
      * @throws UsernameNotFoundException
@@ -38,7 +36,7 @@ public class UserService implements UserDetailsService {
     @Transactional(readOnly = true)
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        if(!username.equalsIgnoreCase("admin")) {
+        if (!username.equalsIgnoreCase("admin")) {
             throw new UsernameNotFoundException(WebshopConst.USER_NOT_FOUND);
         }
         User.UserBuilder builder = User.withUsername(username);

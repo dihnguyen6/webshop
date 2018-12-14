@@ -1,4 +1,4 @@
-! function(t) {
+!function (t) {
     "use strict"
 
     function e() {
@@ -25,7 +25,7 @@
     }
 
     function i() {
-        t(".button-menu-mobile").on("click", function(e) {
+        t(".button-menu-mobile").on("click", function (e) {
             e.preventDefault(), t("body").toggleClass("enlarged")
         })
     }
@@ -35,7 +35,7 @@
     }
 
     function o() {
-        t("#sidebar-menu a").each(function() {
+        t("#sidebar-menu a").each(function () {
             this.href == window.location.href && (t(this).addClass("active"), t(this).parent().addClass("active"), t(this).parent().parent().addClass("in"), t(this).parent().parent().prev().addClass("active"), t(this).parent().parent().parent().addClass("active"), t(this).parent().parent().parent().parent().addClass("in"), t(this).parent().parent().parent().parent().parent().addClass("active"))
         })
     }
@@ -43,5 +43,6 @@
     function r() {
         e(), n(), a(), i(), s(), o()
     }
+
     r()
 }(jQuery)

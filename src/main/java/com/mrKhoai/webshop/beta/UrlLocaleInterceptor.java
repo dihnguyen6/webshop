@@ -1,13 +1,12 @@
 package com.mrKhoai.webshop.beta;
 
-import java.util.Locale;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 import org.springframework.web.servlet.support.RequestContextUtils;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.util.Locale;
 
 public class UrlLocaleInterceptor extends HandlerInterceptorAdapter {
 

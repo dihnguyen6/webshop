@@ -1,24 +1,10 @@
 package com.mrKhoai.webshop.beta;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mrKhoai.webshop.objects.Catalog;
 import com.mrKhoai.webshop.objects.Color;
-import com.mrKhoai.webshop.objects.Customer;
 import com.mrKhoai.webshop.objects.Product;
 import com.mrKhoai.webshop.objects.ProductType;
-import com.mrKhoai.webshop.repositories.AccountRepository;
-import com.mrKhoai.webshop.repositories.BasketRepository;
-import com.mrKhoai.webshop.repositories.BillRepository;
-import com.mrKhoai.webshop.repositories.CatalogRepository;
-import com.mrKhoai.webshop.repositories.ColorRepository;
-import com.mrKhoai.webshop.repositories.CouponRepository;
-import com.mrKhoai.webshop.repositories.CustomerRepository;
-import com.mrKhoai.webshop.repositories.DeliveryRepository;
-import com.mrKhoai.webshop.repositories.PaymentRepository;
-import com.mrKhoai.webshop.repositories.ProductRepository;
-import com.mrKhoai.webshop.repositories.ProductTypeRepository;
-import com.mrKhoai.webshop.repositories.RoleRepository;
-import com.mrKhoai.webshop.repositories.StaffRepository;
+import com.mrKhoai.webshop.repositories.*;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -30,13 +16,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Random;
-import java.util.Set;
+import java.util.*;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
@@ -46,7 +26,7 @@ import static org.hamcrest.Matchers.equalTo;
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 @EntityScan(basePackages = "com.mrKhoai.webshop.objects")
 @EnableJpaRepositories(basePackages = "com.mrKhoai.webshop.repositories")
-@TestPropertySource(locations="classpath:test.properties")
+@TestPropertySource(locations = "classpath:test.properties")
 public class DatabaseTest {
 
     @Autowired
@@ -110,7 +90,7 @@ public class DatabaseTest {
 
     @Test
     public void catalogTest() {
-        ProductType [] productTypes = new ProductType[7];
+        ProductType[] productTypes = new ProductType[7];
         for (int i = 0; i < productTypes.length; ++i) {
             productTypes[i] = new ProductType();
         }
@@ -132,7 +112,7 @@ public class DatabaseTest {
             productTypeRepository.save(productTypes[i]);
         }
 
-        Catalog [] catalogs = new Catalog[7];
+        Catalog[] catalogs = new Catalog[7];
         for (int i = 0; i < catalogs.length; ++i) {
             catalogs[i] = new Catalog();
         }
@@ -151,7 +131,7 @@ public class DatabaseTest {
         catalogs[6].setCatalogNameEN("Sale");
         catalogs[6].setCatalogNameDE("Angebot");
 
-        Set<ProductType> [] productTypeSet = new Set[3];
+        Set<ProductType>[] productTypeSet = new Set[3];
         productTypeSet[0] = catalogs[0].getProductTypes();
         productTypeSet[0].add(productTypes[0]);
         productTypeSet[0].add(productTypes[1]);
@@ -175,10 +155,10 @@ public class DatabaseTest {
         for (int i = 0; i < catalogs.length; ++i) {
             catalogRepository.save(catalogs[i]);
         }
-        
+
         Iterator<Catalog> catalogIterator = catalogRepository.findAll().iterator();
-        Catalog [] newCatalogs = new Catalog[7];
-        for ( int i = 0; i < newCatalogs.length; ++i) {
+        Catalog[] newCatalogs = new Catalog[7];
+        for (int i = 0; i < newCatalogs.length; ++i) {
             newCatalogs[i] = new Catalog();
         }
         int j = 0;
@@ -192,7 +172,7 @@ public class DatabaseTest {
 
     @Test
     public void ProductTest() {
-        Color [] colors = new Color[7];
+        Color[] colors = new Color[7];
         for (int i = 0; i < colors.length; ++i) {
             colors[i] = new Color();
         }
@@ -216,7 +196,7 @@ public class DatabaseTest {
             System.out.println(productType.toString());
         }
 
-        Product [] products = new Product[100];
+        Product[] products = new Product[100];
         for (int i = 0; i < products.length; ++i) {
             products[i] = new Product();
             int tmp = random.nextInt(3);

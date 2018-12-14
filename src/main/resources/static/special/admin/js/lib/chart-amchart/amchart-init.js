@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(document).ready(function () {
 
     "use strict"; // Start of use strict
 
@@ -13,7 +13,7 @@ $(document).ready(function() {
             "title": "Sales",
             "position": "left",
             "autoGridCount": false,
-            "labelFunction": function(value) {
+            "labelFunction": function (value) {
                 return "$" + Math.round(value) + "M";
             }
         }, {
@@ -599,7 +599,6 @@ $(document).ready(function() {
     });
 
 
-
     //Column chart with images on top
     var chart = AmCharts.makeChart("column", {
         "type": "serial",
@@ -666,8 +665,6 @@ $(document).ready(function() {
             "enabled": true
         }
     });
-
-
 
 
     //Zoomable Value Axis

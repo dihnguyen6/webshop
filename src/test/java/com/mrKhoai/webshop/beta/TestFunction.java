@@ -1,8 +1,6 @@
 package com.mrKhoai.webshop.beta;
 
-import java.nio.charset.Charset;
 import java.security.SecureRandom;
-import java.util.Random;
 
 public class TestFunction {
 

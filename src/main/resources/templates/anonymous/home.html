@@ -19,7 +19,7 @@
 <!-- Slide1 -->
 <section class="slide1">
     <div class="wrap-slick1">
-        <div id="carousel" class="slick1">
+        <div class="slick1" id="carousel">
 
             <!--<div id="c1" class="item-slick1 item1-slick1" style="background-image: url(../basis/images/carousel/master-slide-02.jpg);">
                 <div class="wrap-content-slide1 sizefull flex-col-c-m p-l-15 p-r-15 p-t-150 p-b-170">
@@ -86,11 +86,12 @@
             <div class="col-sm-10 col-md-8 col-lg-4 m-l-r-auto">
                 <!-- block1 -->
                 <div class="block1 hov-img-zoom pos-relative m-b-30">
-                    <img src="../basis/images/banner-02.jpg" alt="IMG-BENNER">
+                    <img alt="IMG-BENNER" src="../basis/images/banner-02.jpg">
 
                     <div class="block1-wrapbtn w-size2">
                         <!-- Button -->
-                        <a th:href="@{'../product?id=Uo8nTDBKW61uUUfZwmd09Q=='}" class="flex-c-m size2 m-text2 bg3 hov1 trans-0-4" th:utext="#{catalog.sofa}">
+                        <a class="flex-c-m size2 m-text2 bg3 hov1 trans-0-4"
+                           th:href="@{'../product?id=Uo8nTDBKW61uUUfZwmd09Q=='}" th:utext="#{catalog.sofa}">
 
                         </a>
                     </div>
@@ -98,37 +99,12 @@
 
                 <!-- block1 -->
                 <div class="block1 hov-img-zoom pos-relative m-b-30">
-                    <img src="../basis/images/banner-05.jpg" alt="IMG-BENNER">
+                    <img alt="IMG-BENNER" src="../basis/images/banner-05.jpg">
 
                     <div class="block1-wrapbtn w-size2">
                         <!-- Button -->
-                        <a th:href="@{'../product?id=EVL3NuVWzb+J7aXOECvh7w=='}" class="flex-c-m size2 m-text2 bg3 hov1 trans-0-4" th:utext="#{catalog.armchair}">
-
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-sm-10 col-md-8 col-lg-4 m-l-r-auto">
-                <!-- block1 -->
-                <div class="block1 hov-img-zoom pos-relative m-b-30">
-                    <img src="../basis/images/banner-03.jpg" alt="IMG-BENNER">
-
-                    <div class="block1-wrapbtn w-size2">
-                        <!-- Button -->
-                        <a th:href="@{'../product?id=UcRbeV1dGKPk4MN+iyChQQ=='}" class="flex-c-m size2 m-text2 bg3 hov1 trans-0-4" th:utext="#{catalog.table}">
-
-                        </a>
-                    </div>
-                </div>
-
-                <!-- block1 -->
-                <div class="block1 hov-img-zoom pos-relative m-b-30">
-                    <img src="../basis/images/banner-07.jpg" alt="IMG-BENNER">
-
-                    <div class="block1-wrapbtn w-size2">
-                        <!-- Button -->
-                        <a th:href="@{'../product?id=pg2w8NWuOVsiqSlyWdgYzQ=='}" class="flex-c-m size2 m-text2 bg3 hov1 trans-0-4" th:utext="#{catalog.chair}">
+                        <a class="flex-c-m size2 m-text2 bg3 hov1 trans-0-4"
+                           th:href="@{'../product?id=EVL3NuVWzb+J7aXOECvh7w=='}" th:utext="#{catalog.armchair}">
 
                         </a>
                     </div>
@@ -138,11 +114,40 @@
             <div class="col-sm-10 col-md-8 col-lg-4 m-l-r-auto">
                 <!-- block1 -->
                 <div class="block1 hov-img-zoom pos-relative m-b-30">
-                    <img src="../basis/images/banner-04.jpg" alt="IMG-BENNER">
+                    <img alt="IMG-BENNER" src="../basis/images/banner-03.jpg">
 
                     <div class="block1-wrapbtn w-size2">
                         <!-- Button -->
-                        <a th:href="@{'../product?id=0ZxlvCbsAlZT2VWG2ywx3g=='}" class="flex-c-m size2 m-text2 bg3 hov1 trans-0-4" th:utext="#{catalog.bed}">
+                        <a class="flex-c-m size2 m-text2 bg3 hov1 trans-0-4"
+                           th:href="@{'../product?id=UcRbeV1dGKPk4MN+iyChQQ=='}" th:utext="#{catalog.table}">
+
+                        </a>
+                    </div>
+                </div>
+
+                <!-- block1 -->
+                <div class="block1 hov-img-zoom pos-relative m-b-30">
+                    <img alt="IMG-BENNER" src="../basis/images/banner-07.jpg">
+
+                    <div class="block1-wrapbtn w-size2">
+                        <!-- Button -->
+                        <a class="flex-c-m size2 m-text2 bg3 hov1 trans-0-4"
+                           th:href="@{'../product?id=pg2w8NWuOVsiqSlyWdgYzQ=='}" th:utext="#{catalog.chair}">
+
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-10 col-md-8 col-lg-4 m-l-r-auto">
+                <!-- block1 -->
+                <div class="block1 hov-img-zoom pos-relative m-b-30">
+                    <img alt="IMG-BENNER" src="../basis/images/banner-04.jpg">
+
+                    <div class="block1-wrapbtn w-size2">
+                        <!-- Button -->
+                        <a class="flex-c-m size2 m-text2 bg3 hov1 trans-0-4"
+                           th:href="@{'../product?id=0ZxlvCbsAlZT2VWG2ywx3g=='}" th:utext="#{catalog.bed}">
 
                         </a>
                     </div>
@@ -150,7 +155,7 @@
 
                 <!-- block2 -->
                 <div class="block2 wrap-pic-w pos-relative m-b-30">
-                    <img src="../basis/images/icons/bg-01.jpg" alt="IMG">
+                    <img alt="IMG" src="../basis/images/icons/bg-01.jpg">
 
                     <div class="block2-content sizefull ab-t-l flex-col-c-m">
                         <h4 class="m-text4 t-center w-size3 p-b-8">
@@ -163,7 +168,7 @@
 
                         <div class="w-size2 p-t-25">
                             <!-- Button -->
-                            <a href="#" class="flex-c-m size2 bg4 bo-rad-23 hov1 m-text3 trans-0-4">
+                            <a class="flex-c-m size2 bg4 bo-rad-23 hov1 m-text3 trans-0-4" href="#">
                                 Sign Up
                             </a>
                         </div>
@@ -191,12 +196,12 @@
                     <!-- Block2 -->
                     <div class="block2">
                         <div class="block2-img wrap-pic-w of-hidden pos-relative block2-labelnew">
-                            <img src="../basis/images/item.jpg" alt="IMG-PRODUCT">
+                            <img alt="IMG-PRODUCT" src="../basis/images/item.jpg">
 
                             <div class="block2-overlay trans-0-4">
-                                <a href="#" class="block2-btn-addwishlist hov-pointer trans-0-4">
-                                    <i class="icon-wishlist icon_heart_alt" aria-hidden="true"></i>
-                                    <i class="icon-wishlist icon_heart dis-none" aria-hidden="true"></i>
+                                <a class="block2-btn-addwishlist hov-pointer trans-0-4" href="#">
+                                    <i aria-hidden="true" class="icon-wishlist icon_heart_alt"></i>
+                                    <i aria-hidden="true" class="icon-wishlist icon_heart dis-none"></i>
                                 </a>
 
                                 <div class="block2-btn-addcart w-size1 trans-0-4">
@@ -209,7 +214,7 @@
                         </div>
 
                         <div class="block2-txt p-t-20">
-                            <a href="product-detail.html" class="block2-name dis-block s-text3 p-b-5">
+                            <a class="block2-name dis-block s-text3 p-b-5" href="product-detail.html">
                                 Herschel supply co 25l
                             </a>
 
@@ -224,12 +229,12 @@
                     <!-- Block2 -->
                     <div class="block2">
                         <div class="block2-img wrap-pic-w of-hidden pos-relative">
-                            <img src="../basis/images/item.jpg" alt="IMG-PRODUCT">
+                            <img alt="IMG-PRODUCT" src="../basis/images/item.jpg">
 
                             <div class="block2-overlay trans-0-4">
-                                <a href="#" class="block2-btn-addwishlist hov-pointer trans-0-4">
-                                    <i class="icon-wishlist icon_heart_alt" aria-hidden="true"></i>
-                                    <i class="icon-wishlist icon_heart dis-none" aria-hidden="true"></i>
+                                <a class="block2-btn-addwishlist hov-pointer trans-0-4" href="#">
+                                    <i aria-hidden="true" class="icon-wishlist icon_heart_alt"></i>
+                                    <i aria-hidden="true" class="icon-wishlist icon_heart dis-none"></i>
                                 </a>
 
                                 <div class="block2-btn-addcart w-size1 trans-0-4">
@@ -242,7 +247,7 @@
                         </div>
 
                         <div class="block2-txt p-t-20">
-                            <a href="product-detail.html" class="block2-name dis-block s-text3 p-b-5">
+                            <a class="block2-name dis-block s-text3 p-b-5" href="product-detail.html">
                                 Denim jacket blue
                             </a>
 
@@ -257,12 +262,12 @@
                     <!-- Block2 -->
                     <div class="block2">
                         <div class="block2-img wrap-pic-w of-hidden pos-relative">
-                            <img src="../basis/images/item.jpg" alt="IMG-PRODUCT">
+                            <img alt="IMG-PRODUCT" src="../basis/images/item.jpg">
 
                             <div class="block2-overlay trans-0-4">
-                                <a href="#" class="block2-btn-addwishlist hov-pointer trans-0-4">
-                                    <i class="icon-wishlist icon_heart_alt" aria-hidden="true"></i>
-                                    <i class="icon-wishlist icon_heart dis-none" aria-hidden="true"></i>
+                                <a class="block2-btn-addwishlist hov-pointer trans-0-4" href="#">
+                                    <i aria-hidden="true" class="icon-wishlist icon_heart_alt"></i>
+                                    <i aria-hidden="true" class="icon-wishlist icon_heart dis-none"></i>
                                 </a>
 
                                 <div class="block2-btn-addcart w-size1 trans-0-4">
@@ -275,7 +280,7 @@
                         </div>
 
                         <div class="block2-txt p-t-20">
-                            <a href="product-detail.html" class="block2-name dis-block s-text3 p-b-5">
+                            <a class="block2-name dis-block s-text3 p-b-5" href="product-detail.html">
                                 Coach slim easton black
                             </a>
 
@@ -290,12 +295,12 @@
                     <!-- Block2 -->
                     <div class="block2">
                         <div class="block2-img wrap-pic-w of-hidden pos-relative block2-labelsale">
-                            <img src="../basis/images/item.jpg" alt="IMG-PRODUCT">
+                            <img alt="IMG-PRODUCT" src="../basis/images/item.jpg">
 
                             <div class="block2-overlay trans-0-4">
-                                <a href="#" class="block2-btn-addwishlist hov-pointer trans-0-4">
-                                    <i class="icon-wishlist icon_heart_alt" aria-hidden="true"></i>
-                                    <i class="icon-wishlist icon_heart dis-none" aria-hidden="true"></i>
+                                <a class="block2-btn-addwishlist hov-pointer trans-0-4" href="#">
+                                    <i aria-hidden="true" class="icon-wishlist icon_heart_alt"></i>
+                                    <i aria-hidden="true" class="icon-wishlist icon_heart dis-none"></i>
                                 </a>
 
                                 <div class="block2-btn-addcart w-size1 trans-0-4">
@@ -308,7 +313,7 @@
                         </div>
 
                         <div class="block2-txt p-t-20">
-                            <a href="product-detail.html" class="block2-name dis-block s-text3 p-b-5">
+                            <a class="block2-name dis-block s-text3 p-b-5" href="product-detail.html">
                                 Frayed denim shorts
                             </a>
 
@@ -327,12 +332,12 @@
                     <!-- Block2 -->
                     <div class="block2">
                         <div class="block2-img wrap-pic-w of-hidden pos-relative block2-labelnew">
-                            <img src="../basis/images/item.jpg" alt="IMG-PRODUCT">
+                            <img alt="IMG-PRODUCT" src="../basis/images/item.jpg">
 
                             <div class="block2-overlay trans-0-4">
-                                <a href="#" class="block2-btn-addwishlist hov-pointer trans-0-4">
-                                    <i class="icon-wishlist icon_heart_alt" aria-hidden="true"></i>
-                                    <i class="icon-wishlist icon_heart dis-none" aria-hidden="true"></i>
+                                <a class="block2-btn-addwishlist hov-pointer trans-0-4" href="#">
+                                    <i aria-hidden="true" class="icon-wishlist icon_heart_alt"></i>
+                                    <i aria-hidden="true" class="icon-wishlist icon_heart dis-none"></i>
                                 </a>
 
                                 <div class="block2-btn-addcart w-size1 trans-0-4">
@@ -345,7 +350,7 @@
                         </div>
 
                         <div class="block2-txt p-t-20">
-                            <a href="product-detail.html" class="block2-name dis-block s-text3 p-b-5">
+                            <a class="block2-name dis-block s-text3 p-b-5" href="product-detail.html">
                                 Herschel supply co 25l
                             </a>
 
@@ -360,12 +365,12 @@
                     <!-- Block2 -->
                     <div class="block2">
                         <div class="block2-img wrap-pic-w of-hidden pos-relative">
-                            <img src="../basis/images/item.jpg" alt="IMG-PRODUCT">
+                            <img alt="IMG-PRODUCT" src="../basis/images/item.jpg">
 
                             <div class="block2-overlay trans-0-4">
-                                <a href="#" class="block2-btn-addwishlist hov-pointer trans-0-4">
-                                    <i class="icon-wishlist icon_heart_alt" aria-hidden="true"></i>
-                                    <i class="icon-wishlist icon_heart dis-none" aria-hidden="true"></i>
+                                <a class="block2-btn-addwishlist hov-pointer trans-0-4" href="#">
+                                    <i aria-hidden="true" class="icon-wishlist icon_heart_alt"></i>
+                                    <i aria-hidden="true" class="icon-wishlist icon_heart dis-none"></i>
                                 </a>
 
                                 <div class="block2-btn-addcart w-size1 trans-0-4">
@@ -378,7 +383,7 @@
                         </div>
 
                         <div class="block2-txt p-t-20">
-                            <a href="product-detail.html" class="block2-name dis-block s-text3 p-b-5">
+                            <a class="block2-name dis-block s-text3 p-b-5" href="product-detail.html">
                                 Denim jacket blue
                             </a>
 
@@ -393,12 +398,12 @@
                     <!-- Block2 -->
                     <div class="block2">
                         <div class="block2-img wrap-pic-w of-hidden pos-relative">
-                            <img src="../basis/images/item.jpg" alt="IMG-PRODUCT">
+                            <img alt="IMG-PRODUCT" src="../basis/images/item.jpg">
 
                             <div class="block2-overlay trans-0-4">
-                                <a href="#" class="block2-btn-addwishlist hov-pointer trans-0-4">
-                                    <i class="icon-wishlist icon_heart_alt" aria-hidden="true"></i>
-                                    <i class="icon-wishlist icon_heart dis-none" aria-hidden="true"></i>
+                                <a class="block2-btn-addwishlist hov-pointer trans-0-4" href="#">
+                                    <i aria-hidden="true" class="icon-wishlist icon_heart_alt"></i>
+                                    <i aria-hidden="true" class="icon-wishlist icon_heart dis-none"></i>
                                 </a>
 
                                 <div class="block2-btn-addcart w-size1 trans-0-4">
@@ -411,7 +416,7 @@
                         </div>
 
                         <div class="block2-txt p-t-20">
-                            <a href="product-detail.html" class="block2-name dis-block s-text3 p-b-5">
+                            <a class="block2-name dis-block s-text3 p-b-5" href="product-detail.html">
                                 Coach slim easton black
                             </a>
 
@@ -426,12 +431,12 @@
                     <!-- Block2 -->
                     <div class="block2">
                         <div class="block2-img wrap-pic-w of-hidden pos-relative block2-labelsale">
-                            <img src="../basis/images/item.jpg" alt="IMG-PRODUCT">
+                            <img alt="IMG-PRODUCT" src="../basis/images/item.jpg">
 
                             <div class="block2-overlay trans-0-4">
-                                <a href="#" class="block2-btn-addwishlist hov-pointer trans-0-4">
-                                    <i class="icon-wishlist icon_heart_alt" aria-hidden="true"></i>
-                                    <i class="icon-wishlist icon_heart dis-none" aria-hidden="true"></i>
+                                <a class="block2-btn-addwishlist hov-pointer trans-0-4" href="#">
+                                    <i aria-hidden="true" class="icon-wishlist icon_heart_alt"></i>
+                                    <i aria-hidden="true" class="icon-wishlist icon_heart dis-none"></i>
                                 </a>
 
                                 <div class="block2-btn-addcart w-size1 trans-0-4">
@@ -444,7 +449,7 @@
                         </div>
 
                         <div class="block2-txt p-t-20">
-                            <a href="product-detail.html" class="block2-name dis-block s-text3 p-b-5">
+                            <a class="block2-name dis-block s-text3 p-b-5" href="product-detail.html">
                                 Frayed denim shorts
                             </a>
 
@@ -475,11 +480,11 @@
     <div class="flex-w">
         <!-- Block4 -->
         <div class="block4 wrap-pic-w">
-            <img src="../basis/images/gallery-03.jpg" alt="IMG-INSTAGRAM">
+            <img alt="IMG-INSTAGRAM" src="../basis/images/gallery-03.jpg">
 
-            <a href="#" class="block4-overlay sizefull ab-t-l trans-0-4">
+            <a class="block4-overlay sizefull ab-t-l trans-0-4" href="#">
 					<span class="block4-overlay-heart s-text9 flex-m trans-0-4 p-l-40 p-t-25">
-						<i class="icon_heart_alt fs-20 p-r-12" aria-hidden="true"></i>
+						<i aria-hidden="true" class="icon_heart_alt fs-20 p-r-12"></i>
 						<span class="p-t-2">39</span>
 					</span>
 
@@ -499,11 +504,11 @@
 
         <!-- Block4 -->
         <div class="block4 wrap-pic-w">
-            <img src="../basis/images/gallery-07.jpg" alt="IMG-INSTAGRAM">
+            <img alt="IMG-INSTAGRAM" src="../basis/images/gallery-07.jpg">
 
-            <a href="#" class="block4-overlay sizefull ab-t-l trans-0-4">
+            <a class="block4-overlay sizefull ab-t-l trans-0-4" href="#">
 					<span class="block4-overlay-heart s-text9 flex-m trans-0-4 p-l-40 p-t-25">
-						<i class="icon_heart_alt fs-20 p-r-12" aria-hidden="true"></i>
+						<i aria-hidden="true" class="icon_heart_alt fs-20 p-r-12"></i>
 						<span class="p-t-2">39</span>
 					</span>
 
@@ -523,11 +528,11 @@
 
         <!-- Block4 -->
         <div class="block4 wrap-pic-w">
-            <img src="../basis/images/gallery-09.jpg" alt="IMG-INSTAGRAM">
+            <img alt="IMG-INSTAGRAM" src="../basis/images/gallery-09.jpg">
 
-            <a href="#" class="block4-overlay sizefull ab-t-l trans-0-4">
+            <a class="block4-overlay sizefull ab-t-l trans-0-4" href="#">
 					<span class="block4-overlay-heart s-text9 flex-m trans-0-4 p-l-40 p-t-25">
-						<i class="icon_heart_alt fs-20 p-r-12" aria-hidden="true"></i>
+						<i aria-hidden="true" class="icon_heart_alt fs-20 p-r-12"></i>
 						<span class="p-t-2">39</span>
 					</span>
 
@@ -547,11 +552,11 @@
 
         <!-- Block4 -->
         <div class="block4 wrap-pic-w">
-            <img src="../basis/images/gallery-13.jpg" alt="IMG-INSTAGRAM">
+            <img alt="IMG-INSTAGRAM" src="../basis/images/gallery-13.jpg">
 
-            <a href="#" class="block4-overlay sizefull ab-t-l trans-0-4">
+            <a class="block4-overlay sizefull ab-t-l trans-0-4" href="#">
 					<span class="block4-overlay-heart s-text9 flex-m trans-0-4 p-l-40 p-t-25">
-						<i class="icon_heart_alt fs-20 p-r-12" aria-hidden="true"></i>
+						<i aria-hidden="true" class="icon_heart_alt fs-20 p-r-12"></i>
 						<span class="p-t-2">39</span>
 					</span>
 
@@ -571,11 +576,11 @@
 
         <!-- Block4 -->
         <div class="block4 wrap-pic-w">
-            <img src="../basis/images/gallery-15.jpg" alt="IMG-INSTAGRAM">
+            <img alt="IMG-INSTAGRAM" src="../basis/images/gallery-15.jpg">
 
-            <a href="#" class="block4-overlay sizefull ab-t-l trans-0-4">
+            <a class="block4-overlay sizefull ab-t-l trans-0-4" href="#">
 					<span class="block4-overlay-heart s-text9 flex-m trans-0-4 p-l-40 p-t-25">
-						<i class="icon_heart_alt fs-20 p-r-12" aria-hidden="true"></i>
+						<i aria-hidden="true" class="icon_heart_alt fs-20 p-r-12"></i>
 						<span class="p-t-2">39</span>
 					</span>
 
@@ -603,7 +608,7 @@
                 Free Delivery Worldwide
             </h4>
 
-            <a href="#" class="s-text11 t-center">
+            <a class="s-text11 t-center" href="#">
                 Click here for more info
             </a>
         </div>
@@ -634,7 +639,6 @@
 <footer th:replace="fragments/footer.html :: footer"></footer>
 <!-- Container Selection1 -->
 <div id="dropDownSelect1"></div>
-
 
 
 <script type="text/javascript">

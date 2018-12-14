@@ -5,12 +5,7 @@ import com.mrKhoai.webshop.repositories.ProductRepository;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RequestPart;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
@@ -21,10 +16,9 @@ import java.io.IOException;
 @RequestMapping(path = "/product")
 public class ProductController {
 
+    private static final Logger LOGGER = LogManager.getLogger(ProductController.class);
     @Autowired
     ProductRepository productRepository;
-
-    private static final Logger LOGGER = LogManager.getLogger(ProductController.class);
 
     @PostMapping("/add")
     public void addProduct(@RequestParam(name = "name") String name) {

@@ -1,9 +1,7 @@
-$(document).ready(function()
-{
+$(document).ready(function () {
     "use strict";
-    var updateOutput = function(e)
-    {
-        var list   = e.length ? e : $(e.target),
+    var updateOutput = function (e) {
+        var list = e.length ? e : $(e.target),
             output = list.data('output');
         if (window.JSON) {
             output.val(window.JSON.stringify(list.nestable('serialize')));//, null, 2));
@@ -28,8 +26,7 @@ $(document).ready(function()
     updateOutput($('#nestable').data('output', $('#nestable-output')));
     updateOutput($('#nestable2').data('output', $('#nestable2-output')));
 
-    $('#nestable-menu').on('click', function(e)
-    {
+    $('#nestable-menu').on('click', function (e) {
         var target = $(e.target),
             action = target.data('action');
         if (action === 'expand-all') {

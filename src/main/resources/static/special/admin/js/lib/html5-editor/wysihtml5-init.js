@@ -1,6 +1,6 @@
-    $(document).ready(function() {
+$(document).ready(function () {
 
-        $('.textarea_editor').wysihtml5();
+    $('.textarea_editor').wysihtml5();
 
 
-    });
+});

@@ -1,33 +1,33 @@
-$(document).ready(function() {
+$(document).ready(function () {
 
-    $(function(){
+    $(function () {
 
         var chart = c3.generate({
             bindto: '#c3-chart',
             data: {
-              columns: [
-                  ['data1', 100, 200, 150, 300, 200],
-                  ['data2', 400, 500, 250, 700, 300],
-              ],
+                columns: [
+                    ['data1', 100, 200, 150, 300, 200],
+                    ['data2', 400, 500, 250, 700, 300],
+                ],
                 colors: {
                     data1: '#eac459',
                     data2: '#62549a'
                     //data3: '#0000ff'
                 },
-              axes: {
-                data2: 'y2' // ADD
-              }
+                axes: {
+                    data2: 'y2' // ADD
+                }
             },
             axis: {
-              y2: {
-                show: true // ADD
-              }
+                y2: {
+                    show: true // ADD
+                }
             }
         });
 
     });
 
-    $(function() {
+    $(function () {
         var chart = c3.generate({
             bindto: '#c3-combination',
             data: {
@@ -48,13 +48,13 @@ $(document).ready(function() {
                     data6: 'area'
                 },
                 groups: [
-                    ['data1','data2']
+                    ['data1', 'data2']
                 ]
             }
         });
     });
 
-    $(function() {
+    $(function () {
         var chart = c3.generate({
             bindto: '#c3-area',
             data: {
@@ -74,7 +74,7 @@ $(document).ready(function() {
         });
     });
 
-    $(function() {
+    $(function () {
         var chart = c3.generate({
             bindto: '#c3-rotated_axis',
             data: {

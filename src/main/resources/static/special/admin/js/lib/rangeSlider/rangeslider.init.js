@@ -12,7 +12,6 @@ $(function () {
     });
 
 
-
 //Set type to double and specify range, also showing grid and adding prefix "$"
 
     $("#range_03").ionRangeSlider({
@@ -84,7 +83,6 @@ $(function () {
     });
 
 
-
 //One more example with strings
     $("#range_09").ionRangeSlider({
         grid: true,
@@ -120,7 +118,6 @@ $(function () {
     });
 
 
-
 //Don't like space as separator? Use anything you like!
     $("#range_12").ionRangeSlider({
         grid: true,
@@ -147,7 +144,6 @@ $(function () {
     });
 
 
-
 //Using prefixes
     $("#range_14").ionRangeSlider({
         type: "double",
@@ -160,8 +156,6 @@ $(function () {
     });
 
 
-
-
 //Using postfixes
     $("#range_15").ionRangeSlider({
         type: "single",
@@ -171,7 +165,6 @@ $(function () {
         from: 0,
         postfix: "°"
     });
-
 
 
 //What to show that max number is not the biggest one?
@@ -198,7 +191,6 @@ $(function () {
     });
 
 
-
 //Remove double decoration
     $("#range_18").ionRangeSlider({
         type: "double",
@@ -210,7 +202,6 @@ $(function () {
         postfix: " million pounds",
         decorate_both: false
     });
-
 
 
 //Use your own separator symbol with values_separator option. Like →
@@ -241,7 +232,6 @@ $(function () {
     });
 
 
-
 //You can disable all the sliders visual details, if you wish. Like this:
 
     $("#range_21").ionRangeSlider({
@@ -256,7 +246,6 @@ $(function () {
     });
 
 
-
 //Or hide any part you wish
     $("#range_22").ionRangeSlider({
         type: "double",
@@ -268,7 +257,6 @@ $(function () {
         hide_from_to: true,
         grid: true
     });
-
 
 
 //And some more
@@ -298,15 +286,12 @@ $(function () {
     });
 
 
-
-
     $("#range_25").ionRangeSlider({
         type: "double",
         min: 1000000,
         max: 2000000,
         grid: true
     });
-
 
 
     $("#range_26").ionRangeSlider({
@@ -318,18 +303,12 @@ $(function () {
     });
 
 
-
-
-
     $("#range_27").ionRangeSlider({
         type: "double",
         min: 0,
         max: 10000,
         grid: true
     });
-
-
-
 
 
     $("#range_28").ionRangeSlider({
@@ -339,7 +318,6 @@ $(function () {
         grid: true,
         grid_num: 10
     });
-
 
 
     $("#range_29").ionRangeSlider({
@@ -352,7 +330,6 @@ $(function () {
     });
 
 
-
     $("#range_30").ionRangeSlider({
         type: "single",
         min: 0,
@@ -363,7 +340,6 @@ $(function () {
     });
 
 
-
     $("#range_31").ionRangeSlider({
         type: "double",
         min: 0,
@@ -372,7 +348,6 @@ $(function () {
         to: 70,
         from_fixed: true
     });
-
 
 
     $("#range_32").ionRangeSlider({
@@ -386,8 +361,6 @@ $(function () {
     });
 
 
-
-
     $("#range_33").ionRangeSlider({
         min: 0,
         max: 100,
@@ -395,8 +368,6 @@ $(function () {
         from_min: 10,
         from_max: 50
     });
-
-
 
 
     $("#range_34").ionRangeSlider({
@@ -407,8 +378,6 @@ $(function () {
         from_max: 50,
         from_shadow: true
     });
-
-
 
 
     $("#range_35").ionRangeSlider({
@@ -428,16 +397,12 @@ $(function () {
     });
 
 
-
-
     $("#range_36").ionRangeSlider({
         min: 0,
         max: 100,
         from: 30,
         disable: true
     });
-
-
 
 
     $("#range_37").ionRangeSlider({
@@ -448,7 +413,6 @@ $(function () {
         to: 70,
         keyboard: true
     });
-
 
 
     $("#range_38").ionRangeSlider({
@@ -462,8 +426,6 @@ $(function () {
     });
 
 
-
-
     $("#range_39").ionRangeSlider({
         min: +moment().subtract(1, "years").format("X"),
         max: +moment().format("X"),
@@ -474,7 +436,6 @@ $(function () {
     });
 
 
-
     $("#range_40").ionRangeSlider({
         min: +moment().subtract(12, "hours").format("X"),
         max: +moment().format("X"),
@@ -483,7 +444,6 @@ $(function () {
             return moment(num, "X").format("MMM Do, hh:mm A");
         }
     });
-
 
 
     $("#range_41").ionRangeSlider({
@@ -499,8 +459,6 @@ $(function () {
     });
 
 
-
-
     $("#range_42").ionRangeSlider({
         min: +moment().subtract(12, "hours").format("X"),
         max: +moment().format("X"),
@@ -514,8 +472,6 @@ $(function () {
     });
 
 
-
-
     $("#range_119").ionRangeSlider({
         type: "double",
         min: 0,
@@ -524,8 +480,6 @@ $(function () {
         to: 58,
         min_interval: 20
     });
-
-
 
 
     $("#range_120").ionRangeSlider({
@@ -538,7 +492,6 @@ $(function () {
     });
 
 
-
     $("#range_121").ionRangeSlider({
         type: "double",
         min: 0,
@@ -547,11 +500,6 @@ $(function () {
         to: 70,
         drag_interval: true
     });
-
-
-
-
-
 
 
 });

@@ -22,17 +22,17 @@ public class CustomerService implements ObjectService<Customer> {
     private CustomerRepository customerRepository;
 
     @Override
-    public void save(Customer customer){
+    public void save(Customer customer) {
         customerRepository.save(customer);
     }
 
     @Override
-    public void delete(Customer customer){
+    public void delete(Customer customer) {
         customerRepository.delete(customer);
     }
 
     @Override
-    public Customer findById(String id){
+    public Customer findById(String id) {
         return null;
     }
 
@@ -66,7 +66,7 @@ public class CustomerService implements ObjectService<Customer> {
         return null;
     }
 
-    public boolean containsName(String username){
+    public boolean containsName(String username) {
         Iterator<Customer> userList = customerRepository.findAll().iterator();
         while (userList.hasNext()) {
             Customer customer = userList.next();
@@ -89,8 +89,7 @@ public class CustomerService implements ObjectService<Customer> {
         return jsonArray;
     }
 
-    public Customer getCurrentUser()
-    {
+    public Customer getCurrentUser() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         //Check if it isn't an authenticated user
         if (authentication instanceof AnonymousAuthenticationToken) {

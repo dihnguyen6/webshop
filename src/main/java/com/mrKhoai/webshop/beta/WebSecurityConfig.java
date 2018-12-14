@@ -14,6 +14,76 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 public class WebSecurityConfig {
 
     @Configuration
+    @Order(1)
+    public static class UserSecurityConfig extends WebSecurityConfigurerAdapter {
+
+        @Autowired
+        private UserService userService;
+
+        @Autowired
+        private WebshopAuthenticationSuccessHandler successHandler;
+
+        public UserSecurityConfig() {
+            super();
+        }
+
+        @Autowired
+        private BCryptPasswordEncoder bCryptPasswordEncoder() {
+            return new BCryptPasswordEncoder();
+        }
+
+        protected void configure(HttpSecurity http) throws Exception {
+            /*http.sessionManagement()
+                    .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
+                    .maximumSessions(1)
+                    .expiredUrl("/home")
+                    .maxSessionsPreventsLogin(true)
+                    .and().invalidSessionUrl("/home")
+                    .sessionFixation().migrateSession()
+                    .enableSessionUrlRewriting(false)
+                    .sessionAuthenticationErrorUrl("/home");*/
+
+            http.authorizeRequests().antMatchers("/", "/basis/**", "/special/**")
+                    .permitAll().anyRequest().authenticated();
+
+            http.antMatcher("/user**")
+                    .authorizeRequests()
+                    .anyRequest()
+                    .hasRole("USER")
+
+                    .and()
+                    .formLogin()
+                    .loginPage("/login")
+                    .loginProcessingUrl("/user_login")
+                    .failureUrl("/login?error=loginError")
+                    .defaultSuccessUrl("/home")
+                    .successHandler(successHandler)
+
+                    .and()
+                    .logout()
+                    .logoutUrl("/user_logout")
+                    .logoutSuccessUrl("/protectedLinks")
+
+                    .and()
+                    .exceptionHandling()
+                    .accessDeniedPage("/error-403")
+
+                    .and()
+                    .rememberMe()
+                    .key("uniqueAndSecret")
+                    .alwaysRemember(true)
+
+                    .and()
+                    .csrf().disable();
+        }
+
+        @Override
+        protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+            auth.userDetailsService(userService).passwordEncoder(bCryptPasswordEncoder());
+        }
+    }
+
+    @Configuration
     public class AdminSecurityConfig extends WebSecurityConfigurerAdapter {
 
         @Autowired
@@ -22,13 +92,13 @@ public class WebSecurityConfig {
         @Autowired
         private WebshopAuthenticationSuccessHandler successHandler;
 
+        public AdminSecurityConfig() {
+            super();
+        }
+
         @Autowired
         private BCryptPasswordEncoder bCryptPasswordEncoder() {
             return new BCryptPasswordEncoder();
-        }
-
-        public AdminSecurityConfig() {
-            super();
         }
 
         @Override
@@ -95,76 +165,6 @@ public class WebSecurityConfig {
                     .accountLocked(true)
                     .authorities("WRITE_PRIVILEGES", "READ_PRIVILEGES")
                     .roles("ADMIN")*//*;*/
-        }
-    }
-
-    @Configuration
-    @Order(1)
-    public static class UserSecurityConfig extends WebSecurityConfigurerAdapter {
-
-        @Autowired
-        private UserService userService;
-
-        @Autowired
-        private WebshopAuthenticationSuccessHandler successHandler;
-
-        @Autowired
-        private BCryptPasswordEncoder bCryptPasswordEncoder() {
-            return new BCryptPasswordEncoder();
-        }
-
-        public UserSecurityConfig() {
-            super();
-        }
-
-        protected void configure(HttpSecurity http) throws Exception {
-            /*http.sessionManagement()
-                    .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
-                    .maximumSessions(1)
-                    .expiredUrl("/home")
-                    .maxSessionsPreventsLogin(true)
-                    .and().invalidSessionUrl("/home")
-                    .sessionFixation().migrateSession()
-                    .enableSessionUrlRewriting(false)
-                    .sessionAuthenticationErrorUrl("/home");*/
-
-            http.authorizeRequests().antMatchers("/", "/basis/**", "/special/**")
-                    .permitAll().anyRequest().authenticated();
-
-            http.antMatcher("/user**")
-                    .authorizeRequests()
-                    .anyRequest()
-                    .hasRole("USER")
-
-                    .and()
-                    .formLogin()
-                    .loginPage("/login")
-                    .loginProcessingUrl("/user_login")
-                    .failureUrl("/login?error=loginError")
-                    .defaultSuccessUrl("/home")
-                    .successHandler(successHandler)
-
-                    .and()
-                    .logout()
-                    .logoutUrl("/user_logout")
-                    .logoutSuccessUrl("/protectedLinks")
-
-                    .and()
-                    .exceptionHandling()
-                    .accessDeniedPage("/error-403")
-
-                    .and()
-                    .rememberMe()
-                    .key("uniqueAndSecret")
-                    .alwaysRemember(true)
-
-                    .and()
-                    .csrf().disable();
-        }
-
-        @Override
-        protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-            auth.userDetailsService(userService).passwordEncoder(bCryptPasswordEncoder());
         }
     }
 }
