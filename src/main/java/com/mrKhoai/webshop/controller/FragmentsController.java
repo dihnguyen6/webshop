@@ -20,4 +20,22 @@ public class FragmentsController {
     public String getNavbar() {
         return "fragments/navbar";
     }
+
+    @GetMapping("/headerfiles-admin")
+    public String getHeaderFilesAdmin() { return "fragments/headerfiles-admin"; }
+
+    @GetMapping("/navbar-admin")
+    public String getNavbarAdmin() {
+        return "fragments/navbar-admin";
+    }
+
+    @GetMapping("/footer-admin")
+    public String getFooterAdmin() {
+        return "fragments/footer-admin";
+    }
+
+    @GetMapping("/sidebar-admin")
+    public String getSidebarAdmin() {
+        return "fragments/footer-admin";
+    }
 }
