@@ -43,8 +43,8 @@ public class Product {
     @ManyToMany(mappedBy = "products")
     private Set<Basket> baskets = new HashSet<>();
 
-    @OneToMany(mappedBy = "foto", fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
-    private Set<Foto> fotos = new HashSet<>();
+    /*@OneToMany(mappedBy = "foto", fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
+    private Set<Foto> fotos = new HashSet<>();*/
 
     public String getProductId() {
         return productId;

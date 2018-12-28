@@ -1,4 +1,4 @@
-package com.mrKhoai.webshop.beta;
+package com.mrKhoai.webshop.offcial;
 
 import com.mrKhoai.webshop.objects.Catalog;
 import com.mrKhoai.webshop.objects.Color;

@@ -1,3 +1,4 @@
+/*
 package com.mrKhoai.webshop.objects;
 
 import org.hibernate.annotations.GenericGenerator;
@@ -15,8 +16,6 @@ import javax.persistence.Table;
 @Table(name = "FOTO")
 public class Foto {
     @Id
-    @GenericGenerator(name = "product_generator", strategy = "com.mrKhoai.webshop.objects.ProductIdGenerator")
-    @GeneratedValue(generator = "product_generator")
     @Column(name = "FOTO_ID", length = 20, nullable = false, unique = true)
     private String fotoId;
 
@@ -27,5 +26,20 @@ public class Foto {
     @JoinTable(name = "product")
     private Product product;
 
+    public String getFotoId() {
+        return fotoId;
+    }
 
+    public void setFotoId(String fotoId) {
+        this.fotoId = fotoId;
+    }
+
+    public MediaType getFotos() {
+        return fotos;
+    }
+
+    public void setFotos(MediaType fotos) {
+        this.fotos = fotos;
+    }
 }
+*/

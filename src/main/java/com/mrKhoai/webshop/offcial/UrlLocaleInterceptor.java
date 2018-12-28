@@ -1,4 +1,4 @@
-package com.mrKhoai.webshop.beta;
+package com.mrKhoai.webshop.offcial;
 
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;

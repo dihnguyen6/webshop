@@ -1,4 +1,4 @@
-package com.mrKhoai.webshop.beta;
+package com.mrKhoai.webshop.offcial;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;

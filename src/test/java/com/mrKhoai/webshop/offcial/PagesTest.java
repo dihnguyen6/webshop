@@ -1,4 +1,4 @@
-package com.mrKhoai.webshop.beta;
+package com.mrKhoai.webshop.offcial;
 
 import org.junit.Before;
 import org.junit.Test;
