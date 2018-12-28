@@ -7,7 +7,7 @@
         </Console>
     </Appenders>
     <Loggers>
-        <Logger name="X9.Versus" level="info">
+        <Logger name="X9.Versus" level="debug">
             <AppenderRef ref="Console"/>
         </Logger>
         <Root level="debug" additivity="false">

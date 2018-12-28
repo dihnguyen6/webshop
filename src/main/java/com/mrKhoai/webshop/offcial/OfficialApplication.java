@@ -4,9 +4,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class BetaApplication {
+public class OfficialApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(BetaApplication.class, args);
+        SpringApplication.run(OfficialApplication.class, args);
     }
 }
