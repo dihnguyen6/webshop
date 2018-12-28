@@ -46,6 +46,11 @@ public class WebController {
         return "login";
     }
 
+    @RequestMapping("/home")
+    public String home(HttpServletRequest request) {
+        return "redirect:/" + getLocale(request).getLanguage() + "/home";
+    }
+
     @GetMapping("/{lang:en|de}/home")
     public String home(Model model, /*@RequestParam(name = "lang", required = true) String lang,*/
                        @PathVariable String lang, HttpServletResponse response) throws IOException {
@@ -91,8 +96,8 @@ public class WebController {
     }
 
     @GetMapping("/cart")
-    public String cart() {
-        return "anonymous/cart";
+    public String cart(HttpServletRequest request) {
+        return "redirect:/" + getLocale(request).getLanguage() + "/cart";
     }
 
     @GetMapping("/{lang:en|de}/cart")
@@ -101,8 +106,8 @@ public class WebController {
     }
 
     @GetMapping("/product-detail")
-    public String product_detail() {
-        return "anonymous/product-detail";
+    public String product_detail(HttpServletRequest request) {
+        return "redirect:/" + getLocale(request).getLanguage() + "/product-detail";
     }
 
     @GetMapping("/{lang:en|de}/product-detail")
@@ -112,11 +117,6 @@ public class WebController {
 
     @RequestMapping("/")
     public String landing(HttpServletRequest request) {
-        return "redirect:/" + getLocale(request).getLanguage() + "/home";
-    }
-
-    @RequestMapping("/home")
-    public String home(HttpServletRequest request) {
         return "redirect:/" + getLocale(request).getLanguage() + "/home";
     }
 
