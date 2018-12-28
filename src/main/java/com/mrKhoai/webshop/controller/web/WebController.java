@@ -152,8 +152,11 @@ public class WebController {
             }
             return "admin/loginAdmin";
         } else {
-            LOGGER.info(authentication.getName());
-            return "redirect:/admin/management";
+            if(authentication.getName().equalsIgnoreCase(WebshopConst.ADMIN)) {
+                return "redirect:/admin/management";
+            } else {
+                return "admin/loginAdmin";
+            }
         }
     }
 

@@ -116,7 +116,7 @@ public class WebSecurityConfig {
             http.authorizeRequests().antMatchers("/", "/basis/**", "/special/**")
                     .permitAll().anyRequest().authenticated();
 
-            http.antMatcher("/admin**")
+            http.antMatcher("/admin/**")
                     .authorizeRequests()
                     .anyRequest()
                     .hasRole("ADMIN")
@@ -144,7 +144,7 @@ public class WebSecurityConfig {
                     .and()
                     .rememberMe()
                     .key("uniqueAndSecret")
-                    .alwaysRemember(true)
+                    .alwaysRemember(false)
 
                     .and()
                     .csrf().disable();
