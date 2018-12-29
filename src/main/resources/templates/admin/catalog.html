@@ -50,17 +50,17 @@
                         </div>
                         <div class="card-body">
                             <div class="basic-elements">
-                                <form>
+                                <form action="/admin/add_catalog" method="post">
                                     <div class="row">
 
                                             <div class="col-lg-6">
                                                 <div class="form-group">
                                                     <label>Beschreibung DE</label>
-                                                    <input class="form-control" type="text" <!--th:field="*{nameDE}"-->>
+                                                    <input name="catalogNameDE" class="form-control" type="text" >
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Beschreibung EN</label>
-                                                    <input class="form-control" type="text" <!--th:field="*{nameEN}"-->>
+                                                    <input name="catalogNameEN" class="form-control" type="text" >
                                                 </div>
 
                                                 <button class="btn btn-default" type="submit" <!--th:action="@{/addCatalog}" th:object="${catalog}" th:method="post"-->>Submit</button>

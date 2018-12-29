@@ -12,11 +12,11 @@ import org.springframework.stereotype.Service;
 public class CatalogService implements ObjectService<Catalog> {
 
     @Autowired
-    private CatalogRepository catalog;
+    private CatalogRepository catalogRepository;
 
     @Override
     public void save(Catalog catalog) {
-
+        catalogRepository.save(catalog);
     }
 
     @Override
