@@ -1,6 +1,6 @@
 package com.mrKhoai.webshop.objects;
 
-import com.mrKhoai.webshop.controller.WebshopConst;
+import com.mrKhoai.webshop.tools.WebshopConst;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.hibernate.HibernateException;

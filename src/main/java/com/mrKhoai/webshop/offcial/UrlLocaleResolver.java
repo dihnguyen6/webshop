@@ -1,6 +1,6 @@
 package com.mrKhoai.webshop.offcial;
 
-import com.mrKhoai.webshop.controller.WebshopConst;
+import com.mrKhoai.webshop.tools.WebshopConst;
 import org.springframework.web.servlet.LocaleResolver;
 
 import javax.servlet.http.HttpServletRequest;

@@ -10,8 +10,10 @@ import java.util.Set;
 @Table(name = "CATALOG")
 public class Catalog {
     @Id
-    @GenericGenerator(name = "catalog_generator", strategy = "com.mrKhoai.webshop.objects.CatalogIdGenerator")
     @GeneratedValue(generator = "catalog_generator")
+    @GenericGenerator(name = "catalog_generator",
+            parameters = @org.hibernate.annotations.Parameter(name = "infix", value = "CATALOG"),
+            strategy = "com.mrKhoai.webshop.tools.ID_PrefixIdentifier")
     @Column(name = "CATALOG_ID", nullable = false, unique = true, length = 32)
     private String catalogId;
 
@@ -26,6 +28,14 @@ public class Catalog {
             joinColumns = @JoinColumn(name = "CATALOG_ID"),
             inverseJoinColumns = @JoinColumn(name = "PRODUCT_TYPE_ID"))
     private Set<ProductType> productTypes = new HashSet<>();
+
+    public Catalog(String catalogNameEN, String catalogNameDE) {
+        this.catalogNameEN = catalogNameEN;
+        this.catalogNameDE = catalogNameDE;
+    }
+
+    public Catalog() {
+    }
 
     public String getCatalogId() {
         return catalogId;

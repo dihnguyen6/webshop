@@ -1,6 +1,8 @@
-package com.mrKhoai.webshop.controller;
+package com.mrKhoai.webshop.tools;
 
 public final class WebshopConst {
+    public static final String ID_PREFIX = "ROOMS.DE";
+
     public static final String USER_NOT_FOUND = "Username not found";
     public static final String CUSTOMER = "CUSTOMER";
     public static final String ROLE_CUSTOMER = "ROLE_CUSTOMER";

@@ -1,6 +1,6 @@
 package com.mrKhoai.webshop.controller.web;
 
-import com.mrKhoai.webshop.controller.WebshopConst;
+import com.mrKhoai.webshop.tools.WebshopConst;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
@@ -57,6 +57,11 @@ public class AdminController {
     @RequestMapping("/admin/product")
     public String product(Model model) {
         return "admin/product";
+    }
+
+    @RequestMapping("/admin/catalog")
+    public String catalog(Model model) {
+        return "admin/catalog";
     }
 
     @RequestMapping("/admin/demo")

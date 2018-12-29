@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="de"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Admin</title>
+    <th:block th:include="fragments/headerfiles-admin.html :: headerfiles-admin"></th:block>
+</head>
+<body class="fix-header fix-sidebar">
+<!-- Preloader - style you can find in spinners.css -->
+<div class="preloader">
+    <svg class="circular" viewBox="25 25 50 50">
+        <circle class="path" cx="50" cy="50" fill="none" r="20" stroke-miterlimit="10" stroke-width="2"/>
+    </svg>
+</div>
+
+<div id="main-wrapper">
+
+    <!-- header header  -->
+    <div th:replace="fragments/navbar-admin.html :: navbar-admin"></div>
+    <!-- End header header -->
+    <!-- Left Sidebar  -->
+    <div th:replace="fragments/sidebar-admin.html :: sidebar-admin"></div>
+    <!-- End Left Sidebar  -->
+
+    <div class="page-wrapper">
+        <!-- Bread crumb -->
+        <div class="row page-titles">
+            <div class="col-md-5 align-self-center">
+                <h3 class="text-primary">Catalog</h3></div>
+            <div class="col-md-7 align-self-center">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="javascript:void(0)">DashBoard</a></li>
+                    <li class="breadcrumb-item active">Design</li>
+                    <li class="breadcrumb-item active">Catalog</li>
+                </ol>
+            </div>
+        </div>
+        <!-- End Bread crumb -->
+        <!-- Container fluid  -->
+        <div class="container-fluid">
+            <!-- Start Page Content -->
+            <!-- /# row -->
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="card">
+                        <div class="card-title">
+                            <h4>New Catalog</h4>
+
+                        </div>
+                        <div class="card-body">
+                            <div class="basic-elements">
+                                <form>
+                                    <div class="row">
+
+                                            <div class="col-lg-6">
+                                                <div class="form-group">
+                                                    <label>Beschreibung DE</label>
+                                                    <input class="form-control" type="text" <!--th:field="*{nameDE}"-->>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Beschreibung EN</label>
+                                                    <input class="form-control" type="text" <!--th:field="*{nameEN}"-->>
+                                                </div>
+
+                                                <button class="btn btn-default" type="submit" <!--th:action="@{/addCatalog}" th:object="${catalog}" th:method="post"-->>Submit</button>
+                                            </div>
+
+
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /# column -->
+
+            </div>
+
+
+            <!-- End PAge Content -->
+        </div>
+        <!-- End Container fluid  -->
+
+    </div>
+    <footer th:replace="fragments/footer-admin.html :: footer-admin"></footer>
+</div>
+</body>
+</html>

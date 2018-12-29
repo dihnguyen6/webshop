@@ -1,6 +1,6 @@
 package com.mrKhoai.webshop.offcial;
 
-import com.mrKhoai.webshop.controller.WebshopConst;
+import com.mrKhoai.webshop.tools.WebshopConst;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.Authentication;

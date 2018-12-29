@@ -1,6 +1,6 @@
 package com.mrKhoai.webshop.offcial;
 
-import com.mrKhoai.webshop.controller.WebshopConst;
+import com.mrKhoai.webshop.tools.WebshopConst;
 import com.mrKhoai.webshop.controller.customer.CustomerService;
 import com.mrKhoai.webshop.controller.role.RoleService;
 import com.mrKhoai.webshop.controller.staff.StaffService;

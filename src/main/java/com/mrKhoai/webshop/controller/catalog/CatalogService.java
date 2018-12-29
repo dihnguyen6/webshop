@@ -3,11 +3,17 @@ package com.mrKhoai.webshop.controller.catalog;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.mrKhoai.webshop.controller.ObjectService;
 import com.mrKhoai.webshop.objects.Catalog;
+import com.mrKhoai.webshop.repositories.CatalogRepository;
 import org.json.JSONArray;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class CatalogService implements ObjectService<Catalog> {
+
+    @Autowired
+    private CatalogRepository catalog;
+
     @Override
     public void save(Catalog catalog) {
 
