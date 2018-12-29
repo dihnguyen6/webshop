@@ -50,20 +50,20 @@
                         </div>
                         <div class="card-body">
                             <div class="basic-elements">
-                                <form action="/admin/add_catalog" method="post">
+                                <form>
                                     <div class="row">
 
                                             <div class="col-lg-6">
                                                 <div class="form-group">
                                                     <label>Beschreibung DE</label>
-                                                    <input name="catalogNameDE" class="form-control" type="text" >
+                                                    <input id="catalogNameDE" class="form-control" type="text" >
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Beschreibung EN</label>
-                                                    <input name="catalogNameEN" class="form-control" type="text" >
+                                                    <input id="catalogNameEN" class="form-control" type="text" >
                                                 </div>
 
-                                                <button class="btn btn-default" type="submit" <!--th:action="@{/addCatalog}" th:object="${catalog}" th:method="post"-->>Submit</button>
+                                                <button class="btn btn-default" onclick="add_catalog();">Submit</button>
                                             </div>
 
 

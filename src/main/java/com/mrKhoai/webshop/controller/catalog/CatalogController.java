@@ -8,8 +8,7 @@ import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
@@ -21,12 +20,12 @@ public class CatalogController {
     @Autowired
     private CatalogService catalogService;
 
-    @PostMapping("/admin/add_catalog")
-    public Object addCatalogForm(HttpServletRequest request) {
+    @RequestMapping(path = "/admin/add_catalog", method = RequestMethod.POST)
+    public Object addCatalogForm(@RequestBody String request) {
+        LOGGER.debug(request);
         try {
-            JSONObject jsonObject = new JSONObject(request);
             ObjectMapper mapper = new ObjectMapper();
-            Catalog catalog = mapper.readValue(request.toString(), Catalog.class);
+            Catalog catalog = mapper.readValue(request, Catalog.class);
             catalogService.save(catalog);
         } catch (IOException e) {
             e.printStackTrace();

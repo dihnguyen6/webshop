@@ -121,3 +121,26 @@ $(function () {
             $(this).closest(".card").removeClass().slideUp("fast");
         });
 });
+
+function add_catalog() {
+    var returnObject = {};
+    returnObject["catalogNameDE"] = document.getElementById("catalogNameDE").value;
+    returnObject["catalogNameEN"] = document.getElementById("catalogNameEN").value;
+    console.log(returnObject);
+    $.ajax(
+        {
+            async: false,
+            url: "/admin/add_catalog",
+            type: "POST",
+            data: JSON.stringify(returnObject),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (data, status, xhr) {
+                console.log("success");
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                console.log(errorThrown);
+            }
+        }
+    )
+}
