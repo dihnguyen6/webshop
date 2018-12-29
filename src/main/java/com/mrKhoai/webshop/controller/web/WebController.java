@@ -175,6 +175,15 @@ public class WebController {
         return "anonymous/edit-carousel";
     }
 
+    @RequestMapping("/admin/product")
+    public String product(Model model) {
+        return "admin/product";
+    }
+
+    @RequestMapping("/admin/demo")
+    public String demo(Model model) {
+        return "admin/demo";
+    }
     /**
      * Get pramater "lang" from cookie in request header
      *

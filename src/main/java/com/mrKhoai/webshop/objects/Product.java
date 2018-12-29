@@ -43,8 +43,8 @@ public class Product {
     @ManyToMany(mappedBy = "products")
     private Set<Basket> baskets = new HashSet<>();
 
-    /*@OneToMany(mappedBy = "foto", fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
-    private Set<Foto> fotos = new HashSet<>();*/
+    @OneToMany(mappedBy = "product", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Set<Foto> fotos = new HashSet<>();
 
     public String getProductId() {
         return productId;
@@ -108,6 +108,14 @@ public class Product {
 
     public void setBaskets(Set<Basket> baskets) {
         this.baskets = baskets;
+    }
+
+    public Set<Foto> getFotos() {
+        return fotos;
+    }
+
+    public void setFotos(Set<Foto> fotos) {
+        this.fotos = fotos;
     }
 
     @Override
