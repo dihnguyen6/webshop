@@ -1,19 +1,27 @@
 package com.mrKhoai.webshop.objects;
 
+import com.mrKhoai.webshop.tools.RoomsIdGenerator;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
 @Table(name = "CATALOG")
-public class Catalog {
+public class Catalog implements Identifiable{
     @Id
-    @GeneratedValue(generator = "catalog_generator")
-    @GenericGenerator(name = "catalog_generator",
-            parameters = @org.hibernate.annotations.Parameter(name = "infix", value = "CATALOG"),
-            strategy = "com.mrKhoai.webshop.tools.ID_PrefixIdentifier")
+    @GeneratedValue(generator = "catalog_generator", strategy = GenerationType.SEQUENCE)
+    @GenericGenerator(
+            name = "catalog_generator",
+            strategy = "com.mrKhoai.webshop.tools.RoomsIdGenerator",
+            parameters = {
+                    @org.hibernate.annotations.Parameter(name = RoomsIdGenerator.INFIX_PARAMETER, value = "CATALOG"),
+                    @org.hibernate.annotations.Parameter(name = RoomsIdGenerator.INCREMENT_PARAM, value = "1"),
+                    @org.hibernate.annotations.Parameter(name = RoomsIdGenerator.NUMBER_FORMAT_PARAMETER, value = "%02d")
+            }
+    )
     @Column(name = "CATALOG_ID", nullable = false, unique = true, length = 32)
     private String catalogId;
 
@@ -76,5 +84,10 @@ public class Catalog {
                 "nameEN : " + catalogNameEN + ", " +
                 "nameDE : " + catalogNameDE +
                 "}";
+    }
+
+    @Override
+    public Serializable getId() {
+        return catalogId;
     }
 }

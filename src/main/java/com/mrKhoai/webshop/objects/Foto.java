@@ -15,7 +15,6 @@ public class Foto {
     private Blob fotos;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    //@JoinTable(name = "product")
     @JoinColumn(name = "product_id", nullable = false)
     private Product product;
 
