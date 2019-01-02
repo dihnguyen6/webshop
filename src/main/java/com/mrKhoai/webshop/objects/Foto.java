@@ -1,8 +1,7 @@
 package com.mrKhoai.webshop.objects;
 
 
-
-import com.mrKhoai.webshop.tools.RoomsIdGenerator;
+import com.mrKhoai.webshop.tools.IdGenerator;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -11,16 +10,16 @@ import java.sql.Blob;
 
 @Entity
 @Table(name = "FOTO")
-public class Foto implements Identifiable{
+public class Foto implements Identifiable {
     @Id
     @GeneratedValue(generator = "foto_generator", strategy = GenerationType.SEQUENCE)
     @GenericGenerator(
             name = "foto_generator",
-            strategy = "com.mrKhoai.webshop.tools.RoomsIdGenerator",
+            strategy = "com.mrKhoai.webshop.tools.IdGenerator",
             parameters = {
-                    @org.hibernate.annotations.Parameter(name = RoomsIdGenerator.INFIX_PARAMETER, value = "FOTO"),
-                    @org.hibernate.annotations.Parameter(name = RoomsIdGenerator.INCREMENT_PARAM, value = "1"),
-                    @org.hibernate.annotations.Parameter(name = RoomsIdGenerator.NUMBER_FORMAT_PARAMETER, value = "%08d")
+                    @org.hibernate.annotations.Parameter(name = IdGenerator.INFIX_PARAMETER, value = "FOTO"),
+                    @org.hibernate.annotations.Parameter(name = IdGenerator.INCREMENT_PARAM, value = "1"),
+                    @org.hibernate.annotations.Parameter(name = IdGenerator.NUMBER_FORMAT_PARAMETER, value = "%08d")
             }
     )
     @Column(name = "FOTO_ID", nullable = false, unique = true, length = 30)
@@ -35,11 +34,17 @@ public class Foto implements Identifiable{
     private Product product;
 
 
-
     public void setFotoId(String fotoId) {
         this.fotoId = fotoId;
     }
 
+    public Blob getFotos() {
+        return fotos;
+    }
+
+    public void setFotos(Blob fotos) {
+        this.fotos = fotos;
+    }
 
     public Product getProduct() {
         return product;

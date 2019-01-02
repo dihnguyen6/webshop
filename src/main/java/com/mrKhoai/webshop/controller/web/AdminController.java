@@ -68,4 +68,10 @@ public class AdminController {
     public String demo(Model model) {
         return "admin/demo";
     }
+
+    @RequestMapping("/admin/test")
+    public String test(Model model) {
+        return "admin/test";
+    }
+
 }

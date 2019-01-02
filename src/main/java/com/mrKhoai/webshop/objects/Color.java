@@ -31,6 +31,13 @@ public class Color {
         this.products = products;
     }
 
+    public Color() {
+    }
+
+    public Color(String colorName) {
+        this.colorName = colorName;
+    }
+
     @Override
     public String toString() {
         return "Color{" +

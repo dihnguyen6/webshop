@@ -8,6 +8,7 @@ import com.mrKhoai.webshop.controller.staff.StaffService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -38,6 +39,9 @@ public class WebController {
     @Autowired
     RoleService roleService;
 
+    @Value("${werbung.msg:test}")
+    private String message = "Werbung";
+
     @GetMapping("/login")
     public String login() {
         return "login";
@@ -52,6 +56,7 @@ public class WebController {
     public String home(Model model, /*@RequestParam(name = "lang", required = true) String lang,*/
                        @PathVariable String lang, HttpServletResponse response) throws IOException {
         setLang(lang, response);
+        model.addAttribute("msg", this.message);
         String[] carousel = new String[3];
         File actdir = new File(System.getProperty("user.home"), "/carousel");
 

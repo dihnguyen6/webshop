@@ -16,8 +16,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Properties;
 
-public class RoomsIdGenerator extends SequenceStyleGenerator {
-    private static final Logger LOGGER = LogManager.getLogger(RoomsIdGenerator.class);
+public class IdGenerator extends SequenceStyleGenerator {
+    private static final Logger LOGGER = LogManager.getLogger(IdGenerator.class);
 
     public static final String INFIX_PARAMETER = "INFIXXX";
     public static final String INFIX_DEFAULT = "-";
@@ -35,7 +35,7 @@ public class RoomsIdGenerator extends SequenceStyleGenerator {
                 + "-" + simpleDateFormat.format(new Date())
                 + "-" + infix
                 + "-" + String.format(numberFormat, super.generate(session, obj));
-        LOGGER.info("ID: {} successful created.", result);
+        LOGGER.info("ID: [{}] successful created.", result);
         return result;
     }
 

@@ -1,12 +1,25 @@
 package com.mrKhoai.webshop.objects;
 
+import com.mrKhoai.webshop.tools.IdGenerator;
+import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "PAYMENT")
-public class Payment {
+public class Payment implements Identifiable{
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(generator = "payment_generator", strategy = GenerationType.SEQUENCE)
+    @GenericGenerator(
+            name = "payment_generator",
+            strategy = "com.mrKhoai.webshop.tools.IdGenerator",
+            parameters = {
+                    @org.hibernate.annotations.Parameter(name = IdGenerator.INFIX_PARAMETER, value = "PAYMENT"),
+                    @org.hibernate.annotations.Parameter(name = IdGenerator.INCREMENT_PARAM, value = "1"),
+                    @org.hibernate.annotations.Parameter(name = IdGenerator.NUMBER_FORMAT_PARAMETER, value = "%02d")
+            }
+    )
     @Column(name = "PAYMENT_ID", nullable = false, unique = true)
     private int paymentId;
 
@@ -58,5 +71,10 @@ public class Payment {
                 "paymentArt : " + paymentArt + ", " +
                 "paymentPrice : " + paymentPrice +
                 "}";
+    }
+
+    @Override
+    public Serializable getId() {
+        return paymentId;
     }
 }

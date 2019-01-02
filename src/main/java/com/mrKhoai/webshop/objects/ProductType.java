@@ -1,6 +1,7 @@
 package com.mrKhoai.webshop.objects;
 
 
+import com.mrKhoai.webshop.tools.IdGenerator;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -12,9 +13,17 @@ import java.util.Set;
 public class ProductType {
 
     @Id
-    @GenericGenerator(name = "product_type_generator", strategy = "com.mrKhoai.webshop.objects.ProductTypeIdGenerator")
-    @GeneratedValue(generator = "product_type_generator")
-    @Column(name = "PRODUCT_TYPE_ID", nullable = false, unique = true, length = 32)
+    @GeneratedValue(generator = "productType_generator", strategy = GenerationType.SEQUENCE)
+    @GenericGenerator(
+            name = "productType_generator",
+            strategy = "com.mrKhoai.webshop.tools.IdGenerator",
+            parameters = {
+                    @org.hibernate.annotations.Parameter(name = IdGenerator.INFIX_PARAMETER, value = "PRODTYPE"),
+                    @org.hibernate.annotations.Parameter(name = IdGenerator.INCREMENT_PARAM, value = "1"),
+                    @org.hibernate.annotations.Parameter(name = IdGenerator.NUMBER_FORMAT_PARAMETER, value = "%02d")
+            }
+    )
+    @Column(name = "PRODUCT_TYPE_ID", nullable = false, unique = true, length = 30)
     private String productTypeId;
 
     @Column(name = "PRODUCT_TYPE_NAME_EN", nullable = false)

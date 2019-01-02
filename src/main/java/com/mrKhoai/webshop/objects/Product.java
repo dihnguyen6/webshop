@@ -1,19 +1,29 @@
 package com.mrKhoai.webshop.objects;
 
 
+import com.mrKhoai.webshop.tools.IdGenerator;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
 @Table(name = "PRODUCT")
-public class Product {
+public class Product implements Identifiable{
     @Id
-    @GenericGenerator(name = "product_generator", strategy = "com.mrKhoai.webshop.objects.ProductIdGenerator")
-    @GeneratedValue(generator = "product_generator")
-    @Column(name = "PRODUCT_ID", nullable = false, unique = true, length = 64)
+    @GeneratedValue(generator = "product_generator", strategy = GenerationType.SEQUENCE)
+    @GenericGenerator(
+            name = "product_generator",
+            strategy = "com.mrKhoai.webshop.tools.IdGenerator",
+            parameters = {
+                    @org.hibernate.annotations.Parameter(name = IdGenerator.INFIX_PARAMETER, value = "PRODUCT"),
+                    @org.hibernate.annotations.Parameter(name = IdGenerator.INCREMENT_PARAM, value = "1"),
+                    @org.hibernate.annotations.Parameter(name = IdGenerator.NUMBER_FORMAT_PARAMETER, value = "%06d")
+            }
+    )
+    @Column(name = "PRODUCT_ID", nullable = false, unique = true, length = 30)
     private String productId;
 
     @Column(name = "PRODUCT_NAME_EN", nullable = false)
@@ -127,5 +137,10 @@ public class Product {
                 "descriptionEN : " + productDescriptionEN + ", " +
                 "descriptionDE : " + productDescriptionDE +
                 "}";
+    }
+
+    @Override
+    public Serializable getId() {
+        return productId;
     }
 }

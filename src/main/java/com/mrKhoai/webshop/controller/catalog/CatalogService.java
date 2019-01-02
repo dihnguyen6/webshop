@@ -21,7 +21,7 @@ public class CatalogService implements ObjectService<Catalog> {
 
     @Override
     public void delete(Catalog catalog) {
-
+        catalogRepository.delete(catalog);
     }
 
     @Override

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.io.IOException;
+import java.util.Map;
 
 @Controller
 public class CatalogController {
@@ -20,15 +21,17 @@ public class CatalogController {
     private CatalogService catalogService;
 
     @RequestMapping(path = "/admin/add_catalog", method = RequestMethod.POST)
-    public Object addCatalogForm(@RequestBody String request) {
+    public Object addCatalogForm(Map<String, Object> model, @RequestBody String request) {
         LOGGER.debug(request);
         try {
+
             ObjectMapper mapper = new ObjectMapper();
             Catalog catalog = mapper.readValue(request, Catalog.class);
             catalogService.save(catalog);
+            model.put("messages", catalog.toString());
         } catch (IOException e) {
             LOGGER.debug(e);
         }
-        return "/admin/add_catalog?id=";
+        return "/admin/catalog";
     }
 }

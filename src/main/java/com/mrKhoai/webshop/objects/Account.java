@@ -1,18 +1,28 @@
 package com.mrKhoai.webshop.objects;
 
+import com.mrKhoai.webshop.tools.IdGenerator;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
 @Table(name = "ACCOUNT")
-public class Account {
+public class Account implements Identifiable {
     @Id
-    @GenericGenerator(name = "account_generator", strategy = "com.mrKhoai.webshop.objects.AccountIdGenerator")
-    @GeneratedValue(generator = "account_generator")
-    @Column(name = "ACCOUNT_ID", length = 20, nullable = false, unique = true)
+    @GeneratedValue(generator = "account_generator", strategy = GenerationType.SEQUENCE)
+    @GenericGenerator(
+            name = "account_generator",
+            strategy = "com.mrKhoai.webshop.tools.IdGenerator",
+            parameters = {
+                    @org.hibernate.annotations.Parameter(name = IdGenerator.INFIX_PARAMETER, value = "ACCOUNT"),
+                    @org.hibernate.annotations.Parameter(name = IdGenerator.INCREMENT_PARAM, value = "1"),
+                    @org.hibernate.annotations.Parameter(name = IdGenerator.NUMBER_FORMAT_PARAMETER, value = "%04d")
+            }
+    )
+    @Column(name = "ACCOUNT_ID", length = 30, nullable = false, unique = true)
     private String accountId;
 
     @Column(name = "USERNAME", nullable = false)
@@ -74,5 +84,10 @@ public class Account {
                 "username : " + username +
                 "password : " + password +
                 "}";
+    }
+
+    @Override
+    public Serializable getId() {
+        return accountId;
     }
 }

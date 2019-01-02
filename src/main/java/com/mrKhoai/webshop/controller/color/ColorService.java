@@ -1,36 +1,35 @@
-package com.mrKhoai.webshop.controller.foto;
-
+package com.mrKhoai.webshop.controller.color;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.mrKhoai.webshop.controller.ObjectService;
-import com.mrKhoai.webshop.objects.Foto;
-import com.mrKhoai.webshop.repositories.FotoRepository;
+import com.mrKhoai.webshop.objects.Color;
+import com.mrKhoai.webshop.repositories.ColorRepository;
 import org.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class FotoService implements ObjectService<Foto> {
+public class ColorService implements ObjectService<Color> {
     @Autowired
-    FotoRepository fotoRepository;
+    private ColorRepository colorRepository;
 
     @Override
-    public void save(Foto foto) {
-        fotoRepository.save(foto);
+    public void save(Color color) {
+        colorRepository.save(color);
     }
 
     @Override
-    public void delete(Foto foto) {
-        fotoRepository.delete(foto);
+    public void delete(Color color) {
+        colorRepository.delete(color);
     }
 
     @Override
-    public Foto findById(String id) {
+    public Color findById(String id) {
         return null;
     }
 
     @Override
-    public Foto findById(int id) {
+    public Color findById(int id) {
         return null;
     }
 

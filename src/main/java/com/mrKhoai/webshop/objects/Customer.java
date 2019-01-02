@@ -1,14 +1,27 @@
 package com.mrKhoai.webshop.objects;
 
+import com.mrKhoai.webshop.tools.IdGenerator;
+import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
 @Table(name = "CUSTOMER")
-public class Customer {
+public class Customer implements Identifiable{
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(generator = "customer_generator", strategy = GenerationType.SEQUENCE)
+    @GenericGenerator(
+            name = "customer_generator",
+            strategy = "com.mrKhoai.webshop.tools.IdGenerator",
+            parameters = {
+                    @org.hibernate.annotations.Parameter(name = IdGenerator.INFIX_PARAMETER, value = "CUSTOMER"),
+                    @org.hibernate.annotations.Parameter(name = IdGenerator.INCREMENT_PARAM, value = "1"),
+                    @org.hibernate.annotations.Parameter(name = IdGenerator.NUMBER_FORMAT_PARAMETER, value = "%06d")
+            }
+    )
     @Column(name = "CUSTOMER_ID", nullable = false, unique = true)
     private int customerId;
 
@@ -36,6 +49,8 @@ public class Customer {
     @OneToOne
     @JoinColumn(name = "ACCOUNT_ID")
     private Account account;
+
+
 
     public int getCustomerId() {
         return customerId;
@@ -109,6 +124,7 @@ public class Customer {
         this.account = account;
     }
 
+
     @Override
     public String toString() {
         return "Customer{" +
@@ -120,5 +136,10 @@ public class Customer {
                 "postcode : " + customerPostcode + ", " +
                 "country : " + customerCountry +
                 "}";
+    }
+
+    @Override
+    public Serializable getId() {
+        return customerId;
     }
 }

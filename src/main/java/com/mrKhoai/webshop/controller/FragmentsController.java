@@ -1,10 +1,15 @@
 package com.mrKhoai.webshop.controller;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class FragmentsController {
+
+    @Value("${werbung.msg:test}")
+    private String message = "Werbung";
 
     @GetMapping("/footer")
     public String getFooter() {
@@ -17,7 +22,8 @@ public class FragmentsController {
     }
 
     @GetMapping("/navbar")
-    public String getNavbar() {
+    public String getNavbar(Model model) {
+        model.addAttribute("msg", this.message);
         return "fragments/navbar";
     }
 

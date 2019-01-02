@@ -1,6 +1,6 @@
 package com.mrKhoai.webshop.objects;
 
-import com.mrKhoai.webshop.tools.RoomsIdGenerator;
+import com.mrKhoai.webshop.tools.IdGenerator;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -15,11 +15,11 @@ public class Catalog implements Identifiable{
     @GeneratedValue(generator = "catalog_generator", strategy = GenerationType.SEQUENCE)
     @GenericGenerator(
             name = "catalog_generator",
-            strategy = "com.mrKhoai.webshop.tools.RoomsIdGenerator",
+            strategy = "com.mrKhoai.webshop.tools.IdGenerator",
             parameters = {
-                    @org.hibernate.annotations.Parameter(name = RoomsIdGenerator.INFIX_PARAMETER, value = "CATALOG"),
-                    @org.hibernate.annotations.Parameter(name = RoomsIdGenerator.INCREMENT_PARAM, value = "1"),
-                    @org.hibernate.annotations.Parameter(name = RoomsIdGenerator.NUMBER_FORMAT_PARAMETER, value = "%02d")
+                    @org.hibernate.annotations.Parameter(name = IdGenerator.INFIX_PARAMETER, value = "CATALOG"),
+                    @org.hibernate.annotations.Parameter(name = IdGenerator.INCREMENT_PARAM, value = "1"),
+                    @org.hibernate.annotations.Parameter(name = IdGenerator.NUMBER_FORMAT_PARAMETER, value = "%02d")
             }
     )
     @Column(name = "CATALOG_ID", nullable = false, unique = true)

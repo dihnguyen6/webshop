@@ -27,12 +27,12 @@
         <!-- Bread crumb -->
         <div class="row page-titles">
             <div class="col-md-5 align-self-center">
-                <h3 class="text-primary">Catalog</h3></div>
+                <h3 class="text-primary">Test</h3></div>
             <div class="col-md-7 align-self-center">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="javascript:void(0)">DashBoard</a></li>
-                    <li class="breadcrumb-item active">Design</li>
-                    <li class="breadcrumb-item active">Catalog</li>
+                    <li class="breadcrumb-item active">Test</li>
+
                 </ol>
             </div>
         </div>
@@ -42,34 +42,19 @@
             <!-- Start Page Content -->
             <!-- /# row -->
             <div class="row">
-                <div class="col-lg-6">
+                <div class="col-lg-12">
                     <div class="card">
                         <div class="card-title">
-                            <h4>New Catalog</h4>
+                            <h4>Test</h4>
 
                         </div>
                         <div class="card-body">
                             <div class="basic-elements">
                                 <form>
                                     <div class="row">
-
-                                            <div class="col-lg-6">
-                                                <div class="form-group">
-                                                    <label>Beschreibung DE</label>
-                                                    <input id="catalogNameDE" class="form-control" type="text" >
-                                                </div>
-                                                <div class="form-group">
-                                                    <label>Beschreibung EN</label>
-                                                    <input id="catalogNameEN" class="form-control" type="text" >
-                                                </div>
-                                                <div class="text text-success">
-
-                                                    <span th:text="'LOG: ' + ${messages}"></span>
-                                                </div>
-                                                <button class="btn btn-dark pull-right" onclick="add_catalog();">Submit</button>
-                                            </div>
-
-
+                                        <div class="col-lg-6">
+                                            <button class="btn btn-dark pull-right" onclick="test();">Create</button>
+                                        </div>
                                     </div>
                                 </form>
                             </div>
@@ -78,15 +63,33 @@
                 </div>
                 <!-- /# column -->
 
+
             </div>
+            <!-- /# row -->
 
 
             <!-- End PAge Content -->
         </div>
         <!-- End Container fluid  -->
-
     </div>
     <footer th:replace="fragments/footer-admin.html :: footer-admin"></footer>
 </div>
+<script>
+    function test() {
+        $.ajax(
+            {
+                async: false,
+                url: "/admin/test",
+                type: "POST",
+                success: function (data, status, xhr) {
+                    console.log("success");
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    console.log(errorThrown);
+                }
+            }
+        )
+    }
+</script>
 </body>
 </html>
