@@ -20,7 +20,7 @@ public class Payment implements Identifiable{
                     @org.hibernate.annotations.Parameter(name = IdGenerator.NUMBER_FORMAT_PARAMETER, value = "%02d")
             }
     )
-    @Column(name = "PAYMENT_ID", nullable = false, unique = true)
+    @Column(name = "PAYMENT_ID", nullable = false, unique = true, length = 30)
     private int paymentId;
 
     @Column(name = "PAYMENT_ART")

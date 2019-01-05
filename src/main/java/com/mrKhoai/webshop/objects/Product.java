@@ -23,7 +23,7 @@ public class Product implements Identifiable{
                     @org.hibernate.annotations.Parameter(name = IdGenerator.NUMBER_FORMAT_PARAMETER, value = "%06d")
             }
     )
-    @Column(name = "PRODUCT_ID", nullable = false, unique = true, length = 30)
+    @Column(name = "PRODUCT_ID", nullable = false, unique = true, length = 50)
     private String productId;
 
     @Column(name = "PRODUCT_NAME_EN", nullable = false)

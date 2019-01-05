@@ -22,7 +22,7 @@ public class Catalog implements Identifiable{
                     @org.hibernate.annotations.Parameter(name = IdGenerator.NUMBER_FORMAT_PARAMETER, value = "%02d")
             }
     )
-    @Column(name = "CATALOG_ID", nullable = false, unique = true)
+    @Column(name = "CATALOG_ID", nullable = false, unique = true, length = 30)
     private String catalogId;
 
     @Column(name = "CATALOG_NAME_EN", nullable = false)

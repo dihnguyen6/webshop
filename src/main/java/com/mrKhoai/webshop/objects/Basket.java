@@ -10,7 +10,7 @@ import java.util.Set;
 public class Basket {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "BASKET_ID", nullable = false, unique = true)
+    @Column(name = "BASKET_ID", nullable = false, unique = true, length = 30)
     private int basketId;
 
     @Column(name = "BASKET_DATE", nullable = false)

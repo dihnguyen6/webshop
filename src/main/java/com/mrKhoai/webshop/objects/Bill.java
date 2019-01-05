@@ -20,7 +20,7 @@ public class Bill implements Identifiable{
                     @org.hibernate.annotations.Parameter(name = IdGenerator.NUMBER_FORMAT_PARAMETER, value = "%06d")
             }
     )
-    @Column(name = "BILL_ID", nullable = false, unique = true)
+    @Column(name = "BILL_ID", nullable = false, unique = true, length = 30)
     private int billId;
 
     @Column(name = "TRACKING_NUMBER")

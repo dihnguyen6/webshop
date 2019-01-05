@@ -7,7 +7,7 @@ import javax.persistence.*;
 public class Delivery {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "DELIVERY_ID", nullable = false, unique = true)
+    @Column(name = "DELIVERY_ID", nullable = false, unique = true, length = 30)
     private int deliveryId;
 
     @Column(name = "DELIVERY_NAME", nullable = false)

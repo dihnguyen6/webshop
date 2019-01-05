@@ -7,7 +7,7 @@ import javax.persistence.*;
 public class CV {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "CV_ID", nullable = false, unique = true)
+    @Column(name = "CV_ID", nullable = false, unique = true, length = 30)
     private int cvId;
 
     @Column(name = "CV_NAME", nullable = false)

@@ -30,7 +30,7 @@ public class Foto implements Identifiable {
     private Blob fotos;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinTable(name = "product")
+    @JoinColumn(name = "PRODUCT_ID")
     private Product product;
 
 

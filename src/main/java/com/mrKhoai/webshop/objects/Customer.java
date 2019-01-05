@@ -22,7 +22,7 @@ public class Customer implements Identifiable{
                     @org.hibernate.annotations.Parameter(name = IdGenerator.NUMBER_FORMAT_PARAMETER, value = "%06d")
             }
     )
-    @Column(name = "CUSTOMER_ID", nullable = false, unique = true)
+    @Column(name = "CUSTOMER_ID", nullable = false, unique = true, length = 30)
     private int customerId;
 
     @Column(name = "CUSTOMER_NAME", nullable = false)
