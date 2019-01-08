@@ -61,7 +61,7 @@ public class AdminController {
         return "anonymous/edit-carousel";
     }
 
-    @RequestMapping("/admin/product")
+    @GetMapping("/admin/product")
     public String product(Model model) throws JsonProcessingException {
         model.addAttribute("productList", productService.getAll().toString());
         return "admin/product";
