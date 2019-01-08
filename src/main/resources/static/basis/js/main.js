@@ -1,3 +1,4 @@
+
 $(document).ready(function () {
     console.log(getCookie("locale"));
     $('#locales').val(getCookie("locale")).change();

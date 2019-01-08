@@ -2,7 +2,26 @@
 <html lang="de"
       xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
-<head></head>
+<head>
+    <script type="javascript">
+        $('.dropdown-menu a.dropdown-toggle').on('click', function(e) {
+            if (!$(this).next().hasClass('show')) {
+                $(this).parents('.dropdown-menu').first().find('.show').removeClass("show");
+            }
+            var $subMenu = $(this).next(".dropdown-menu");
+            $subMenu.toggleClass('show');
+
+
+            $(this).parents('li.nav-item.dropdown.show').on('hidden.bs.dropdown', function(e) {
+                $('.dropdown-submenu .show').removeClass("show");
+            });
+
+
+            return false;
+        });
+
+    </script>
+</head>
 <body>
 <!-- Header -->
 <header class="header1" th:fragment="header">
@@ -47,14 +66,14 @@
                             <a th:href="@{'/home'}">Home</a>
                         </li>
 
-                        <li>
-                            <a th:href="@{'../product?id=Uo8nTDBKW61uUUfZwmd09Q=='}" th:utext="#{catalog.sofa}"></a>
-                            <ul class="sub_menu">
-                                <li><a th:href="@{'../product?id=FCi42BuLMenXuxJtLd5Ukw=='}"
+                        <li class="dropdown nav-link">
+                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" id="navbarDropdownMenuLink" aria-haspopup="true" aria-expanded="false" th:href="@{'../product?id=Uo8nTDBKW61uUUfZwmd09Q=='}" th:utext="#{catalog.sofa}"></a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <li class="dropdown-item"><a th:href="@{'../product?id=FCi42BuLMenXuxJtLd5Ukw=='}"
                                        th:utext="#{productType.twoSeaterSofas}"></a></li>
-                                <li><a th:href="@{'../product?id=OBh8SKr/HOoVPm7W13jxdA=='}"
+                                <li class="dropdown-item"><a th:href="@{'../product?id=OBh8SKr/HOoVPm7W13jxdA=='}"
                                        th:utext="#{productType.threeSeaterSofas}"></a></li>
-                                <li><a th:href="@{'../product?id=heofmButy5q+YxP/CcJOrA=='}"
+                                <li class="dropdown-item"><a th:href="@{'../product?id=heofmButy5q+YxP/CcJOrA=='}"
                                        th:utext="#{productType.cornerCouch}"></a></li>
                             </ul>
                         </li>
@@ -298,6 +317,73 @@
     <div class="wrap-side-menu">
         <nav class="side-menu">
             <ul class="main-menu">
+                <li class="item-topbar-mobile p-l-20 p-t-8 p-b-8">
+                    <div class="topbar-child2-mobile">
+                        <a th:href="@{'/home'}">Home</a>
+                    </div>
+                </li>
+
+                <li class="item-topbar-mobile p-l-20 p-t-8 p-b-8">
+                    <div class="topbar-child2-mobile">
+                        <a th:href="@{'../product?id=Uo8nTDBKW61uUUfZwmd09Q=='}" th:utext="#{catalog.sofa}"></a>
+                        <ul class="sub_menu">
+                            <li><a th:href="@{'../product?id=FCi42BuLMenXuxJtLd5Ukw=='}"
+                                   th:utext="#{productType.twoSeaterSofas}"></a></li>
+                            <li><a th:href="@{'../product?id=OBh8SKr/HOoVPm7W13jxdA=='}"
+                                   th:utext="#{productType.threeSeaterSofas}"></a></li>
+                            <li><a th:href="@{'../product?id=heofmButy5q+YxP/CcJOrA=='}"
+                                   th:utext="#{productType.cornerCouch}"></a></li>
+                        </ul>
+                    </div>
+                </li>
+
+                <li class="item-topbar-mobile p-l-20 p-t-8 p-b-8">
+                    <div class="topbar-child2-mobile">
+                        <a th:href="@{'../product?id=EVL3NuVWzb+J7aXOECvh7w=='}" th:utext="#{catalog.armchair}"></a>
+                        <ul class="sub_menu">
+                            <li><a th:href="@{'../product?id=hJJvWziatqy/ihtUtoBlxQ=='}"
+                                   th:utext="#{productType.stool}"></a></li>
+                            <li><a th:href="@{'../product?id=DTacNYdybFdzyTi2pT57mw=='}"
+                                   th:utext="#{productType.bench}"></a></li>
+                        </ul>
+                    </div>
+
+                </li>
+
+                <li class="item-topbar-mobile p-l-20 p-t-8 p-b-8">
+                    <div class="topbar-child2-mobile">
+                        <a th:href="@{'../product?id=0ZxlvCbsAlZT2VWG2ywx3g=='}" th:utext="#{catalog.bed}"></a>
+                    </div>
+
+                </li>
+
+                <li class="item-topbar-mobile p-l-20 p-t-8 p-b-8">
+                    <div class="topbar-child2-mobile">
+                        <a th:href="@{'../product?id=UcRbeV1dGKPk4MN+iyChQQ=='}" th:utext="#{catalog.table}"></a>
+                        <ul class="sub_menu">
+                            <li><a th:href="@{'../product?id=BvsvPHz2eB3qra8iSPI7cA=='}"
+                                   th:utext="#{productType.diningTables}"></a></li>
+                            <li><a th:href="@{'../product?id=Rb547LVQJaSQA2QVLpcwGA=='}"
+                                   th:utext="#{productType.coffeeTables}"></a></li>
+                        </ul>
+                    </div>
+
+                </li>
+
+                <li class="item-topbar-mobile p-l-20 p-t-8 p-b-8">
+                    <div class="topbar-child2-mobile">
+                        <a th:href="@{'../product?id=pg2w8NWuOVsiqSlyWdgYzQ=='}" th:utext="#{catalog.chair}"></a>
+
+                    </div>
+                </li>
+
+
+                <li class="sale-noti item-topbar-mobile p-l-20 p-t-8 p-b-8">
+                    <div class="topbar-child2-mobile">
+                        <a th:href="@{'../product?id=8s0XG9QiICg7ellcP/Kqrw=='}" th:utext="#{catalog.sale}"></a>
+                    </div>
+
+                </li>
 
                 <li class="item-topbar-mobile p-l-20 p-t-8 p-b-8">
 						<span class="topbar-child1">
@@ -328,50 +414,7 @@
                     </div>
                 </li>
 
-                <li class="item-topbar-mobile p-l-20 p-t-8 p-b-8">
-                    <a th:href="@{#}">Home</a>
-                </li>
 
-                <li class="item-topbar-mobile p-l-20 p-t-8 p-b-8">
-                    <a href="../anonymous/product.html">Sofa</a>
-                    <ul class="sub_menu">
-                        <li><a th:href="@{#}">2-Seater Sofas</a></li>
-                        <li><a th:href="@{#}">3-Seater Sofas</a></li>
-                        <li><a th:href="@{#}">Ecksofas</a></li>
-                    </ul>
-                </li>
-
-                <li class="item-topbar-mobile p-l-20 p-t-8 p-b-8">
-                    <a href="../anonymous/cart.html">Sessel</a>
-                    <ul class="sub_menu">
-                        <li><a th:href="@{#}">Hocker</a></li>
-                        <li><a th:href="@{#}">Bench</a></li>
-                    </ul>
-                </li>
-
-                <li>
-                    <a th:href="@{#}">Betten</a>
-                </li>
-
-                <li>
-                    <a href="../anonymous/about.html">Tische</a>
-                    <ul class="sub_menu">
-                        <li><a th:href="@{#}">Esstische</a></li>
-                        <li><a th:href="@{#}">Couchtische</a></li>
-                    </ul>
-                </li>
-
-                <li>
-                    <a th:href="@{#}">St&uuml;hle</a>
-                </li>
-
-                <li>
-                    <a th:href="@{#}">Accessorires</a>
-                </li>
-
-                <li class="sale-noti">
-                    <a th:href="@{#}">Sale</a>
-                </li>
             </ul>
         </nav>
     </div>
