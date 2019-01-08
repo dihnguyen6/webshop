@@ -144,3 +144,34 @@ function add_catalog() {
         }
     )
 }
+
+function load() {
+    console.log(productList);
+    var productList = JSON.parse(productList);
+    var content = '<table class="table table-striped">\n' +
+        '    <thead>\n' +
+        '      <tr>\n' +
+        '        <th>Product_ID</th>\n' +
+        '        <th>Name_DE</th>\n' +
+        '        <th>Name_EN</th>\n' +
+        '        <th>Des_DE</th>\n' +
+        '        <th>Des_EN</th>\n' +
+        '      </tr>\n' +
+        '    </thead><tbody>';
+    for (var i = 0, len = productList.length; i < len; ++i) {
+        console.log(productList[i]);
+        var product = productList[i];
+        content += '<tr>';
+        content += '    <td>' + product["Product_ID"] + '</td>';
+        content += '    <td>' + product["Name_DE"] + '</td>';
+        content += '    <td>' + product["Name_EN"] + '</td>';
+        content += '    <td>' + product["Des_DE"] + '</td>';
+        content += '    <td>' + product["Des_EN"] + '</td>';
+        content += '</tr>';
+        content = String.format(content, product["id"]);
+    }
+    content += '</tbody>\n' +
+        '  </table>';
+
+    document.getElementById('productList').innerHTML = content;
+}

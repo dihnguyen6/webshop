@@ -7,9 +7,11 @@ import com.mrKhoai.webshop.objects.Product;
 import com.mrKhoai.webshop.repositories.ProductRepository;
 import org.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.Iterator;
 
+@Service
 public class ProductService implements ObjectService<Product> {
 
     @Autowired
