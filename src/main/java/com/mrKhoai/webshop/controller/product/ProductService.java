@@ -50,9 +50,9 @@ public class ProductService implements ObjectService<Product> {
     @Override
     public JSONArray getAll() throws JsonProcessingException {
         JSONArray jsonArray = new JSONArray();
-        Iterator<Product> userList = productRepository.findAll().iterator();
-        while (userList.hasNext()) {
-            Product product = userList.next();
+        Iterator<Product> productList = productRepository.findAll().iterator();
+        while (productList.hasNext()) {
+            Product product = productList.next();
             ObjectMapper mapper = new ObjectMapper();
             jsonArray.put(mapper.writeValueAsString(product));
         }
