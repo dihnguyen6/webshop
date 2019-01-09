@@ -537,15 +537,16 @@
             '    </thead><tbody>';
         for (var i = 0, len = productArray.length; i < len; ++i) {
             console.log(productArray[i]);
-            var product = productArray[i];
+            var product = JSON.parse(productArray[i]);
+            console.log(product["productId"]);
             content += '<tr>';
-            content += '    <td>' + product["Product_ID"] + '</td>';
-            content += '    <td>' + product["Name_DE"] + '</td>';
-            content += '    <td>' + product["Name_EN"] + '</td>';
-            content += '    <td>' + product["Des_DE"] + '</td>';
-            content += '    <td>' + product["Des_EN"] + '</td>';
+            content += '    <td>' + product["productId"] + '</td>';
+            content += '    <td>' + product["productNameDE"] + '</td>';
+            content += '    <td>' + product["productNameEN"] + '</td>';
+            content += '    <td>' + product["productDescriptionDE"] + '</td>';
+            content += '    <td>' + product["productDescriptionEN"] + '</td>';
             content += '</tr>';
-            content = String.format(content, product["id"]);
+            //content = String.format(content, product["id"]);
         }
         content += '</tbody>\n' +
             '  </table>';
