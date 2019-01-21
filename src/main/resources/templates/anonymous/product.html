@@ -155,7 +155,8 @@
                     </div>
 
                     <div class="search-product pos-relative bo4 of-hidden">
-                        <input class="s-text7 size6 p-l-23 p-r-50" name="search-product" placeholder="Search Products..."
+                        <input class="s-text7 size6 p-l-23 p-r-50" name="search-product"
+                               placeholder="Search Products..."
                                type="text">
 
                         <button class="flex-c-m size5 ab-r-m color2 color0-hov trans-0-4">
@@ -198,6 +199,10 @@
 
                 <!-- Product -->
                 <div class="row">
+                    <div id="catalog">
+
+                    </div>
+
                     <div class="col-sm-12 col-md-6 col-lg-4 p-b-50">
                         <!-- Block2 -->
                         <div class="block2">
@@ -672,5 +677,51 @@
     });
 </script>
 
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    catalog = /*[[${productList}]]*/ 'Catalog';
+    /*]]>*/
+</script>
+
+<script type="text/javascript">
+    function loadCatalog() {
+        console.log(catalog);
+        var productArray = JSON.parse(catalog);
+        var content = '';
+
+        for (var i = 0, len = productArray.length; i < len; i++) {
+            console.log(productArray[i]);
+            var product = JSON.parse(productArray[i]);
+            content += '<div class="col-sm-12 col-md-6 col-lg-4 p-b-50">\n';
+            content += '<div class="block2">\n';
+            content += '<div class="block2-img wrap-pic-w of-hidden pos-relative block2-labelnew">\n';
+            content += '<img alt="IMG-PRODUCT" src= "' + product["prductFoto"] + '">\n';
+            content += '<div class="block2-overlay trans-0-4">\n';
+            content += '<a class="block2-btn-addwishlist hov-pointer trans-0-4" href="product-detail?id=\' + product["productId"] + \'">\n';
+            content += '<i aria-hidden="true" class="icon-wishlist icon_heart_alt"></i>\n';
+            content += '<i aria-hidden="true" class="icon-wishlist icon_heart dis-none"></i>\n';
+            content += '</a>\n';
+            content += '<div class="block2-btn-addcart w-size1 trans-0-4">\n';
+            content += '<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">\n';
+            content += ' Add to Cart\n';
+            content += '</button>\n';
+            content += '</div>\n';
+            content += '</div>\n';
+            content += '</div>\n';
+            content += '<div class="block2-txt p-t-20">\n';
+            content += '<a class="block2-name dis-block s-text3 p-b-5" href="product-detail?id=' + product["productId"] + '">\n';
+            content += '' + product["productName"] + ' \n';
+            content += '</a>\n';
+            content += '<span class="block2-price m-text6 p-r-5">\n';
+            content += '' + product["productPreis"] + ' \n';
+            content += '</span>\n';
+            content += '</div>\n';
+            content += '</div>\n';
+            content += '</div>';
+        }
+        document.getElementById('catalog').innerHTML = content;
+    }
+    loadCatalog();
+</script>
 </body>
 </html>
