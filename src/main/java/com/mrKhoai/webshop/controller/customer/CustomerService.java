@@ -78,7 +78,7 @@ public class CustomerService implements ObjectService<Customer> {
     }
 
     @Override
-    public JSONArray getAll() throws JsonProcessingException {
+    public String getAll() throws JsonProcessingException {
         JSONArray jsonArray = new JSONArray();
         Iterator<Customer> userList = customerRepository.findAll().iterator();
         while (userList.hasNext()) {
@@ -86,7 +86,7 @@ public class CustomerService implements ObjectService<Customer> {
             ObjectMapper mapper = new ObjectMapper();
             jsonArray.put(mapper.writeValueAsString(customer));
         }
-        return jsonArray;
+        return jsonArray.toString();
     }
 
     public Customer getCurrentUser() {

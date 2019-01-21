@@ -12,7 +12,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "PRODUCT")
-public class Product implements Identifiable{
+public class Product implements Identifiable {
     @Id
     @GeneratedValue(generator = "product_generator", strategy = GenerationType.SEQUENCE)
     @GenericGenerator(
@@ -27,27 +27,31 @@ public class Product implements Identifiable{
     @Column(name = "PRODUCT_ID", nullable = false, unique = true, length = 50)
     private String productId;
 
-    @Column(name = "PRODUCT_NAME_EN", nullable = false)
+    @Lob
+    @Column(name = "PRODUCT_NAME_EN", nullable = false, length=65535)
     private String productNameEN;
 
-    @Column(name = "PRODUCT_NAME_DE", nullable = false)
+    @Lob
+    @Column(name = "PRODUCT_NAME_DE", nullable = false, length=65535)
     private String productNameDE;
 
-    @Column(name = "PRODUCT_DESCRIPTION_EN", nullable = false)
+    @Lob
+    @Column(name = "PRODUCT_DESCRIPTION_EN", nullable = false, length=65535)
     private String productDescriptionEN;
 
-    @Column(name = "PRODUCT_DESCRIPTION_DE", nullable = false)
+    @Lob
+    @Column(name = "PRODUCT_DESCRIPTION_DE", nullable = false, length=65535)
     private String productDescriptionDE;
 
     @JsonIgnore
-    @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+    @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
     @JoinTable(name = "PRODUCT_PRODUCT_TYPE",
             joinColumns = @JoinColumn(name = "PRODUCT_ID"),
             inverseJoinColumns = @JoinColumn(name = "PRODUCT_TYPE_ID"))
     private Set<ProductType> productTypes = new HashSet<>();
 
     @JsonIgnore
-    @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+    @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
     @JoinTable(name = "PRODUCT_COLOR",
             joinColumns = @JoinColumn(name = "PRODUCT_ID"),
             inverseJoinColumns = @JoinColumn(name = "COLOR_NAME"))

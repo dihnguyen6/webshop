@@ -1,5 +1,7 @@
 package com.mrKhoai.webshop.objects;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -11,7 +13,8 @@ public class Role {
     @Column(name = "ROLE_NAME", nullable = false, unique = true, length = 15)
     private String roleName;
 
-    @OneToMany(mappedBy = "role", fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+    @JsonIgnore
+    @OneToMany(mappedBy = "role", fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     private Set<Staff> staffs = new HashSet<>();
 
     public String getRoleName() {

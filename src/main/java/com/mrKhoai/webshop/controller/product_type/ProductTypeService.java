@@ -39,7 +39,7 @@ public class ProductTypeService implements ObjectService<ProductType> {
     }
 
     @Override
-    public JSONArray getAll() throws JsonProcessingException {
+    public String getAll() throws JsonProcessingException {
         return null;
     }
 }

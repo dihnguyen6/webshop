@@ -1,6 +1,8 @@
 package com.mrKhoai.webshop.objects;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -12,6 +14,7 @@ public class Color {
     @Column(name = "COLOR_NAME", nullable = false, unique = true, length = 10)
     private String colorName;
 
+    @JsonIgnore
     @ManyToMany(mappedBy = "colors")
     private Set<Product> products = new HashSet<>();
 

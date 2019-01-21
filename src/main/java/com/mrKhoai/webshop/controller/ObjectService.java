@@ -3,6 +3,8 @@ package com.mrKhoai.webshop.controller;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import org.json.JSONArray;
 
+import java.util.List;
+
 public interface ObjectService<T> {
     void save(T t);
 
@@ -16,5 +18,5 @@ public interface ObjectService<T> {
 
     boolean contains(int id);
 
-    JSONArray getAll() throws JsonProcessingException;
+    String getAll() throws JsonProcessingException;
 }

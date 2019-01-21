@@ -52,7 +52,7 @@ public class StaffService implements ObjectService<Staff> {
     }
 
     @Override
-    public JSONArray getAll() throws JsonProcessingException {
+    public String getAll() throws JsonProcessingException {
         JSONArray jsonArray = new JSONArray();
         Iterator<Staff> staffList = staffRepository.findAll().iterator();
         while (staffList.hasNext()) {
@@ -60,6 +60,6 @@ public class StaffService implements ObjectService<Staff> {
             ObjectMapper mapper = new ObjectMapper();
             jsonArray.put(mapper.writeValueAsString(staff));
         }
-        return jsonArray;
+        return jsonArray.toString();
     }
 }

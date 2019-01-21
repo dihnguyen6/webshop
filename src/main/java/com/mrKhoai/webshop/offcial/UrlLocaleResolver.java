@@ -11,12 +11,8 @@ public class UrlLocaleResolver implements LocaleResolver {
 
     @Override
     public Locale resolveLocale(HttpServletRequest request) {
-        // ==> /SomeContextPath/en/...
-        // ==> /SomeContextPath/fr/...
-        // ==> /SomeContextPath/WEB-INF/pages/...
         String uri = request.getRequestURI();
 
-        System.out.println("URI=" + uri);
 
         String prefixEn = request.getServletContext().getContextPath() + "/en/";
         String prefixDe = request.getServletContext().getContextPath() + "/de/";

@@ -1,5 +1,7 @@
 package com.mrKhoai.webshop.objects;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.HashSet;
@@ -23,19 +25,20 @@ public class Basket {
     @JoinColumn(name = "CUSTOMER_ID")
     private Customer customer;
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "PAYMENT_ID")
     private Payment payment;
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "BILL_ID")
     private Bill bill;
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "COUPON_ID")
     private Coupon coupon;
 
-    @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+    @JsonIgnore
+    @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
     @JoinTable(name = "BASKET_PRODUCT",
             joinColumns = @JoinColumn(name = "BASKET_ID"),
             inverseJoinColumns = @JoinColumn(name = "PRODUCT_ID"))

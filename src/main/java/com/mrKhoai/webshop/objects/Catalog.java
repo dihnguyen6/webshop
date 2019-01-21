@@ -1,5 +1,6 @@
 package com.mrKhoai.webshop.objects;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.mrKhoai.webshop.tools.IdGenerator;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -31,7 +32,8 @@ public class Catalog implements Identifiable{
     @Column(name = "CATALOG_NAME_DE", nullable = false)
     private String catalogNameDE;
 
-    @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+    @JsonIgnore
+    @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
     @JoinTable(name = "CATALOG_PRODUCT_TYPE",
             joinColumns = @JoinColumn(name = "CATALOG_ID"),
             inverseJoinColumns = @JoinColumn(name = "PRODUCT_TYPE_ID"))

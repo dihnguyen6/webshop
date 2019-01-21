@@ -1,5 +1,6 @@
 package com.mrKhoai.webshop.objects;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.mrKhoai.webshop.tools.IdGenerator;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -43,7 +44,8 @@ public class Customer implements Identifiable{
     @Column(name = "CUSTOMER_COUNTRY")
     private String customerCountry;
 
-    @OneToMany(mappedBy = "customer", fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+    @JsonIgnore
+    @OneToMany(mappedBy = "customer", fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     private Set<Basket> baskets = new HashSet<>();
 
     @OneToOne

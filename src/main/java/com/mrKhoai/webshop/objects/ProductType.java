@@ -1,6 +1,7 @@
 package com.mrKhoai.webshop.objects;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.mrKhoai.webshop.tools.IdGenerator;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -32,9 +33,11 @@ public class ProductType {
     @Column(name = "PRODUCT_TYPE_NAME_DE", nullable = false)
     private String productTypeNameDE;
 
+    @JsonIgnore
     @ManyToMany(mappedBy = "productTypes")
     private Set<Catalog> catalogs = new HashSet<>();
 
+    @JsonIgnore
     @ManyToMany(mappedBy = "productTypes")
     private Set<Product> products = new HashSet<>();
 

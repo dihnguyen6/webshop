@@ -49,7 +49,7 @@ public class RoleService implements ObjectService<Role> {
     }
 
     @Override
-    public JSONArray getAll() throws JsonProcessingException {
+    public String getAll() throws JsonProcessingException {
         JSONArray jsonArray = new JSONArray();
         Iterator<Role> roleList = roleRepository.findAll().iterator();
         while (roleList.hasNext()) {
@@ -57,7 +57,7 @@ public class RoleService implements ObjectService<Role> {
             ObjectMapper mapper = new ObjectMapper();
             jsonArray.put(mapper.writeValueAsString(role));
         }
-        return jsonArray;
+        return jsonArray.toString();
     }
 
     public Role findByName(String roleName) {

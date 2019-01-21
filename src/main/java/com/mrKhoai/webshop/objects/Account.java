@@ -34,7 +34,7 @@ public class Account implements Identifiable {
     @OneToOne(mappedBy = "account")
     private Customer customer;
 
-    @OneToMany(mappedBy = "account", fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+    @OneToMany(mappedBy = "account", fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     private Set<Delivery> deliveries = new HashSet<>();
 
     public String getAccountId() {

@@ -45,7 +45,7 @@ public class CatalogService implements ObjectService<Catalog> {
     }
 
     @Override
-    public JSONArray getAll() throws JsonProcessingException {
+    public String getAll() throws JsonProcessingException {
         return null;
     }
 }
