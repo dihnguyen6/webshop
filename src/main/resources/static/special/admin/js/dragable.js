@@ -87,7 +87,6 @@ function handleDrop(ev, obj) {
 function handleFiles(files) {
     for(var i = 0, len = files.length; i < len; ++i) {
         (function(file) {
-            var name = file.name;
             var reader = new FileReader();
             reader.onload = function() {
                 tempList.push(reader.result);

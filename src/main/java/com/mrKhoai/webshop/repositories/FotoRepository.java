@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository;
 import java.sql.Blob;
 
 @Repository
-public interface FotoRepository extends CrudRepository<Foto, Blob> {
+public interface FotoRepository extends CrudRepository<Foto, String> {
 }

@@ -1,7 +1,9 @@
 package com.mrKhoai.webshop.controller.web;
 
 import com.mrKhoai.webshop.controller.product.ProductService;
+import com.mrKhoai.webshop.objects.Carousel;
 import com.mrKhoai.webshop.objects.Product;
+import com.mrKhoai.webshop.repositories.CarouselRepository;
 import com.mrKhoai.webshop.repositories.ProductRepository;
 import org.apache.commons.io.FileUtils;
 import org.apache.logging.log4j.LogManager;
@@ -20,18 +22,23 @@ public class AdminRest {
 
     private static final Logger LOGGER = LogManager.getLogger(AdminRest.class);
 
+    @Autowired
+    private CarouselRepository carouselRepository;
+
     @RequestMapping(value = "/clean-car", method = RequestMethod.GET)
     public void cleanCarousel() throws IOException {
-        File folder = new File(System.getProperty("user.home"), "/carousel");
+        /*File folder = new File(System.getProperty("user.home"), "/carousel");
         if (folder.exists()) {
             FileUtils.cleanDirectory(folder);
-        }
+        }*/
+
+        carouselRepository.deleteAll();
     }
 
     @RequestMapping(value = "/edit-car", method = RequestMethod.POST)
     public void editCarousel(@RequestPart("file") MultipartFile request,
                                @RequestParam(name = "index") String index) throws IOException {
-        File folder = new File(System.getProperty("user.home"), "/carousel");
+        /*File folder = new File(System.getProperty("user.home"), "/carousel");
         if (!folder.exists()) {
             folder.mkdir();
         }
@@ -43,6 +50,11 @@ public class AdminRest {
         FileOutputStream ostream = new FileOutputStream(file);
         ostream.write(request.getBytes());
         ostream.flush();
-        ostream.close();
+        ostream.close();*/
+
+        Carousel carousel = new Carousel();
+        carousel.setFoto(request.getBytes());
+
+        carouselRepository.save(carousel);
     }
 }

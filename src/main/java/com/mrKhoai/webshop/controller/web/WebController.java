@@ -1,6 +1,8 @@
 package com.mrKhoai.webshop.controller.web;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.mrKhoai.webshop.objects.Carousel;
+import com.mrKhoai.webshop.repositories.CarouselRepository;
 import com.mrKhoai.webshop.tools.WebshopConst;
 import com.mrKhoai.webshop.controller.customer.CustomerService;
 import com.mrKhoai.webshop.controller.role.RoleService;
@@ -23,6 +25,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Base64;
+import java.util.List;
 import java.util.Locale;
 
 @Controller
@@ -38,6 +41,9 @@ public class WebController {
 
     @Autowired
     RoleService roleService;
+
+    @Autowired
+    private CarouselRepository carouselRepository;
 
     @Value("${werbung.msg:test}")
     private String message = "Werbung";
@@ -57,22 +63,23 @@ public class WebController {
                        @PathVariable String lang, HttpServletResponse response) throws IOException {
         setLang(lang, response);
         model.addAttribute("msg", this.message);
-        String[] carousel = new String[3];
-        File actdir = new File(System.getProperty("user.home"), "/carousel");
+        /*File actdir = new File(System.getProperty("user.home"), "/carousel");
 
         if (!actdir.isDirectory()) {
             throw new IllegalArgumentException(actdir.getAbsolutePath());
         }
 
-        File[] ls = actdir.listFiles();
-
+        File[] ls = actdir.listFiles();*/
+        List<Carousel> carousels = carouselRepository.getAll();
+        int size = carousels.size();
         StringBuilder builder = new StringBuilder();
-        for (int i = 0; i < ls.length; i++) {
-            FileInputStream istream = new FileInputStream(ls[i]);
+        for (int i = 0; i < size; i++) {
+            /*FileInputStream istream = new FileInputStream(ls[i]);
             byte[] fileContent = new byte[(int) ls[i].length()];
             istream.read(fileContent);
-            istream.close();
+            istream.close();*/
             //carousel[i] = Base64.getEncoder().encodeToString(fileContent);
+            byte[] fileContent = carousels.get(i).getFoto();
             builder.append("<div id=\"c1\" class=\"item-slick1 item1-slick1\""
                     + " style=\"background-image: url(data:image/jpeg;base64,"
                     + Base64.getEncoder().encodeToString(fileContent)
@@ -85,9 +92,6 @@ public class WebController {
                     "<a href=\"product.html\" class=\"flex-c-m size2 bo-rad-23 s-text2 bgwhite hov1 trans-0-4\">" +
                     "Shop Now</a></div></div></div>");
         }
-        model.addAttribute("carousel1", carousel[0]);
-        model.addAttribute("carousel2", carousel[1]);
-        model.addAttribute("carousel3", carousel[2]);
         model.addAttribute("carousel", builder.toString());
         return "anonymous/home";
     }
@@ -103,7 +107,8 @@ public class WebController {
     }
 
     @GetMapping("/{lang:en|de}/cart")
-    public String redirectCart() {
+    public String redirectCart(@PathVariable String lang, HttpServletResponse response) {
+        setLang(lang, response);
         return "anonymous/cart";
     }
 
@@ -113,7 +118,8 @@ public class WebController {
     }
 
     @GetMapping("/{lang:en|de}/product-detail")
-    public String redirectProductDetail() {
+    public String redirectProductDetail(@PathVariable String lang, HttpServletResponse response) {
+        setLang(lang, response);
         return "anonymous/product-detail";
     }
 
@@ -128,7 +134,8 @@ public class WebController {
     }
 
     @GetMapping("/{lang:en|de}/product")
-    public String redirectProduct() {
+    public String redirectProduct(@PathVariable String lang, HttpServletResponse response) {
+        setLang(lang, response);
         return "anonymous/product";
     }
 
