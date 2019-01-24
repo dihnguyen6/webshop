@@ -33,22 +33,4 @@ public class ProductController {
         prod.setProductNameEN(name);
         productRepository.save(prod);
     }
-
-    @RequestMapping(value = "/edit-car", method = RequestMethod.POST)
-    public void getInformation(@RequestPart("file") MultipartFile request,
-                               @RequestParam(name = "index") String index) throws IOException {
-        File folder = new File(System.getProperty("user.home"), "/carousel");
-        if (!folder.exists()) {
-            folder.mkdir();
-        }
-        File file = new File(System.getProperty("user.home"), "/carousel/carousel" + index);
-        if (file.exists()) {
-            file.delete();
-        }
-        file.createNewFile();
-        FileOutputStream ostream = new FileOutputStream(file);
-        ostream.write(request.getBytes());
-        ostream.flush();
-        ostream.close();
-    }
 }

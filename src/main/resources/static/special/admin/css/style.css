@@ -8326,3 +8326,111 @@ tbody tr td:last-child {
         display: inline-block !important;
     }
 }
+
+.row img {
+    width: 100%;
+}
+
+.btn-round {
+    position: absolute;
+    background-color: transparent;
+    border: solid white 3px;
+    border-radius: 50%;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 10px;
+}
+
+.edit:hover {
+    opacity: 0.5;
+    border: solid green 3px;
+    color: yellow;
+}
+
+.delete:hover {
+    opacity: 0.5;
+    border: solid red 3px;
+    color: red;
+}
+
+.edit {
+    top: 0;
+    left: 10px;
+}
+
+.delete {
+    top: 0;
+    right: 10px;
+}
+
+.dropable {
+    width: 100%;
+    height: 0px;
+    margin: 10px 0px;
+    overflow: hidden;
+    text-align: center;
+}
+
+.dropable .fa {
+    display: none;
+    color: #000;
+    margin: 30px 30px 0 0;
+    padding: 5px 10px
+}
+
+.drop-file {
+    width: 100%;
+    margin: 10px 0px;
+    overflow: hidden;
+    text-align: center;
+    height: 100px;
+    border: solid black 1px;
+    border-style: dashed;
+}
+
+.drop-file .fa {
+    border: none;
+    background-color: transparent;
+    display: inline-block;
+    color: #000;
+    margin: 30px 30px 0 0;
+    padding: 5px 10px
+}
+
+.gray {
+    -webkit-filter: grayscale(1);
+    -moz-filter: grayscale(1);
+    -ms-filter: grayscale(1);
+    -o-filter: grayscale(1);
+}
+.gray:after {
+    display:block;
+    content:"";
+    position:absolute;
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+    background-color:#000;
+    opacity:.2;
+}
+
+.actionbar {
+    width: 200px;
+    position: fixed;
+    z-index: 1;
+    top: 20vh;
+    right: 30px;
+    background: transparent;
+    overflow-x: hidden;
+    padding: 8px 0;
+}
+
+.actionbar .btn {
+    margin: 10px;
+    width: 90%;
+}

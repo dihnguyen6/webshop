@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="de"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Admin</title>
+    <th:block th:include="fragments/headerfiles-admin.html :: headerfiles-admin"></th:block>
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+        productList = /*[[${productList}]]*/ 'Product List';
+        carouselList = /*[[${carouselList}]]*/ 'Carousel List';
+        /*]]>*/
+    </script>
+
+</head>
+<body class="fix-header fix-sidebar">
+<!-- Preloader - style you can find in spinners.css -->
+<div class="preloader">
+    <svg class="circular" viewBox="25 25 50 50">
+        <circle class="path" cx="50" cy="50" fill="none" r="20" stroke-miterlimit="10" stroke-width="2"/>
+    </svg>
+</div>
+
+<div id="main-wrapper">
+
+    <!-- header header  -->
+    <div th:replace="fragments/navbar-admin.html :: navbar-admin"></div>
+    <!-- End header header -->
+    <!-- Left Sidebar  -->
+    <div th:replace="fragments/sidebar-admin.html :: sidebar-admin"></div>
+    <!-- End Left Sidebar  -->
+
+    <div class="page-wrapper" style="min-height: 867px;">
+        <!-- Bread crumb -->
+        <div class="row page-titles">
+            <div class="col-md-5 align-self-center">
+                <h3 class="text-primary">Dashboard</h3></div>
+            <div class="col-md-7 align-self-center">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
+                    <li class="breadcrumb-item active">Dashboard</li>
+                </ol>
+            </div>
+        </div>
+        <!-- End Bread crumb -->
+        <!-- Container fluid  -->
+        <div class="container-fluid">
+            <!-- Start Page Content -->
+            <div id="carousel" class="row">
+                <!--<div class="col-md-12">
+                    <img src="../basis/images/carousel/master-slide-02.jpg" draggable="true" ondragstart="drag(event)" ondragend="cancelDrag();" alt="Carousel1">
+                    <button type="button" class="btn-round edit"><span class="fa fa-edit"></span></button>
+                    <button type="button" class="btn-round delete"><span class="fa fa-remove"></span></button>
+                    <div class="dropable" ondrop="drop(event, this)" ondragover="allowDrop(event, this)" ondragleave="stopDrop(this);">
+                        <span class="fa fa-plus-square-o fa-2x"></span>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <img src="../basis/images/carousel/master-slide-02.jpg" draggable="true" ondragstart="drag(event)" ondragend="cancelDrag();" alt="Carousel1">
+                    <button type="button" class="btn-round edit"><span class="fa fa-edit"></span></button>
+                    <button type="button" class="btn-round delete"><span class="fa fa-remove"></span></button>
+                    <div class="dropable" ondrop="drop(event, this)" ondragover="allowDrop(event, this)" ondragleave="stopDrop(this);">
+                        <span class="fa fa-plus-square-o fa-2x"></span>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div id="dropArea" class="drop-file" ondrop="handleFiles(this.files, this)" ondragover="allowDrop(event, this)" ondragleave="stopDrop(this);">
+                        <input type="file" id="fileElem" accept="image/*" onchange="handleFiles(this.files, this)" multiple hidden/>
+                        <button type="button" class="fa fa-file-photo-o fa-2x" onclick="selectFile();"></button>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card p-30">
+                        <div class="media">
+                            <div class="media-left meida media-middle">
+                                <span><i class="fa fa-archive f-s-40 color-warning"></i></span>
+                            </div>
+                            <div class="media-body media-text-right">
+                                <h2>25</h2>
+                                <p class="m-b-0">Stores</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card p-30">
+                        <div class="media">
+                            <div class="media-left meida media-middle">
+                                <span><i class="fa fa-user f-s-40 color-danger"></i></span>
+                            </div>
+                            <div class="media-body media-text-right">
+                                <h2>847</h2>
+                                <p class="m-b-0">Customer</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>-->
+            </div>
+
+            <div class="actionbar">
+                <button type="button" class="btn btn-primary" onclick="discard();"><span class="fa fa-refresh"></span> Discard change</button>
+                <button type="button" class="btn btn-success" onclick="addFile();"><span class="fa fa-check-square-o"></span> Apply change</button>
+            </div>
+
+
+            <!-- End PAge Content -->
+        </div>
+        <!-- End Container fluid  -->
+        <!-- footer -->
+        <!--<footer class="footer"> © 2018 All rights reserved. Template designed by <a
+                href="https://colorlib.com">Colorlib</a>
+        </footer>-->
+        <!-- End footer -->
+    </div>
+    <footer th:replace="fragments/footer-admin.html :: footer-admin"></footer>
+</div>
+
+</body>
+</html>

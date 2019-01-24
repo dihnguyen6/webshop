@@ -39,4 +39,31 @@ public interface ProductRepository extends CrudRepository<Product, String> {
             nativeQuery = true
     )
     List<Product> searchProduct(@Param("search") String searchString);
+
+    @Query(
+            value = "SELECT COUNT(product_id) FROM Product",
+            nativeQuery = true
+    )
+    int getCountAll();
+
+    @Query(
+            value = "SELECT COUNT(product_id) FROM Product p WHERE p.product_id IN " +
+                    "(SELECT product_id FROM product_product_type WHERE product_type_id IN " +
+                    "(SELECT product_type_id FROM catalog_product_type WHERE catalog_id = :id))",
+            nativeQuery = true
+    )
+    int getCountCatalog();
+
+    @Query(
+            value = "SELECT COUNT(product_id) FROM Product p WHERE p.product_id IN " +
+                    "(SELECT product_id FROM product_product_type WHERE product_type_id = :id)",
+            nativeQuery = true
+    )
+    int getCountProductType();
+
+    @Query(
+            value = "SELECT COUNT(product_id) FROM basket_product WHERE p.product_id=:id",
+            nativeQuery = true
+    )
+    int countSell(@Param("id") String id);
 }

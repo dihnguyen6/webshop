@@ -6,7 +6,6 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.sql.Blob;
 
 @Entity
 @Table(name = "FOTO")
@@ -26,8 +25,9 @@ public class Foto implements Identifiable {
     private String fotoId;
 
 
+    @Lob
     @Column(name = "FOTO_CODE", nullable = false)
-    private Blob fotos;
+    private byte[] fotos;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "PRODUCT_ID")
@@ -38,11 +38,11 @@ public class Foto implements Identifiable {
         this.fotoId = fotoId;
     }
 
-    public Blob getFotos() {
+    public byte[] getFotos() {
         return fotos;
     }
 
-    public void setFotos(Blob fotos) {
+    public void setFotos(byte[] fotos) {
         this.fotos = fotos;
     }
 

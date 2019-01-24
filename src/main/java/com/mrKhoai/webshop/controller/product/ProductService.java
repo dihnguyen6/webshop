@@ -11,9 +11,7 @@ import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 @Service
 public class ProductService implements ObjectService<Product> {
@@ -116,7 +114,7 @@ public class ProductService implements ObjectService<Product> {
                 itemArray = new JSONArray();
                 Set<Foto> fotoList = product.getFotos();
                 for (Foto f : fotoList) {
-                    itemArray.put(f.getId());
+                    itemArray.put(Base64.getEncoder().encodeToString(f.getFotos()));
                 }
                 jsonObject.put("foto_list", itemArray.toString());
 
@@ -129,5 +127,24 @@ public class ProductService implements ObjectService<Product> {
         }
 
         return jsonArray.toString();
+    }
+
+    class NameComparator implements Comparator<Product> {
+        public int compare(Product p1, Product p2) {
+            return p1.getProductNameEN().compareTo(p2.getProductNameEN());
+        }
+    }
+
+    class SellComparator implements Comparator<Product> {
+        public int compare(Product p1, Product p2) {
+            int s1 = productRepository.countSell(p1.getProductId());
+            int s2 = productRepository.countSell(p2.getProductId());
+            if (s1 == s2)
+                return 0;
+            else if (s1 > s2)
+                return 1;
+            else
+                return -1;
+        }
     }
 }
