@@ -124,4 +124,9 @@ public class AdminController {
         return "admin/test";
     }
 
+    @RequestMapping("/admin/email-inbox")
+    public String mailInbox(Model model) {
+        return "admin/email-inbox";
+    }
+
 }
