@@ -66,9 +66,9 @@
                             <a th:href="@{'/home'}">Home</a>
                         </li>
 
-                        <li class="dropdown nav-link">
-                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" id="navbarDropdownMenuLink" aria-haspopup="true" aria-expanded="false" th:href="@{'../product?id=Uo8nTDBKW61uUUfZwmd09Q=='}" th:utext="#{catalog.sofa}"></a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <li>
+                            <a th:href="@{'../product?id=Uo8nTDBKW61uUUfZwmd09Q=='}" th:utext="#{catalog.sofa}"></a>
+                            <ul class="sub_menu">
                                 <li class="dropdown-item"><a th:href="@{'../product?id=FCi42BuLMenXuxJtLd5Ukw=='}"
                                        th:utext="#{productType.twoSeaterSofas}"></a></li>
                                 <li class="dropdown-item"><a th:href="@{'../product?id=OBh8SKr/HOoVPm7W13jxdA=='}"

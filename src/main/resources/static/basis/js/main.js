@@ -228,3 +228,37 @@ function getCookie(name) {
     var parts = value.split("; " + name + "=");
     if (parts.length == 2) return parts.pop().split(";").shift();
 }
+
+function getInstaFotos() {
+    $.get("https://api.instagram.com/v1/users/self/media/recent?access_token=1026440603.2255e34.7b77b058f5c343aa940fb5fa2ae0d8f2&count=5",function callbackFunction(data, status) {
+        console.log(data);
+        var imgList = data["data"];
+        var content = "";
+        for(var i = 0, len = imgList.length; i < len; ++i) {
+            var pic = imgList[i];
+            var name = pic["caption"]["id"];
+            var src = pic["images"]["standard_resolution"]["url"];
+            var url=pic["link"];
+            var like = pic["likes"]["count"];
+            var caption = pic["caption"]["text"];
+            var user = "Photo by @" + pic["user"]["username"];
+            content += '<div class="block4 wrap-pic-w">\n' +
+                '            <img alt="{0}" src="{1}">\n' +
+                '            <a class="block4-overlay sizefull ab-t-l trans-0-4" href="{2}" target="_blank">\n' +
+                '               <span class="block4-overlay-heart s-text9 flex-m trans-0-4 p-l-40 p-t-25">\n' +
+                '                 <i aria-hidden="true" class="icon_heart_alt fs-20 p-r-12"></i>\n' +
+                '                 <span class="p-t-2">{3}</span>\n' +
+                '               </span>\n' +
+                '                <div class="block4-overlay-txt trans-0-4 p-l-40 p-r-25 p-b-30">\n' +
+                '                    <p class="s-text10 m-b-15 h-size1 of-hidden">{4}</p>' +
+                '                    <span class="s-text9">\n' +
+                '                       {5}' +
+                '                    </span>\n' +
+                '                </div>\n' +
+                '            </a>\n' +
+                '        </div>';
+            content = String.format(content, name, src, url, like, caption, user);
+        }
+
+        $('#insta-img').html(content);
+    });
