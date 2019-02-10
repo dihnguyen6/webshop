@@ -229,17 +229,20 @@ function getCookie(name) {
 }
 
 function getInstaFotos() {
-    $.get("https://api.instagram.com/v1/users/self/media/recent?access_token=1026440603.2255e34.7b77b058f5c343aa940fb5fa2ae0d8f2&count=5",function callbackFunction(data, status) {
+    $.get("https://api.instagram.com/v1/users/self/media/recent?access_token=209656483.bc61b4d.a959550da64f4b08a1fadc38fbd9ce71&count=5",function callbackFunction(data, status) {
         console.log(data);
         var imgList = data["data"];
         var content = "";
         for(var i = 0, len = imgList.length; i < len; ++i) {
             var pic = imgList[i];
-            var name = pic["caption"]["id"];
+            var name = pic["id"];
             var src = pic["images"]["standard_resolution"]["url"];
             var url=pic["link"];
             var like = pic["likes"]["count"];
-            var caption = pic["caption"]["text"];
+            var caption = "";
+            if(pic["caption"] != null) {
+                caption = pic["caption"]["text"];
+            }
             var user = "Photo by @" + pic["user"]["username"];
             content += '<div class="block4 wrap-pic-w">\n' +
                 '            <img alt="{0}" src="{1}">\n' +

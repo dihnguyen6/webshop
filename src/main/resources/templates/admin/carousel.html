@@ -46,7 +46,7 @@
         <!-- Container fluid  -->
         <div class="container-fluid">
             <!-- Start Page Content -->
-            <div id="carousel" class="row">
+            <div class="row">
                 <!--<div class="col-md-12">
                     <img src="../basis/images/carousel/master-slide-02.jpg" draggable="true" ondragstart="drag(event)" ondragend="cancelDrag();" alt="Carousel1">
                     <button type="button" class="btn-round edit"><span class="fa fa-edit"></span></button>
@@ -55,46 +55,16 @@
                         <span class="fa fa-plus-square-o fa-2x"></span>
                     </div>
                 </div>
-                <div class="col-md-12">
-                    <img src="../basis/images/carousel/master-slide-02.jpg" draggable="true" ondragstart="drag(event)" ondragend="cancelDrag();" alt="Carousel1">
-                    <button type="button" class="btn-round edit"><span class="fa fa-edit"></span></button>
-                    <button type="button" class="btn-round delete"><span class="fa fa-remove"></span></button>
-                    <div class="dropable" ondrop="drop(event, this)" ondragover="allowDrop(event, this)" ondragleave="stopDrop(this);">
-                        <span class="fa fa-plus-square-o fa-2x"></span>
-                    </div>
+                -->
+                <div id="carousel">
+
                 </div>
-                <div class="col-md-12">
-                    <div id="dropArea" class="drop-file" ondrop="handleFiles(this.files, this)" ondragover="allowDrop(event, this)" ondragleave="stopDrop(this);">
+                <div class="col-md-10">
+                    <div id="dropArea" class="drop-file" ondrop="handleDrop(event, this)" ondragenter="allowDrop(event, this)" ondragleave="stopDrop(this);">
                         <input type="file" id="fileElem" accept="image/*" onchange="handleFiles(this.files, this)" multiple hidden/>
-                        <button type="button" class="fa fa-file-photo-o fa-2x" onclick="selectFile();"></button>
+                        <button type="button" class="fa fa fa-photo fa-2x" onclick="selectFile();"></button>
                     </div>
                 </div>
-                <div class="col-md-3">
-                    <div class="card p-30">
-                        <div class="media">
-                            <div class="media-left meida media-middle">
-                                <span><i class="fa fa-archive f-s-40 color-warning"></i></span>
-                            </div>
-                            <div class="media-body media-text-right">
-                                <h2>25</h2>
-                                <p class="m-b-0">Stores</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="card p-30">
-                        <div class="media">
-                            <div class="media-left meida media-middle">
-                                <span><i class="fa fa-user f-s-40 color-danger"></i></span>
-                            </div>
-                            <div class="media-body media-text-right">
-                                <h2>847</h2>
-                                <p class="m-b-0">Customer</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>-->
             </div>
 
             <div class="actionbar">

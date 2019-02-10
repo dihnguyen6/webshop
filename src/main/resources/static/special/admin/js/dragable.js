@@ -6,6 +6,7 @@ $(document).ready(function () {
     }
     discard();
 
+    //prevent browser from loading image
     window.addEventListener("dragover",function(e){
         e = e || event;
         e.preventDefault();
@@ -30,24 +31,21 @@ function getCarousel() {
             '                </div>';
         content = String.format(content, i);
     }
-    content += '<div class="col-md-10">\n' +
-        '                    <div id="dropArea" class="drop-file" ondrop="handleDrop(event, this)" ondragenter="allowDrop(event, this)" ondragleave="stopDrop(this);">\n' +
-        '                        <input type="file" id="fileElem" accept="image/*" onchange="handleFiles(this.files, this)" multiple hidden/>\n' +
-        '                        <button type="button" class="fa fa fa-photo fa-2x" onclick="selectFile();"></button>\n' +
-        '                    </div>\n' +
-        '                </div>';
     $("#carousel").html(content);
 }
 
+//allow drop on obj
 function allowDrop(ev, obj) {
     ev.preventDefault();
     obj.classList.add('gray');
 }
 
+//using drag out obj area
 function stopDrop(obj) {
     obj.classList.remove('gray');
 }
 
+//open dropable area for switching position of carousel when user start dragging
 function drag(ev, id) {
     ev.dataTransfer.effectAllowed = 'move';
     ev.dataTransfer.setData("id", id);
@@ -57,12 +55,14 @@ function drag(ev, id) {
     $(".dropable").children(".fa").css("display", "inline-block");
 }
 
+//hide drop area
 function cancelDrag() {
     $(".dropable").css("height", "0px");
     $(".dropable").css("border", "none");
     $(".dropable").children(".fa").css("display", "none");
 }
 
+//when user drop item on obj area
 function drop(ev, obj, id) {
     ev.preventDefault();
     obj.classList.remove('gray');
@@ -73,10 +73,12 @@ function drop(ev, obj, id) {
     getCarousel();
 }
 
+//open select file window when user not using drag and drop
 function selectFile() {
     document.getElementById('fileElem').click();
 }
 
+//user dropping file into upload area
 function handleDrop(ev, obj) {
     obj.classList.remove('gray');
     var dt = ev.dataTransfer;
@@ -84,6 +86,7 @@ function handleDrop(ev, obj) {
     handleFiles(files);
 }
 
+//read uploaded file and append into casrousel list
 function handleFiles(files) {
     for(var i = 0, len = files.length; i < len; ++i) {
         (function(file) {
@@ -97,15 +100,18 @@ function handleFiles(files) {
     }
 }
 
+//upload new image to replace old carousel
 function selectCar(id) {
     document.getElementById('editCar' + id).click();
 }
 
+//remove casrousel
 function removeCar(id) {
     tempList.splice(id, 1);
     getCarousel();
 }
 
+//read new file and replace to position of old carousel
 function editCar(files, id) {
     var reader = new FileReader();
     reader.readAsDataURL(files[0]);
@@ -118,11 +124,13 @@ function editCar(files, id) {
     };
 }
 
+//updating casrousel list
 function discard() {
     tempList = JSON.parse(carouselList);
     getCarousel();
 }
 
+//when apply remove all old carousel and save new carousel
 function addFile() {
     $('button').prop("disable", true);
     $.ajax({
@@ -141,6 +149,7 @@ function addFile() {
     });
 }
 
+//convert base64 image in to file for upload
 function dataURLtoFile(dataurl, filename) {
     var arr = dataurl.split(','), mime = arr[0].match(/:(.*?);/)[1],
         bstr = atob(arr[1]), n = bstr.length, u8arr = new Uint8Array(n);
@@ -150,6 +159,7 @@ function dataURLtoFile(dataurl, filename) {
     return new File([u8arr], filename, {type:mime});
 }
 
+//upload a single file
 function uploadFile(url, file) {
     var returnObject = new FormData();
     returnObject.append("file", file);
