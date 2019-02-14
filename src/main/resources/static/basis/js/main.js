@@ -1,6 +1,5 @@
-
 $(document).ready(function () {
-    console.log(getCookie("locale"));
+    checkInstaContainer();
     $('#locales').val(getCookie("locale")).change();
     $("#locales").change(function () {
         var selectedOption = $('#locales').val();
@@ -229,38 +228,87 @@ function getCookie(name) {
     if (parts.length == 2) return parts.pop().split(";").shift();
 }
 
-function getInstaFotos() {
-    $.get("https://api.instagram.com/v1/users/self/media/recent?access_token=209656483.bc61b4d.a959550da64f4b08a1fadc38fbd9ce71&count=5", function callbackFunction(data, status) {
-        console.log(data);
-        var imgList = data["data"];
-        var content = "";
-        for (var i = 0, len = imgList.length; i < len; ++i) {
-            var pic = imgList[i];
-            var name = pic["caption"]["id"];
-            var src = pic["images"]["standard_resolution"]["url"];
-            var url = pic["link"];
-            var like = pic["likes"]["count"];
-            var caption = pic["caption"]["text"];
-            var user = "Photo by @" + pic["user"]["username"];
-            content += '<div class="block4 wrap-pic-w">\n' +
-                '            <img alt="{0}" src="{1}">\n' +
-                '            <a class="block4-overlay sizefull ab-t-l trans-0-4" href="{2}" target="_blank">\n' +
-                '               <span class="block4-overlay-heart s-text9 flex-m trans-0-4 p-l-40 p-t-25">\n' +
-                '                 <i aria-hidden="true" class="icon_heart_alt fs-20 p-r-12"></i>\n' +
-                '                 <span class="p-t-2">{3}</span>\n' +
-                '               </span>\n' +
-                '                <div class="block4-overlay-txt trans-0-4 p-l-40 p-r-25 p-b-30">\n' +
-                '                    <p class="s-text10 m-b-15 h-size1 of-hidden">{4}</p>' +
-                '                    <span class="s-text9">\n' +
-                '                       {5}' +
-                '                    </span>\n' +
-                '                </div>\n' +
-                '            </a>\n' +
-                '        </div>';
-            content = String.format(content, name, src, url, like, caption, user);
-        }
-
-        $('#insta-img').html(content);
-    });
-
+function checkInstaContainer() {
+    if ($('#insta-img').is(':visible')) {
+        getInstaFotos();
+    } else {
+        setTimeout(checkContainer, 50); //wait 50 ms, then try again
+    }
 }
+
+function getInstaFotos() {
+    var url = "https://api.instagram.com/v1/users/self/media/recent?access_token=209656483.bc61b4d.a959550da64f4b08a1fadc38fbd9ce71&count=5";
+
+    $.ajax({
+        type: "GET",
+        crossDomain: true,
+        dataType: 'jsonp',
+        headers: {"Access-Control-Allow-Credentials": "true", "Access-Control-Allow-Origin": "https://api.instagram.com"},
+        url: url
+    }).done(function (data) {
+        console.log(data);
+        showInsta(data);
+    });
+}
+
+function showInsta(data) {
+    var imgList = data["data"];
+    var content = "";
+    for (var i = 0, len = imgList.length; i < len; ++i) {
+        var pic = imgList[i];
+        var name = pic["caption"]["id"];
+        var src = pic["images"]["standard_resolution"]["url"];
+        var url = pic["link"];
+        var like = pic["likes"]["count"];
+        var caption = pic["caption"]["text"];
+        var user = "Photo by @" + pic["user"]["username"];
+        content += '<div class="block4 wrap-pic-w">\n' +
+            '            <img alt="{0}" src="{1}">\n' +
+            '            <a class="block4-overlay sizefull ab-t-l trans-0-4" href="{2}" target="_blank">\n' +
+            '               <span class="block4-overlay-heart s-text9 flex-m trans-0-4 p-l-40 p-t-25">\n' +
+            '                 <i aria-hidden="true" class="icon_heart_alt fs-20 p-r-12"></i>\n' +
+            '                 <span class="p-t-2">{3}</span>\n' +
+            '               </span>\n' +
+            '                <div class="block4-overlay-txt trans-0-4 p-l-40 p-r-25 p-b-30">\n' +
+            '                    <p class="s-text10 m-b-15 h-size1 of-hidden">{4}</p>' +
+            '                    <span class="s-text9">\n' +
+            '                       {5}' +
+            '                    </span>\n' +
+            '                </div>\n' +
+            '            </a>\n' +
+            '        </div>';
+        content = String.format(content, name, src, url, like, caption, user);
+    }
+
+    $('#insta-img').html(content);
+}
+
+/*
+function createCORSRequest(method, url) {
+    var xhr = new XMLHttpRequest();
+    if ("withCredentials" in xhr) {
+
+        // Check if the XMLHttpRequest object has a "withCredentials" property.
+        // "withCredentials" only exists on XMLHTTPRequest2 objects.
+        xhr.open(method, url, true);
+
+    } else if (typeof XDomainRequest != "undefined") {
+
+        // Otherwise, check if XDomainRequest.
+        // XDomainRequest only exists in IE, and is IE's way of making CORS requests.
+        xhr = new XDomainRequest();
+        xhr.open(method, url);
+
+    } else {
+
+        // Otherwise, CORS is not supported by the browser.
+        xhr = null;
+
+    }
+    return xhr;
+}
+
+var xhr = createCORSRequest('GET', url);
+if (!xhr) {
+    throw new Error('CORS not supported');
+}*/
