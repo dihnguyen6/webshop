@@ -2,11 +2,10 @@ package com.mrKhoai.webshop.objects;
 
 
 import javax.persistence.*;
-import java.io.Serializable;
 
 @Entity
 @Table(name = "CAROUSEL")
-public class Carousel{
+public class Carousel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "CAROUSEL_ID", nullable = false, unique = true)

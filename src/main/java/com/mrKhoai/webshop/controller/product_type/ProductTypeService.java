@@ -3,7 +3,6 @@ package com.mrKhoai.webshop.controller.product_type;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.mrKhoai.webshop.controller.ObjectService;
 import com.mrKhoai.webshop.objects.ProductType;
-import org.json.JSONArray;
 import org.springframework.stereotype.Service;
 
 @Service

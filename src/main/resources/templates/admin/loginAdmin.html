@@ -4,28 +4,14 @@
     <title>Security Gate</title>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1" name="viewport">
+    <link href="special/admin/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
     <!--===============================================================================================-->
-    <link href="special/admin/images/icons/favicon.ico" rel="icon" type="image/png"/>
+    <link href="special/admin/login.css" rel="stylesheet" type="text/css"/>
     <!--===============================================================================================-->
-    <link href="special/admin/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-    <!--===============================================================================================-->
-    <link href="special/admin/fonts/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <!--===============================================================================================-->
-    <link href="special/admin/fonts/Linearicons-Free-v1.0.0/icon-font.min.css" rel="stylesheet" type="text/css">
-    <!--===============================================================================================-->
-    <link href="special/admin/vendor/animate/animate.css" rel="stylesheet" type="text/css">
-    <!--===============================================================================================-->
-    <link href="special/admin/vendor/css-hamburgers/hamburgers.min.css" rel="stylesheet" type="text/css">
-    <!--===============================================================================================-->
-    <link href="special/admin/vendor/animsition/css/animsition.min.css" rel="stylesheet" type="text/css">
-    <!--===============================================================================================-->
-    <link href="special/admin/vendor/select2/select2.min.css" rel="stylesheet" type="text/css">
-    <!--===============================================================================================-->
-    <link href="special/admin/vendor/daterangepicker/daterangepicker.css" rel="stylesheet" type="text/css">
-    <!--===============================================================================================-->
-    <link href="special/admin/css/helper.css" rel="stylesheet" type="text/css">
-    <link href="special/admin/css/main.css" rel="stylesheet" type="text/css">
-    <!--===============================================================================================-->
+
+    <script src="special/admin/js/bootstrap.js" type="text/javascript"/>
+    <script src="special/admin/jquery-3.3.1.js" type="text/javascript"/>
+    <!--<script src="special/admin/main.js" type="text/javascript"/>-->
 
     <script th:inline="javascript">
         /*<![CDATA[*/
@@ -36,7 +22,7 @@
 </head>
 <body>
 
-<div class="limiter">
+<!--<div class="limiter">
     <div class="container-login100">
         <div class="wrap-login100 p-l-85 p-r-85 p-t-55 p-b-55">
             <form class="login100-form validate-form flex-sb flex-w" method="POST" role="form" th:action="@{/admin}">
@@ -67,13 +53,6 @@
 
                 </div>
 
-                <!--<span th:utext="#{lang.change}"></span>:
-                <select id="locales">
-                    <option value=""></option>
-                    <option value="en" th:utext="#{lang.en}"></option>
-                    <option value="de" th:utext="#{lang.de}"></option>
-                </select>-->
-
                 <div class="container-login100-form-btn">
                     <input class="login100-form-btn align-self-center" th:value="#{admin.submit}" type="submit">
                 </div>
@@ -83,27 +62,25 @@
             </form>
         </div>
     </div>
+</div>-->
+
+<div class="login">
+    <h1 class="fadeIn first"> <span th:utext="#{login.title}"/> </h1>
+    <form method="POST" role="form" th:action="@{/admin}" >
+        <input type="text" id="username" for="username" class="fadeIn first" name="login" th:placeholder="#{login.username}" required="true" data-validate="Username is required">
+        <input type="password" id="password" for="password" class="fadeIn second" name="password" th:placeholder="#{login.password}" required="true" data-validate="Pasword is required">
+        <div class=" row remember fadeIn third custom-checkbox">
+            <input id="rememberme" name="rememberme" value="remember" type="checkbox" />Remember me
+        </div>
+        <input type="submit" class="fadeIn fourth btn btn-primary btn-block btn-large" th:value="#{login.submit}">
+        <input name="${_csrf.parameterName}" type="hidden" value="${_csrf.token}"/>
+        <!--<div class="flex-sb-m w-full p-b-48" id="mess">
+
+        </div>-->
+    </form>
 </div>
 
 
-<div id="dropDownSelect1"></div>
-
-<!--===============================================================================================-->
-<script src="special/admin/vendor/jquery/jquery-3.2.1.min.js"></script>
-<!--===============================================================================================-->
-<script src="special/admin/vendor/animsition/js/animsition.min.js"></script>
-<!--===============================================================================================-->
-<script src="special/admin/vendor/bootstrap/js/popper.js"></script>
-<script src="special/admin/vendor/bootstrap/js/bootstrap.min.js"></script>
-<!--===============================================================================================-->
-<script src="special/admin/vendor/select2/select2.min.js"></script>
-<!--===============================================================================================-->
-<script src="special/admin/vendor/daterangepicker/moment.min.js"></script>
-<script src="special/admin/vendor/daterangepicker/daterangepicker.js"></script>
-<!--===============================================================================================-->
-<script src="special/admin/vendor/countdowntime/countdowntime.js"></script>
-<!--===============================================================================================-->
-<script src="special/admin/js/main.js"></script>
 
 <script>
     $('#mess').html(message);

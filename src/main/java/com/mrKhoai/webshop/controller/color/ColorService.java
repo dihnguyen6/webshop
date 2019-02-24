@@ -4,7 +4,6 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.mrKhoai.webshop.controller.ObjectService;
 import com.mrKhoai.webshop.objects.Color;
 import com.mrKhoai.webshop.repositories.ColorRepository;
-import org.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

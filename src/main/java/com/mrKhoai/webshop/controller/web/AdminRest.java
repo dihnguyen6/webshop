@@ -1,19 +1,13 @@
 package com.mrKhoai.webshop.controller.web;
 
-import com.mrKhoai.webshop.controller.product.ProductService;
 import com.mrKhoai.webshop.objects.Carousel;
-import com.mrKhoai.webshop.objects.Product;
 import com.mrKhoai.webshop.repositories.CarouselRepository;
-import com.mrKhoai.webshop.repositories.ProductRepository;
-import org.apache.commons.io.FileUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 
 @RestController
@@ -37,7 +31,7 @@ public class AdminRest {
 
     @RequestMapping(value = "/edit-car", method = RequestMethod.POST)
     public void editCarousel(@RequestPart("file") MultipartFile request,
-                               @RequestParam(name = "index") String index) throws IOException {
+                             @RequestParam(name = "index") String index) throws IOException {
         /*File folder = new File(System.getProperty("user.home"), "/carousel");
         if (!folder.exists()) {
             folder.mkdir();

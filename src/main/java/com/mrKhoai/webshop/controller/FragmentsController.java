@@ -28,7 +28,9 @@ public class FragmentsController {
     }
 
     @GetMapping("/headerfiles-admin")
-    public String getHeaderFilesAdmin() { return "fragments/headerfiles-admin"; }
+    public String getHeaderFilesAdmin() {
+        return "fragments/headerfiles-admin";
+    }
 
     @GetMapping("/navbar-admin")
     public String getNavbarAdmin() {

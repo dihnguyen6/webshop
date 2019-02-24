@@ -8,7 +8,7 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "BILL")
-public class Bill implements Identifiable{
+public class Bill implements Identifiable {
     @Id
     @GeneratedValue(generator = "bill_generator", strategy = GenerationType.SEQUENCE)
     @GenericGenerator(

@@ -11,7 +11,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "CUSTOMER")
-public class Customer implements Identifiable{
+public class Customer implements Identifiable {
     @Id
     @GeneratedValue(generator = "customer_generator", strategy = GenerationType.SEQUENCE)
     @GenericGenerator(
@@ -51,7 +51,6 @@ public class Customer implements Identifiable{
     @OneToOne
     @JoinColumn(name = "ACCOUNT_ID")
     private Account account;
-
 
 
     public int getCustomerId() {

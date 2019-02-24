@@ -11,7 +11,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "CATALOG")
-public class Catalog implements Identifiable{
+public class Catalog implements Identifiable {
     @Id
     @GeneratedValue(generator = "catalog_generator", strategy = GenerationType.SEQUENCE)
     @GenericGenerator(

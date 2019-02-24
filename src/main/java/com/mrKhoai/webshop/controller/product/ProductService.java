@@ -54,14 +54,12 @@ public class ProductService implements ObjectService<Product> {
     }
 
     /**
-     *
      * @return all product as JSONArray
-     * @throws JsonProcessingException
-     * get all Product from Database
-     * write native value into JSONObject
-     * write all other value as JSONArray (only id)
-     * put other value into JSONObject
-     * put JSONObject to return JSONArray
+     * @throws JsonProcessingException get all Product from Database
+     *                                 write native value into JSONObject
+     *                                 write all other value as JSONArray (only id)
+     *                                 put other value into JSONObject
+     *                                 put JSONObject to return JSONArray
      */
     @Override
     public String getAll() throws JsonProcessingException {

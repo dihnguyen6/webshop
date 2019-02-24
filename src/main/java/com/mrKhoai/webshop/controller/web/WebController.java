@@ -1,12 +1,12 @@
 package com.mrKhoai.webshop.controller.web;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.mrKhoai.webshop.objects.Carousel;
-import com.mrKhoai.webshop.repositories.CarouselRepository;
-import com.mrKhoai.webshop.tools.WebshopConst;
 import com.mrKhoai.webshop.controller.customer.CustomerService;
 import com.mrKhoai.webshop.controller.role.RoleService;
 import com.mrKhoai.webshop.controller.staff.StaffService;
+import com.mrKhoai.webshop.objects.Carousel;
+import com.mrKhoai.webshop.repositories.CarouselRepository;
+import com.mrKhoai.webshop.tools.WebshopConst;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,8 +21,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Base64;
 import java.util.List;

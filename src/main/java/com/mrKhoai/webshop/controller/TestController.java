@@ -1,7 +1,5 @@
 package com.mrKhoai.webshop.controller;
 
-import com.mrKhoai.webshop.controller.catalog.CatalogService;
-import com.mrKhoai.webshop.controller.color.ColorService;
 import com.mrKhoai.webshop.objects.Catalog;
 import com.mrKhoai.webshop.objects.Color;
 import com.mrKhoai.webshop.objects.Product;

@@ -28,19 +28,19 @@ public class Product implements Identifiable {
     private String productId;
 
     @Lob
-    @Column(name = "PRODUCT_NAME_EN", nullable = false, length=65535)
+    @Column(name = "PRODUCT_NAME_EN", nullable = false, length = 65535)
     private String productNameEN;
 
     @Lob
-    @Column(name = "PRODUCT_NAME_DE", nullable = false, length=65535)
+    @Column(name = "PRODUCT_NAME_DE", nullable = false, length = 65535)
     private String productNameDE;
 
     @Lob
-    @Column(name = "PRODUCT_DESCRIPTION_EN", nullable = false, length=65535)
+    @Column(name = "PRODUCT_DESCRIPTION_EN", nullable = false, length = 65535)
     private String productDescriptionEN;
 
     @Lob
-    @Column(name = "PRODUCT_DESCRIPTION_DE", nullable = false, length=65535)
+    @Column(name = "PRODUCT_DESCRIPTION_DE", nullable = false, length = 65535)
     private String productDescriptionDE;
 
     @JsonIgnore
