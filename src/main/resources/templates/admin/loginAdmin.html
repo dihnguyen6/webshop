@@ -16,6 +16,7 @@
         /*<![CDATA[*/
         message = /*[[${message}]]*/ 'Login Message';
         messColor = /*[[${messColor}]]*/ 'Message Color';
+        alertMess = 'block';
         /*]]>*/
     </script>
 </head>
@@ -32,13 +33,14 @@
         <div class=" row remember fadeIn third custom-checkbox">
             <input id="rememberme" name="rememberme" value="remember" type="checkbox" />Remember me
         </div>
-        <input type="submit" class="fadeIn fourth btn btn-primary1 btn-block btn-large" th:value="#{login.submit}">
+        <input type="submit" class="fadeIn fourth btn btn-green btn-block btn-large" th:value="#{login.submit}">
         <input name="${_csrf.parameterName}" type="hidden" value="${_csrf.token}"/>
     </form>
 </div>
 
 <div id="alertMess" class="alert alert-warning alert-dismissible fadeIn show" role="alert">
-    <strong>Notification</strong> Wrong username or password.
+    <strong>Notification</strong>
+    <span id="mess"></span>
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>
     </button>
@@ -47,6 +49,7 @@
 <script>
     $('#mess').html(message);
     $('#mess').css("color", messColor);
+    $('#alertMess').css('display', alertMess);
 </script>
 
 </body>
