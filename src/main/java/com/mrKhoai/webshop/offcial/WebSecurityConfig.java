@@ -24,6 +24,12 @@ public class WebSecurityConfig {
         @Autowired
         private WebshopAuthenticationSuccessHandler successHandler;
 
+        @Autowired
+        private WebshopAuthenticationFailureHandler failureHandler;
+
+        @Autowired
+        private WebshopAccessDeniedHandler accessDeniedHandler;
+
         public UserSecurityConfig() {
             super();
         }
@@ -58,6 +64,7 @@ public class WebSecurityConfig {
                     .loginPage("/login")
                     .loginProcessingUrl("/user_login")
                     .failureUrl("/login?error=loginError")
+                    .failureHandler(failureHandler)
                     .defaultSuccessUrl("/home")
                     .successHandler(successHandler)
 
@@ -69,6 +76,7 @@ public class WebSecurityConfig {
                     .and()
                     .exceptionHandling()
                     .accessDeniedPage("/error-403")
+                    .accessDeniedHandler(accessDeniedHandler)
 
                     .and()
                     .rememberMe()
@@ -93,6 +101,9 @@ public class WebSecurityConfig {
 
         @Autowired
         private WebshopAuthenticationSuccessHandler successHandler;
+
+        @Autowired
+        private WebshopAuthenticationFailureHandler failureHandler;
 
         public AdminSecurityConfig() {
             super();
@@ -130,7 +141,9 @@ public class WebSecurityConfig {
                     .usernameParameter("username")
                     .passwordParameter("password")
                     .defaultSuccessUrl("/admin/management")
-                    .failureForwardUrl("/admin?error=loginError")
+                    /*.failureHandler(failureHandler)*/
+                    .failureUrl("/admin?error=loginError")
+                    .successHandler(successHandler)
                     .permitAll()
 
                     .and()
