@@ -39,11 +39,12 @@ public class AdminController {
         //Check if it isn't an authenticated user
         if (authentication instanceof AnonymousAuthenticationToken || authentication == null || !authentication.isAuthenticated()) {
             if (request.equals("none")) {
-                model.addAttribute("message", "Welcome back Admin!");
-                model.addAttribute("messColor", "green");
+                model.addAttribute("message", "");
+                model.addAttribute("messColor", "");
             } else if (request.equals("loginError")) {
-                model.addAttribute("message", "Access Denied");
-                model.addAttribute("messColor", "red");
+                model.addAttribute("message", "Access Denied. Wrong Username or Password !");
+                model.addAttribute("messColor", "#BF3737");
+                model.addAttribute("alertMess", "block");
             }
             return "admin/loginAdmin";
         } else {

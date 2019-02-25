@@ -11,16 +11,12 @@
 
     <script th:inline="javascript">
         /*<![CDATA[*/
-        message = /*[[${message}]]*/ 'Login Message';
-        messColor = /*[[${messColor}]]*/ 'Message Color';
-        alertMess = 'block';
+        message = /*[[${message}]]*/ '';
+        messColor = /*[[${messColor}]]*/ '';
         /*]]>*/
     </script>
 </head>
 <body>
-
-
-
 
 <div class="login">
     <h1 class="fadeIn first"> <span th:utext="#{login.title}"/> </h1>
@@ -28,7 +24,7 @@
         <input type="text" id="username" for="username" class="fadeIn first" name="username" th:placeholder="#{login.username}"  data-validate="Username is required">
         <input type="password" id="password" for="password" class="fadeIn second" name="password" th:placeholder="#{login.password}" data-validate="Pasword is required">
         <div class=" row remember fadeIn third custom-checkbox">
-            <input id="rememberme" name="rememberme" value="remember" type="checkbox" />Remember me
+            <input id="rememberme" name="rememberme" value="remember" type="checkbox" /><span th:utext="#{login.remember}"/>
         </div>
         <input type="submit" class="fadeIn fourth btn btn-green btn-block btn-large" th:value="#{login.submit}">
         <input name="${_csrf.parameterName}" type="hidden" value="${_csrf.token}"/>
@@ -36,20 +32,24 @@
 </div>
 
 <div id="alertMess" class="alert alert-warning alert-dismissible fadeIn show" role="alert">
-    <strong>Notification</strong>
-    <span id="mess"></span>
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-    </button>
+    <h1>Notification</h1></br>
+    <p id="mess"></p>
 </div>
 
-<script src="special/admin/js/bootstrap.js" type="text/javascript"></script>
 <script src="special/admin/jquery-3.3.1.js" type="text/javascript"></script>
+<script src="special/admin/js/bootstrap.js" type="text/javascript"></script>
 <script src="special/admin/login.js" type="text/javascript"></script>
 <script>
     $('#mess').html(message);
     $('#mess').css("color", messColor);
-    $('#alertMess').css('display', alertMess);
+    if (message !== "") {
+        var body = document.getElementsByTagName('body')[0],
+            newdiv = document.createElement('div');
+        newdiv.id = 'alertMess';
+        newdiv.addClass('.')
+    } else {
+        display = 'none';
+    }
 </script>
 
 </body>
