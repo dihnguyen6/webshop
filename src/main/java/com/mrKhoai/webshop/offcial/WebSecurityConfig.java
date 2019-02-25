@@ -13,6 +13,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @EnableWebSecurity
 public class WebSecurityConfig {
 
+
     @Configuration
     @Order(1)
     public static class UserSecurityConfig extends WebSecurityConfigurerAdapter {
@@ -32,6 +33,7 @@ public class WebSecurityConfig {
             return new BCryptPasswordEncoder();
         }
 
+        @Override
         protected void configure(HttpSecurity http) throws Exception {
             /*http.sessionManagement()
                     .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
@@ -148,6 +150,16 @@ public class WebSecurityConfig {
 
                     .and()
                     .csrf().disable();
+
+            /*http
+                    .logout()
+                        .logoutUrl("/loginAdmin?logout")
+                    .and()
+                    .formLogin()
+                        .loginPage("/admin")
+                        .loginProcessingUrl("/perform_login")
+                        .defaultSuccessUrl("/admin/management")
+                        .failureForwardUrl("/admin?error=loginError");*/
         }
 
         @Override
