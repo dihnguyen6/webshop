@@ -33,7 +33,7 @@ public class AdminController {
     @Autowired
     private CarouselRepository carouselRepository;
 
-    @PostMapping("/admin")
+    @RequestMapping("/admin")
     public String adminLogin(Model model, @RequestParam(value = "error", defaultValue = "none", required = false) String request) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         //Check if it isn't an authenticated user
