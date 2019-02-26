@@ -20,13 +20,14 @@
 
 <div class="login">
     <h1 class="fadeIn first"> <span th:utext="#{login.title}"/> </h1>
-    <form method="POST" role="form" th:action="@{/admin}" >
+    <form role="form" >
         <input type="text" id="username" for="username" class="fadeIn first" name="username" th:placeholder="#{login.username}"  data-validate="Username is required">
         <input type="password" id="password" for="password" class="fadeIn second" name="password" th:placeholder="#{login.password}" data-validate="Pasword is required">
         <div class=" row remember fadeIn third custom-checkbox">
             <input id="rememberme" name="rememberme" value="remember" type="checkbox" /><span th:utext="#{login.remember}"/>
         </div>
-        <input type="submit" class="fadeIn fourth btn btn-green btn-block btn-large" th:value="#{login.submit}">
+        <input type="button" class="fadeIn fourth btn btn-green btn-block btn-large" th:value="#{login.submit}" onclick="login();">
+        <!--<button class="fadeIn fourth btn btn-green btn-block btn-large" onclick="login();"><span th:value="#{login.submit}"></span></button>-->
         <input name="${_csrf.parameterName}" type="hidden" value="${_csrf.token}"/>
     </form>
 </div>
@@ -37,11 +38,11 @@
 <script>
     /*$('#mess').html(message);
     $('#mess').css("color", messColor);*/
-    if (message !== "") {
+    /*if (message !== "") {
         createAlertMess();
         $('#mess').html(message);
         $('#mess').css('color', messColor);
-    }
+    }*/
 </script>
 
 </body>

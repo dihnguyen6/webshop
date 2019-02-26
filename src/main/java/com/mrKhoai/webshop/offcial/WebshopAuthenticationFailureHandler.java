@@ -1,5 +1,7 @@
 package com.mrKhoai.webshop.offcial;
 
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -11,6 +13,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 @Service
 public class WebshopAuthenticationFailureHandler implements AuthenticationFailureHandler {
@@ -21,7 +24,20 @@ public class WebshopAuthenticationFailureHandler implements AuthenticationFailur
     public void onAuthenticationFailure(HttpServletRequest httpServletRequest,
                                         HttpServletResponse httpServletResponse,
                                         AuthenticationException e) throws IOException, ServletException {
-        LOGGER.info(e.getMessage());
-        httpServletResponse.setStatus(HttpStatus.UNAUTHORIZED.value());
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.put("mess", "Access Denied. Wrong Username or Password !");
+            jsonObject.put("mColor", "#BF3737");
+            jsonObject.put("alert", "block");
+        } catch (JSONException e1) {
+            e1.printStackTrace();
+        }
+
+        //httpServletResponse.setStatus(HttpStatus.UNAUTHORIZED.value());
+        PrintWriter out = httpServletResponse.getWriter();
+        httpServletResponse.setContentType("application/json");
+        httpServletResponse.setCharacterEncoding("UTF-8");
+        out.print(jsonObject);
+        out.flush();
     }
 }
