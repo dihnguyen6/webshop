@@ -41,8 +41,7 @@ public class UserService implements UserDetailsService {
         }
         User.UserBuilder builder = User.withUsername(username);
         builder.password(new BCryptPasswordEncoder().encode("admin"));
-        String role = "ADMIN";
-        builder.authorities(WebshopConst.ROLE + role);
+        builder.authorities(WebshopConst.ROLE + WebshopConst.ADMIN);
         return builder.build();
         /*username = username.toLowerCase();
         Staff staff = staffService.findByName(username);

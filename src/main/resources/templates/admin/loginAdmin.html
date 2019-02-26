@@ -26,7 +26,7 @@
         <div class=" row remember fadeIn third custom-checkbox">
             <input id="rememberme" name="rememberme" value="remember" type="checkbox" /><span th:utext="#{login.remember}"/>
         </div>
-        <input type="button" class="fadeIn fourth btn btn-green btn-block btn-large" th:value="#{login.submit}" onclick="login();">
+        <input id="loginButton" type="button" class="fadeIn fourth btn btn-green btn-block btn-large" th:value="#{login.submit}" onclick="login();">
         <!--<button class="fadeIn fourth btn btn-green btn-block btn-large" onclick="login();"><span th:value="#{login.submit}"></span></button>-->
         <input name="${_csrf.parameterName}" type="hidden" value="${_csrf.token}"/>
     </form>

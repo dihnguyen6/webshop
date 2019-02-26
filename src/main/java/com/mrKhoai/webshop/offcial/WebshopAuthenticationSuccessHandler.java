@@ -1,6 +1,7 @@
 package com.mrKhoai.webshop.offcial;
 
 import com.mrKhoai.webshop.tools.WebshopConst;
+import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.Authentication;
@@ -14,6 +15,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Collection;
 
 @Component
@@ -28,27 +30,34 @@ public class WebshopAuthenticationSuccessHandler implements AuthenticationSucces
                                         Authentication authentication) throws IOException, ServletException {
         Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
         authorities.forEach(authority -> {
-            if (authority.getAuthority().equals(WebshopConst.ROLE_CUSTOMER)) {
-                try {
-                    redirectStrategy.sendRedirect(httpServletRequest, httpServletResponse, "/home");
-                } catch (Exception e) {
-                    LOGGER.debug(e.getMessage());
-                }
-            } else if (authority.getAuthority().equals(WebshopConst.ROLE + WebshopConst.WEB_DEV)) {
-                try {
-                    redirectStrategy.sendRedirect(httpServletRequest, httpServletResponse, "/web-dev");
-                } catch (Exception e) {
-                    LOGGER.debug(e.getMessage());
-                }
-            } else if (authority.getAuthority().equals(WebshopConst.ROLE + WebshopConst.ADMINISTRATOR)) {
-                try {
-                    redirectStrategy.sendRedirect(httpServletRequest, httpServletResponse, "/admin/management");
-                } catch (Exception e) {
-                    LOGGER.debug(e.getMessage());
-                }
-            } else {
-                throw new IllegalStateException();
+            LOGGER.info(authority.getAuthority());
+            JSONObject jsonObject = new JSONObject();
+            switch (authority.getAuthority()) {
+                case WebshopConst.ROLE_CUSTOMER:
+                    break;
+                case WebshopConst.ROLE + WebshopConst.WEB_DEV:
+                    break;
+                case WebshopConst.ROLE + WebshopConst.ADMIN:
+                    try {
+                        jsonObject.put("status", "success");
+                        jsonObject.put("location", "/admin/management");
+                        sendResponse(httpServletResponse, jsonObject);
+
+                        //redirectStrategy.sendRedirect(httpServletRequest, httpServletResponse, "/admin/management");
+                    } catch (Exception e) {
+                        LOGGER.debug(e.getMessage());
+                    }
+                    break;
+                default: throw new IllegalStateException();
             }
         });
+    }
+
+    protected static void sendResponse(HttpServletResponse httpServletResponse, JSONObject data) throws IOException {
+        PrintWriter out = httpServletResponse.getWriter();
+        httpServletResponse.setContentType("application/json");
+        httpServletResponse.setCharacterEncoding("UTF-8");
+        out.print(data);
+        out.flush();
     }
 }
