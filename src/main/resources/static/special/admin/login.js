@@ -20,6 +20,36 @@ window.setTimeout(function () {
     })
 }, 5000);
 
+function login() {
+    var serializedData = "username=" + $("#username").val() + "&password=" + $("#password").val();
+    var request = $.ajax({
+        url: "/admin",
+        type: "post",
+        data: serializedData
+    });
+
+    request.done(function (response, textStatus, jqXHR){
+        message = response.mess;
+        messColor = response.mColor;
+        if (message !== "") {
+            createAlertMess();
+            $('#mess').html(message);
+            $('#mess').css('color', messColor);
+        }
+    });
+
+    request.fail(function (jqXHR, textStatus, errorThrown){
+        console.log(
+            "The following error occurred: "+
+            textStatus, errorThrown
+        );
+    });
+
+    request.always(function () {
+
+    });
+}
+
 
 
 

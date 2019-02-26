@@ -141,8 +141,8 @@ public class WebSecurityConfig {
                     .usernameParameter("username")
                     .passwordParameter("password")
                     .defaultSuccessUrl("/admin/management")
-                    /*.failureHandler(failureHandler)*/
-                    .failureUrl("/admin?error=loginError")
+                    .failureHandler(failureHandler)
+                    /*.failureUrl("/admin?error=loginError")*/
                     .successHandler(successHandler)
                     .permitAll()
 
