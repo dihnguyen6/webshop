@@ -22,6 +22,8 @@ window.setTimeout(function () {
 
 function login() {
     var serializedData = "username=" + $("#username").val() + "&password=" + $("#password").val();
+
+    $("#loginButton").attr("disabled", "disabled");
     var request = $.ajax({
         url: "/admin",
         type: "post",
@@ -29,12 +31,16 @@ function login() {
     });
 
     request.done(function (response, textStatus, jqXHR){
-        message = response.mess;
-        messColor = response.mColor;
-        if (message !== "") {
-            createAlertMess();
-            $('#mess').html(message);
-            $('#mess').css('color', messColor);
+        if(response.status === "failed") {
+            message = response.mess;
+            messColor = response.mColor;
+            if (message !== "") {
+                createAlertMess();
+                $('#mess').html(message);
+                $('#mess').css('color', messColor);
+            }
+        } else {
+            window.location.replace(response.location);
         }
     });
 
@@ -46,7 +52,7 @@ function login() {
     });
 
     request.always(function () {
-
+        $("#loginButton").removeAttr("disabled");
     });
 }
 

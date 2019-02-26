@@ -26,6 +26,7 @@ public class WebshopAuthenticationFailureHandler implements AuthenticationFailur
                                         AuthenticationException e) throws IOException, ServletException {
         JSONObject jsonObject = new JSONObject();
         try {
+            jsonObject.put("status", "failed");
             jsonObject.put("mess", "Access Denied. Wrong Username or Password !");
             jsonObject.put("mColor", "#BF3737");
             jsonObject.put("alert", "block");
@@ -33,11 +34,6 @@ public class WebshopAuthenticationFailureHandler implements AuthenticationFailur
             e1.printStackTrace();
         }
 
-        //httpServletResponse.setStatus(HttpStatus.UNAUTHORIZED.value());
-        PrintWriter out = httpServletResponse.getWriter();
-        httpServletResponse.setContentType("application/json");
-        httpServletResponse.setCharacterEncoding("UTF-8");
-        out.print(jsonObject);
-        out.flush();
+        WebshopAuthenticationSuccessHandler.sendResponse(httpServletResponse, jsonObject);
     }
 }

@@ -1,5 +1,6 @@
 package com.mrKhoai.webshop.offcial;
 
+import com.mrKhoai.webshop.tools.WebshopConst;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
@@ -132,7 +133,7 @@ public class WebSecurityConfig {
             http.antMatcher("/admin/**")
                     .authorizeRequests()
                     .anyRequest()
-                    .hasRole("ADMIN")
+                    .hasRole(WebshopConst.ADMIN)
 
                     .and()
                     .formLogin()
@@ -140,7 +141,7 @@ public class WebSecurityConfig {
                     .loginProcessingUrl("/admin")
                     .usernameParameter("username")
                     .passwordParameter("password")
-                    .defaultSuccessUrl("/admin/management")
+                    /*.defaultSuccessUrl("/admin/management")*/
                     .failureHandler(failureHandler)
                     /*.failureUrl("/admin?error=loginError")*/
                     .successHandler(successHandler)
@@ -181,7 +182,7 @@ public class WebSecurityConfig {
             /*auth.inMemoryAuthentication()
                     .withUser("admin")
                     .password("admin")
-                    .roles("ADMIN")
+                    .roles("ADMIN_USER")
                     *//*.and()
                     .withUser("admin")
                     .password("admin")
@@ -189,7 +190,7 @@ public class WebSecurityConfig {
                     .accountExpired(true)
                     .accountLocked(true)
                     .authorities("WRITE_PRIVILEGES", "READ_PRIVILEGES")
-                    .roles("ADMIN")*//*;*/
+                    .roles("ADMIN_USER")*//*;*/
         }
     }
 }

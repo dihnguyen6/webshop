@@ -14,7 +14,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -48,7 +47,7 @@ public class AdminController {
             }
             return "admin/loginAdmin";
         } else {
-            if (authentication.getName().equalsIgnoreCase(WebshopConst.ADMIN)) {
+            if (authentication.getName().equalsIgnoreCase(WebshopConst.ADMIN_USER)) {
                 return "redirect:/admin/management";
             } else {
                 return "admin/loginAdmin";
