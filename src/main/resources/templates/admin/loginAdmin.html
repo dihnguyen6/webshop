@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="de" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Security Gate</title>
     <meta charset="UTF-8">
@@ -31,24 +31,21 @@
     </form>
 </div>
 
-<div id="alertMess" class="alert alert-warning alert-dismissible fadeIn show" role="alert">
+<!--<div id="alertMess" class="alert alert-warning alert-dismissible fadeIn show" role="alert">
     <h1>Notification</h1></br>
     <p id="mess"></p>
-</div>
+</div>-->
 
 <script src="special/admin/jquery-3.3.1.js" type="text/javascript"></script>
 <script src="special/admin/js/bootstrap.js" type="text/javascript"></script>
 <script src="special/admin/login.js" type="text/javascript"></script>
 <script>
-    $('#mess').html(message);
-    $('#mess').css("color", messColor);
+    /*$('#mess').html(message);
+    $('#mess').css("color", messColor);*/
     if (message !== "") {
-        var body = document.getElementsByTagName('body')[0],
-            newdiv = document.createElement('div');
-        newdiv.id = 'alertMess';
-        newdiv.addClass('.')
-    } else {
-        display = 'none';
+        createAlertMess();
+        $('#mess').html(message);
+        $('#mess').css('color', messColor);
     }
 </script>
 
