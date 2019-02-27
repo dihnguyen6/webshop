@@ -38,6 +38,11 @@ function login() {
                 createAlertMess();
                 $('#mess').html(message);
                 $('#mess').css('color', messColor);
+
+                $('form').addClass($('form').addClass('ahashakeheartache'));
+                $('form').on('webkitAnimationEnd oanimationend msAnimationEnd animationend', function(e){
+                    $('form').delay(200).removeClass('ahashakeheartache');
+                });
             }
         } else {
             window.location.replace(response.location);
