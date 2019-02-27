@@ -28,6 +28,7 @@ body {
 }
 
 #wrapper {
+    display: block;
     top: 0;
     left: 0;
     width: 100%;
@@ -177,4 +178,3 @@ textarea:focus, textarea:active {
         -webkit-transform: rotate(360deg);
     }
 }
-
