@@ -45,6 +45,23 @@ nav {
     border-bottom: 1px solid #00dbde;
 }
 
+.user-img {
+    padding: auto;
+    line-height: 40px;
+    width: 40px;
+    height: 40px;
+    display: block;
+    border: 1px solid #ffffff;
+!important;
+    border-radius: 50%;
+!important;
+    text-align: center;
+}
+
+.ti-user {
+font-size: 1.4em;
+}
+
 .username {
     font-size: 20px;
     color: #fff;
@@ -110,6 +127,7 @@ textarea:focus, textarea:active {
 .btn:hover {
     color: #ffffff;
 }
+
 .setting {
     position: relative;
     display: block;
@@ -119,7 +137,7 @@ textarea:focus, textarea:active {
 
 .setting:hover {
     decoration: none;
-    -moz-animation: rotation 2s infinite linear ;
+    -moz-animation: rotation 2s infinite linear;
     -webkit-animation: rotation 2s infinite linear;
     -o-animation: rotation 2s infinite linear;
 }
