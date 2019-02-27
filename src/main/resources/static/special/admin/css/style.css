@@ -37,4 +37,38 @@ body {
     color: rgba(0, 0, 0, 0.3);
 }
 
+nav {
+    background-color: #003333;
+!important;
+    color: #fff;
+    border-bottom: 1px solid #00dbde;
+}
+
+.username {
+    font-size: 20px;
+    color: #fff;
+}
+
+.searchbar {
+    position: relative;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    height: 40px;
+    width: 350px;
+    background-color: #003333;
+    border: 1px solid #00dbde;
+    border-radius: 30px;
+    float: right; !important;
+}
+
+.search_input {
+    color: white;
+    border: 0;
+    outline: 0;
+    background: none;
+    width: 0;
+    caret-color: transparent;
+    line-height: 40px;
+    transition: width 0.4s linear;
+}
 

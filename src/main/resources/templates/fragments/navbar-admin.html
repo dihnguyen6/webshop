@@ -6,8 +6,12 @@
 </head>
 <body>
 <div class="header" th:fragment="navbar-admin">
-    <nav class="navbar navbar-dark bg-dark ">
-        This is the NavBar
+    <nav class="navbar navbar-expand-md fixed-top">
+        <span class="ti-user mr-4"></span> <span class="username mr-auto">Admin</span>
+        <div class="searchbar float-right">
+            <input type="text" class="search_input" placeholder="Search ..."/>
+            <span class="ti-search"/>
+        </div>
     </nav>
 </div>
 </body>
