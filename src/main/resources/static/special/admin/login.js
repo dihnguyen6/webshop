@@ -1,7 +1,7 @@
 function createAlertMess() {
     jQuery('<div/>', {
         id: 'alertMess',
-        class: 'alert alert-warning alert-dismissible fadeIn show',
+        class: 'alert alert-warning alert-dismissible bound_left show',
         role: 'alert'
     }).appendTo('body')
 
