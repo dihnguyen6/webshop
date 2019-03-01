@@ -60,7 +60,7 @@ nav {
 }
 
 .ti-user {
-font-size: 1.4em;
+    font-size: 1.4em;
 }
 
 .username {
@@ -114,11 +114,13 @@ input:focus, input:active,
 textarea:focus, textarea:active {
     border-color: transparent;
 !important;
-    outline: 0;
+    outline-color: currentColor;
+    outline-width: 0;
 !important;
     -webkit-box-shadow: none;
     -moz-outline-style: none;
     box-shadow: none;
+    transition: all 0.3s;
 }
 
 .btn {
@@ -130,6 +132,8 @@ textarea:focus, textarea:active {
 }
 
 .setting {
+    color: #ffffff;
+    font-size: 1.6em;
     position: relative;
     display: block;
     transition-property: transform;
@@ -137,6 +141,7 @@ textarea:focus, textarea:active {
 }
 
 .setting:hover {
+    color: #00dbde;
     decoration: none;
     -moz-animation: rotation 2s infinite linear;
     -webkit-animation: rotation 2s infinite linear;
@@ -180,25 +185,76 @@ textarea:focus, textarea:active {
 }
 
 .sidebar {
+    width: 200px;
     position: fixed;
     top: 0;
     bottom: 0;
     left: 0;
     z-index: 100;
-    padding: 78px 0 0;
+    padding: 79px 0 0;
     box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+    transition: all 0.3s;
+}
+
+.sidebar:active {
+    width: 80px;
+    transition: all 0.3s;
+}
+
+.sidebar:active .navbar-text {
+    display: none;
+    transition: all 0.3s;
 }
 
 .sidebar-sticky {
-    width: 100%;
     position: relative;
     top: 0;
-    height: calc(100vh - 48px);
-    padding-top: .5rem;
-    padding-left: 0px;!important;
-    padding-right: 0px;!important;
-    /*overflow-x: hidden;
-    overflow-y: auto;*/
-    background-color: #023947; !important;
+    height: calc(100vh - 79px);
+    padding-top: 1rem;
+    overflow-x: hidden;
+    overflow-y: auto;
+    background-color: #023947;
+!important;
 }
 
+.sidebar-sticky a {
+    color: #ffffff;
+}
+.nav-link {
+    margin-bottom: 10px; !important;
+    margin-left: 27px;
+}
+
+
+.sidebar-sticky ul li{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+}
+li i {
+    margin-right: 27px;
+    font-size: 24px;
+}
+
+.sidebar-sticky a:hover {
+    color: #00dbde;
+}
+
+.dashboard {
+    padding-bottom: 30px;
+    top: 48px;
+}
+
+.navbar-text {
+    font-size: 0.8em; !important;
+}
+
+.sign-out {
+    height: 50px;
+    background-color: black;
+    position: relative;
+    left: 0;
+    bottom: 0;
+}
